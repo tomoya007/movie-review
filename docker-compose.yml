@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/rails/Dockerfile
+    #command: bash -c "rm -f tmp/pids/server.pid && rails s -b 0.0.0.0"
+    tty: true
+    stdin_open: true
+    depends_on:
+      - db
+    volumes:
+      - .:/movie-review
+      - tmp-data:/movie-review/tmp
+    ports:
+      - "3001:3000"
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+volumes:
+  mysql-data:
+  tmp-data:
