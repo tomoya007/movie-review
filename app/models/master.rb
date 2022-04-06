@@ -1,2 +1,0 @@
-class Master < ApplicationRecord
-end
