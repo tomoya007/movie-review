@@ -2,6 +2,7 @@
 
 <ul>
   <% @movies.each do |movie| %>
-    <li><%= @movie.title %></li>
+    <li><%= link_to movie.id, movie %> : <%= movie.title %></li>
+    <%= image_tag movie.image.thumb.url %>
   <% end %>
 </ul>
