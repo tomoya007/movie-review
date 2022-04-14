@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_07_064356) do
+ActiveRecord::Schema.define(version: 2022_04_14_030927) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "namespace"
@@ -27,40 +27,41 @@ ActiveRecord::Schema.define(version: 2022_04_07_064356) do
   end
 
   create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_admin_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+    t.string "email"
+    t.string "encrypted_password"
   end
 
   create_table "genres", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "movie_id", null: false
-    t.index ["movie_id"], name: "index_genres_on_movie_id"
   end
 
   create_table "masters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
   end
 
   create_table "movies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "title"
-    t.string "image"
-    t.string "released_year"
-    t.string "country"
-    t.string "screening_time"
+    t.string "title", null: false
+    t.string "image", null: false
+    t.string "released_year", null: false
+    t.string "country", null: false
+    t.string "screening_time", null: false
     t.string "review"
-    t.string "synposis"
+    t.string "synposis", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "genre_id", null: false
     t.index ["genre_id"], name: "index_movies_on_genre_id"
+  end
+
+  create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.text "text"
+    t.bigint "user_id"
+    t.bigint "movie_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_id"], name: "index_reviews_on_movie_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -73,4 +74,6 @@ ActiveRecord::Schema.define(version: 2022_04_07_064356) do
   end
 
   add_foreign_key "movies", "genres"
+  add_foreign_key "reviews", "movies"
+  add_foreign_key "reviews", "users"
 end

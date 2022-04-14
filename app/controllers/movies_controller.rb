@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   def index
-    @pagy, @movies = pagy(Movie.all)
+    @movies = Movie.all
   end
 
   def show
@@ -21,3 +21,4 @@ class MoviesController < ApplicationController
   def destroy
   end
 end
+
