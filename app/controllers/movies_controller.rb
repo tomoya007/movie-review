@@ -21,5 +21,11 @@ class MoviesController < ApplicationController
 
   def destroy
   end
+
+private
+  def movie_params
+    params.require(:movie).permit(:image)
+  end
+  
 end
 

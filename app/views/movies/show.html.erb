@@ -1,3 +1,14 @@
 <h1>id: <%= @movie.id %> の映画詳細ページ</h1>
 
 <p><%= @movie.title %></p>
+<p><%= @movie.released_year %></p>
+<p><%= @movie.country %></p>
+<p><%= @movie.screening_time %></p>
+<p><%= @movie.review %></p>
+<p><%= @movie.synposis %></p>
+
+
+<%= image_tag @movie.image.thumb.url %>
+
+
+
