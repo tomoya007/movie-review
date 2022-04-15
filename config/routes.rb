@@ -5,8 +5,8 @@ Rails.application.routes.draw do
 
   get 'signup', to: 'users#new'
   
-  resources :movies
+  resources :movies, only: [:index, :show]
   resources :genres
-  resources :users, only: [:index, :show, :create, :edit, :update, :destroy]
+  resources :users
 end
 
