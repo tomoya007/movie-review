@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
     <title>MovieReview</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -18,7 +18,11 @@
     <%= render 'layouts/navbar' %>
 
     <div class="container">
-      <%= render 'layouts/flash_messages' %>
+    <% flash.each do |message_type, message| %>
+  <div class="alert alert-<%= message_type %>"><%= message %></div>
+<% end %>
+      <%#= render 'layouts/flash_messages' %>
+    </div>
 
   <body>
     <%= yield %>
