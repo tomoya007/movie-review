@@ -1,8 +1,28 @@
+<% if logged_in? %>
+  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+  <h1>映画一覧</h1>
+
+<div class="container">
+  <div class="row">
+      <% @movies.each do |movie| %>
+      <div class="col-md-4">
+        <%= image_tag movie.image.thumb.url %>
+        <li><%= link_to movie.id, movie %> : <%= movie.title %></li>
+      </div>
+      <% end %>
+  </div> 
+</div>
+<% else %>
 <h1>映画一覧</h1>
 
-<ul>
-  <% @movies.each do |movie| %>
-    <li><%= link_to movie.id, movie %> : <%= movie.title %></li>
-    <%= image_tag movie.image.thumb.url %>
-  <% end %>
-</ul>
+<div class="container">
+  <div class="row">
+      <% @movies.each do |movie| %>
+      <div class="col-md-4">
+        <%= image_tag movie.image.thumb.url %>
+        <li><%= link_to movie.id, movie %> : <%= movie.title %></li>
+      </div>
+      <% end %>
+  </div> 
+</div>
+<% end %>
