@@ -1,0 +1,12 @@
+<h1>検索結果</h1>
+<table>
+  <tbody>
+    <% @results.each do |movie| %>
+      <tr>
+        <td><%= movie.title %></td>
+        <%= image_tag movie.image.thumb.url %>
+        <td><%= link_to '映画の詳細はこちら', movie %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

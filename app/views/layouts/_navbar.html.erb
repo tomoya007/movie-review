@@ -10,7 +10,15 @@
       <% if logged_in? %>
       <div class="btn-group">
       <ul class="navbar-nav">
-        <li class="ms-3"><%= link_to 'Mypage', users_path, class: 'nav-link' %></li>
+      <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">ジャンル</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">サスペンス</a></li>
+              <li><a class="dropdown-item" href="#">ホラー</a></li>
+              <li><a class="dropdown-item" href="#">ラブロマンス</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="#" class="nav-link">オススメ</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">ランキング</a></li>
       </ul>
       <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><%= current_user.name %></button>
       <ul class="dropdown-menu dropdown-menu-end">

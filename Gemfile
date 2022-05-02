@@ -67,3 +67,5 @@ gem 'psych', '~> 3.1'
 
 gem 'carrierwave'
 gem 'rmagick'
+
+gem 'ransack'
