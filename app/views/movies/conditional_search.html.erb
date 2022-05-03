@@ -2,12 +2,9 @@
 <h1>映画条件検索</h1>
 <br>
 <%= search_form_for @q, url: search_movies_path do |f| %>
-<%= f.label :country_eq, '公開年' %>
+<%= f.label :released_year, '公開年' %>
   <%= f.radio_button :released_year_lteq, '1979' %>~1979年
   <%= f.radio_button :released_year_gteq, '1980' %>1980年~
   <%= f.radio_button :released_year_gteq, '1990' %>1990年~
-  <%= f.radio_button :released_year_lteq, '' %>指定しない
   <%= f.submit '検索' %>
 <% end %>
-
-
