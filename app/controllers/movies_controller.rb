@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :set_q, only: [:index, :search]
+  before_action :set_q, only: [:index, :search, :conditional_search]
   def index
     @movies = Movie.all
   end
@@ -9,6 +9,11 @@ class MoviesController < ApplicationController
   end
 
   def search
+    @results = @q.result
+  end
+
+  # 条件検索
+  def conditional_search
     @results = @q.result
   end
 

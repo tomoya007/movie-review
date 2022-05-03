@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_14_073621) do
+ActiveRecord::Schema.define(version: 2022_05_02_060415) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "namespace"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2022_04_14_073621) do
   create_table "movies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "title", null: false
     t.string "image", null: false
-    t.string "released_year", null: false
+    t.integer "released_year", null: false
     t.string "country", null: false
     t.string "screening_time", null: false
     t.string "review"

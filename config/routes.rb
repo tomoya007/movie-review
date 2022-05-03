@@ -2,11 +2,9 @@ Rails.application.routes.draw do
   resources :movies do
     collection do
       get 'search'
+      get 'conditional_search' # 条件検索
     end
   end
-  get 'sessions/new'
-  get 'sessions/create'
-  get 'sessions/destroy'
   root to: 'movies#index'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

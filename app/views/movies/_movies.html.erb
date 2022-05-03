@@ -1,15 +1,18 @@
 <% if logged_in? %>
 
-<%= link_to '条件付き検索はこちら', root_path %>
-<h1>映画検索</h1>
+<%= link_to '条件付き検索はこちら', conditional_search_movies_path %>
+<br>
+<br>
 <%= search_form_for @q, url: search_movies_path do |f| %>
   <%= f.label :title_or_country_eq, '映画名または作成国' %>
   <%= f.search_field :title_or_country_eq %>
-  <br>
   <%= f.submit '検索' %>
 <% end %>
-  <h2>あなたの観たいインディーズ映画がきっと見つかる</h2>
-
+<br>
+<br>
+  <h1>あなたの観たいインディーズ映画がきっと見つかる</h1>
+<br>
+<br>
 <div class="container">
   <div class="row">
       <% @movies.each do |movie| %>
@@ -21,16 +24,19 @@
   </div> 
 </div>
 <% else %>
-<%= link_to '条件付き検索はこちら', root_path %>
-<h1>映画検索</h1>
+<%= link_to '条件付き検索はこちら', conditional_search_movies_path %>
+<br>
+<br>
 <%= search_form_for @q, url: search_movies_path do |f| %>
   <%= f.label :title_or_country_eq, '映画名または作成国' %>
   <%= f.search_field :title_or_country_eq %>
-  <br>
   <%= f.submit '検索' %>
 <% end %>
-  <h2>あなたの観たいインディーズ映画がきっと見つかる</h2>
-
+<br>
+<br>
+  <h1>あなたの観たいインディーズ映画がきっと見つかる</h1>
+<br>
+<br>
 <div class="container">
   <div class="row">
       <% @movies.each do |movie| %>
