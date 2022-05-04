@@ -69,3 +69,5 @@ gem 'carrierwave'
 gem 'rmagick'
 
 gem 'ransack'
+
+gem 'config'

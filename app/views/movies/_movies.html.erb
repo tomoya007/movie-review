@@ -1,25 +1,8 @@
-<% if logged_in? %>
-  <h1>あなたの観たいインディーズ映画がきっと見つかる</h1>
-<br>
-<br>
-<div class="container">
-  <div class="row">
-      <% @movies.each do |movie| %>
-      <div class="col-md-4">
-        <%= image_tag movie.image.thumb.url %>
-        <li><%= link_to movie.id, movie %> : <%= movie.title %></li>
-      </div>
-      <% end %>
-  </div> 
-</div>
-<% else %>
-<%= search_form_for @q, url: search_movies_path do |f| %>
-  <%= f.label :title_or_country_eq, '映画タイトル' %>
-  <%= f.search_field :title_or_country_eq %>
+<div class="container-fluid area-width search-page">
+  <%= search_form_for @q, url: search_movies_path do |f| %>
+  <%= f.search_field :title_eq, placeholder:'映画タイトル' %>
   <%= f.submit '検索' %>
 <% end %>
-<br>
-<br>
   <h1>あなたの観たいインディーズ映画がきっと見つかる</h1>
 <br>
 <br>
@@ -28,9 +11,8 @@
       <% @movies.each do |movie| %>
       <div class="col-md-4">
         <%= image_tag movie.image.thumb.url %>
-        <li><%= link_to movie.id, movie %> : <%= movie.title %></li>
+        <ul><%= link_to movie.title, movie %>
       </div>
       <% end %>
   </div> 
 </div>
-<% end %>

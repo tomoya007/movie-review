@@ -9,7 +9,17 @@ class MoviesController < ApplicationController
   end
 
   def search
-    @results = @q.result
+    if params[:q][:title_eq].blank?
+      @results=[]
+    else
+      @results = @q.result
+    end
+    if @results.count==0
+      @movies = Movie.all
+      render :index
+      
+    end
+    
   end
 
   # 条件検索

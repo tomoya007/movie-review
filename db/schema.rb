@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_02_060415) do
+ActiveRecord::Schema.define(version: 2022_05_03_220518) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "namespace"
@@ -31,12 +31,6 @@ ActiveRecord::Schema.define(version: 2022_05_02_060415) do
     t.string "encrypted_password"
   end
 
-  create_table "genres", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "masters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
   end
 
@@ -45,13 +39,14 @@ ActiveRecord::Schema.define(version: 2022_05_02_060415) do
     t.string "image", null: false
     t.integer "released_year", null: false
     t.string "country", null: false
-    t.string "screening_time", null: false
-    t.string "review"
-    t.string "synposis", null: false
+    t.integer "screening_time", null: false
+    t.text "review"
+    t.text "synposis", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "genre_id", null: false
-    t.index ["genre_id"], name: "index_movies_on_genre_id"
+    t.string "genre", null: false
+    t.integer "released_month", null: false
+    t.integer "released_day", null: false
   end
 
   create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -73,7 +68,6 @@ ActiveRecord::Schema.define(version: 2022_05_02_060415) do
     t.string "password_digest"
   end
 
-  add_foreign_key "movies", "genres"
   add_foreign_key "reviews", "movies"
   add_foreign_key "reviews", "users"
 end

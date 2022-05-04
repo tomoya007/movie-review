@@ -1,11 +1,12 @@
 <h1><%= @movie.title %></h1>
 <br>
-<p><%= @movie.released_year %>年</p>
-<p><%= @movie.country %></p>
-<p><%= @movie.screening_time %></p>
-<p><%= @movie.review %></p>
-<p><%= @movie.synposis %></p>
-<p>genre_id: <%= @movie.genre_id %></p>
+<p>公開年：<%= @movie.released_year %>年</p>
+<p><%= @movie.released_month %>月</p>
+<p><%= @movie.released_day %>日</p>
+<p>作成国：<%= @movie.country %></p>
+<p>上映時間：<%= @movie.screening_time %>分</p>
+<p>あらすじ…<%= @movie.synposis %></p>
+<p>ジャンル：<%= @movie.genre %></p>
 
 
 <%= image_tag @movie.image.thumb.url %>
