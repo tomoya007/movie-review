@@ -333,6 +333,7 @@ DEPENDENCIES
   config
   devise
   jbuilder (~> 2.7)
+  jquery-rails
   listen (~> 3.2)
   mysql2 (>= 0.4.4)
   pagy (~> 5.10, >= 5.10.1)

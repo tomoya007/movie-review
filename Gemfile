@@ -71,3 +71,5 @@ gem 'rmagick'
 gem 'ransack'
 
 gem 'config'
+
+gem 'jquery-rails'
