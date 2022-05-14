@@ -1,8 +1,4 @@
-class ReviewsController < ApplicationController
-  def new
-  end
-
-  def create
+class ReviewsController < ApplicationControllerdef create
     @review = Review.new(review_params)
     @review.save
     redirect_to movie_path(@review.movie_id)
