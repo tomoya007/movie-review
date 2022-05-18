@@ -1,4 +1,6 @@
-class ReviewsController < ApplicationControllerdef create
+class ReviewsController < ApplicationController
+  before_action :require_user_logged_in, only: [:create]
+  def create
     @review = Review.new(review_params)
     @review.save
     redirect_to movie_path(@review.movie_id)

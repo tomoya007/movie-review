@@ -22,7 +22,6 @@ ActiveAdmin.register Movie do
       row :released_year
       row :released_month
       row :released_day
-      row :released_year
       row :country, :as => :string
       row :screening_time
       row :synposis
