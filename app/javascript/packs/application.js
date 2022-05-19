@@ -16,5 +16,3 @@ require('jquery')
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
-import 'bootstrap'                        //追加
-import '../src/application.scss'          //追加
