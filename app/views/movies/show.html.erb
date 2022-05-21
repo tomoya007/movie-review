@@ -13,11 +13,6 @@
 <%= form_for @review do |f| %>
   <%= f.hidden_field :movie_id, value: @movie.id %>
   <%= f.text_field :text, class: "text-field" %>
-  <div id="rating-form">
-        <label>評価：</label>
-        <%# scoreNameの値をhidden_fieldでカラムに送っている %>
-        <%= f.hidden_field :rate, :value => 'score' %>
-    </div>
   <%= f.submit '投稿', class: "submit-btn" %>
 <% end %>
 
@@ -26,19 +21,7 @@
 <% end %>
 
 
-
-<script>
-    $('#rating-form').raty({
-        starOn: "<%= asset_path('star-on.png') %>",
-        starOff: "<%= asset_path('star-off.png') %>",
-        scoreName: 'review[rate]'
-    $(document).ready(function() {
-    $("#rating-form").text("成功！！");
-  });
-    });
-</script>
-
-
-
 <%= link_to '一覧に戻る', movies_path %>
+
+
 

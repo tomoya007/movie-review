@@ -1,1 +1,23 @@
-￥
+<!-- /reviews/new -->
+
+<p id="hoge">赤色になるよ</p>
+  <script>
+    $("#hoge").css("color","red")
+  </script>
+
+<script>
+    $('#star').raty({
+        starOn: "<%= asset_path('star-on.png') %>",
+      starOff: "<%= asset_path('star-off.png') %>",
+        scoreName: 'review[raty]'
+    });
+</script>
+
+
+<p>テスト</p>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("p").text("成功！！！！");
+  });
+</script>
+

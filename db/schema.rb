@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2022_04_10_052045) do
     t.text "text", null: false
     t.bigint "user_id"
     t.bigint "movie_id"
-    t.float "rate", default: 1.0, null: false
+    t.float "raty", default: 1.0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["movie_id"], name: "index_reviews_on_movie_id"

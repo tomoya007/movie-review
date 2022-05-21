@@ -6,6 +6,10 @@ class ReviewsController < ApplicationController
     redirect_to movie_path(@review.movie_id)
   end
 
+  def new
+    @review = Review.new
+  end
+
   private
     def review_params
       params.require(:review).permit(:movie_id, :text)

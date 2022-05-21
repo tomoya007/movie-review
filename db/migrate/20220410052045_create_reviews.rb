@@ -4,7 +4,7 @@ class CreateReviews < ActiveRecord::Migration[6.0]
       t.text          :text, null: false
       t.references :user, foreign_key: true
       t.references :movie, foreign_key: true
-      t.float :rate, null: false, default: 1
+      t.float :raty, null: false, default: 1
 
       t.timestamps
     end

@@ -43,6 +43,11 @@ end
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
+
+  #デフォルト画像の設定
+def default_url
+  "default-avatar.png"  #←デフォルト画像に設定したい画像名を記入
+end
   # def default_url(*args)
   #   # For Rails 3.1+ asset pipeline compatibility:
   #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
@@ -64,9 +69,11 @@ end
 
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  # def extension_allowlist
-  #   %w(jpg jpeg gif png)
-  # end
+  
+  #アップロードファイルの指定
+  def extension_allowlist
+    %w(jpg jpeg gif png)
+  end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.

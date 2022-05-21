@@ -19,5 +19,6 @@ Rails.application.routes.draw do
   resources :genres
   resources :users
   resources :reviews
+  resource :profile,only: %i[show edit update]
 end
 

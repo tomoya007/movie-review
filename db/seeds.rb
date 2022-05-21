@@ -7,6 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 AdminUser.create!(email: 'ctmajor07@gmail.com', password: 'tomoya1378', password_confirmation: 'tomoya1378') if Rails.env.development?
 
+User.create!(
+  name:'tomoya',
+  email:'admin@example.com',
+  password:'password'
+)
+
 Movie.create!(
   title:'stand by me',
   image:File.open('./app/assets/images/J00676_01.jpeg'),
