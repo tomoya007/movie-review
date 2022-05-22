@@ -1,4 +1,4 @@
-class ImageUploader < CarrierWave::Uploader::Base
+class AvatarUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -19,7 +19,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg gif png webp)
   end
 
-#ファイル名を変更し拡張子を同じにする
+  #ファイル名を変更し拡張子を同じにする
 def filename
   super.chomp(File.extname(super)) + '.jpg' 
 end
@@ -32,6 +32,7 @@ def filename
     name.downcase
   end
 end
+
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog
@@ -69,11 +70,14 @@ end
 
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  
+
   #アップロードファイルの指定
   def extension_allowlist
     %w(jpg jpeg gif png webp)
   end
+  # def extension_allowlist
+  #   %w(jpg jpeg gif png)
+  # end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.

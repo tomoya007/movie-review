@@ -30,10 +30,6 @@ class MoviesController < ApplicationController
     end
   end
 
-  # 条件検索
-  def conditional_search
-    @results = @q.result
-  end
 
   private
 
