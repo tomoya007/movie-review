@@ -1,11 +1,14 @@
 # ご自身のRubyのバージョンに合わせてください
 FROM ruby:3.1.0
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update -qq && \
 apt-get install  -y --no-install-recommends \
 build-essential \
 default-mysql-client \
 less \
 nodejs \
+yarn \
 && apt-get clean \
 && rm -rf /var/lib/apt/lists/*
 

@@ -24,4 +24,13 @@
 <%= link_to '一覧に戻る', movies_path %>
 
 
+<div id="star"></div>
+<script>
+    $('#star').raty({
+        starOn: "<%= asset_path('star-on.png') %>",
+      starOff: "<%= asset_path('star-off.png') %>",
+        scoreName: 'review[raty]'
+    });
+</script>
+
 
