@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  # ログイン、アカウント編集後、任意のページに推移させるための記述
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+}
   resources :movies do
     collection do
       get 'search'
@@ -8,17 +12,10 @@ Rails.application.routes.draw do
   root to: 'movies#index'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-
-  get 'login', to: 'sessions#new'
-  post 'login', to: 'sessions#create'
-  delete 'logout', to: 'sessions#destroy'
-  
-  get 'signup', to: 'users#new'
   
   resources :movies
   resources :genres
-  resources :users
+  resources :users, only: [:index, :show]
   resources :reviews
-  resource :profile,only: %i[show edit update]
 end
 
