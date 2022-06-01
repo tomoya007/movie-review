@@ -30,6 +30,10 @@ class MoviesController < ApplicationController
     end
   end
 
+  def conditional_search
+    set_movie_column
+  end
+
 
   private
 
@@ -45,6 +49,10 @@ class MoviesController < ApplicationController
     Movie.ransack({
       released_year_gteq:params[:q][:released_year].split('~')[0],released_year_lteq:params[:q][:released_year].split('~')[1]
     })
+  end
+
+  def set_movie_column
+    @movie_date = Movie.select("genre").distinct  # 重複なくgenreカラムのデータを取り出す
   end
   
 end
