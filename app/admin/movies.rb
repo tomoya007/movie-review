@@ -11,7 +11,6 @@ ActiveAdmin.register Movie do
       f.input :country, :as => :string
       f.input :screening_time
       f.input :synposis
-      f.input :genre
     end
     f.actions
   end
@@ -25,7 +24,6 @@ ActiveAdmin.register Movie do
       row :country, :as => :string
       row :screening_time
       row :synposis
-      row :genre
       # show画面で画像を表示するためのタグを追加
       row :image do
         image_tag(movie.image.url)

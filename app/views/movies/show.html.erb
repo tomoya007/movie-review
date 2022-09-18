@@ -1,36 +1,67 @@
+<%= stylesheet_link_tag "released", :media => "all" %>
 <h1><%= @movie.title %></h1>
-<br>
-<p>公開年：<%= @movie.released_year %>年</p>
-<p><%= @movie.released_month %>月</p>
-<p><%= @movie.released_day %>日</p>
+
+<div class="released">
+  <p>公開年：<%= @movie.released_year %>年</p>
+  <p><%= @movie.released_month %>月</p>
+  <p><%= @movie.released_day %>日</p>
+</div>
+
+
+<p>ジャンル：<%= @movie.genre %></p>
+<div class="detail">
 <p>作成国：<%= @movie.country %></p>
 <p>上映時間：<%= @movie.screening_time %>分</p>
 <p>あらすじ…<%= @movie.synposis %></p>
-<p>ジャンル：<%= @movie.genre %></p>
+</div>
 
 
 <%= image_tag @movie.image.thumb.url %>
+
 <%= form_for @review do |f| %>
+<div class="field" id="star">
+  <%= f.label :raty, "星評価：" %>
+  <%= f.hidden_field :raty, id: :review_star %>
+<script>
+    $('#star').raty({
+      starOff: "<%= asset_path('star-off.png') %>",
+      starOn: "<%= asset_path('star-on.png') %>",
+      starHalf: '<%= asset_path('star-half.png') %>',
+      scoreName: 'review[raty]',  <!-- ratyカラムへの保存 -->
+      half: true  <!-- 星半分の入力 -->
+    });
+</script>
+</div>
   <%= f.hidden_field :movie_id, value: @movie.id %>
   <%= f.text_field :text, class: "text-field" %>
+  
   <%= f.submit '投稿', class: "submit-btn" %>
 <% end %>
 
-<% @reviews.each do |r| %>
-  <%= r.text %>
-<% end %>
 
 
 <%= link_to '一覧に戻る', movies_path %>
 
 
-<div id="star"></div>
-<script>
-    $('#star').raty({
-        starOn: "<%= asset_path('star-on.png') %>",
-      starOff: "<%= asset_path('star-off.png') %>",
-        scoreName: 'review[raty]'
-    });
-</script>
+
+<h1>レビュー一覧</h1>
+<% @reviews.each do |review|%>
+  <div class=card>
+    <%= link_to review.user.name, user_path(review.user_id) %>
+    <p>評価 :<%= review.raty %>点</p>
+    <div id="star-rate<%= review.id %>"></div>    
+    <script>
+      $('#star-rate<%= review.id%>').raty({
+        size      : 36,
+        starOff   : '<%= asset_path('star-off.png') %>',
+        starOn    : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        readOnly: true,  <!-- 星を読み取り専用にしていじれないようにする -->
+        score: <%= review.raty %>,
+      });
+    </script>
+    <p>内容:<%= review.text%></p>
+  </div>
+<% end %>
 
 

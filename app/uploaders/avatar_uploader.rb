@@ -4,7 +4,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # 画像の上限を700pxにする
-  process :resize_to_limit => [700, 700]
+  process :resize_to_limit => [200, 200]
 
   # 保存形式をJPGにする
   process :convert => 'jpg'

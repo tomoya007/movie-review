@@ -10,12 +10,10 @@
 <% end %>
 
 <hr>
-
-<div class="search-data">
-      <h2>ジャンル選択</h2>
-      <%= search_form_for @q, url: search_movies_path do |f| %>
-        <%= f.label :genre_eq, 'ジャンル' %>
-        <%= f.collection_select :genre_eq, @movie_date, :genre, :genre,  include_blank: false %>
-        <%= f.submit '検索' %>
-      <% end %>
-</div>
+<%= search_form_for @q, url: search_movies_path do |f| %>
+<%= f.label :genre, 'ジャンル' %>
+  <%= f.radio_button :genre_eq, 'サスペンス' %>サスペンス
+  <%= f.radio_button :genre_eq, 'ラブロマンス' %>ラブロマンス
+  <%= f.radio_button :genre_eq, 'ドラマ' %>ドラマ
+  <%= f.submit '検索' %>
+<% end %>

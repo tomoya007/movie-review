@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  get 'relationships/create'
+  get 'relationships/destroy'
   # ログイン、アカウント編集後、任意のページに推移させるための記述
   devise_for :users, controllers: {
     registrations: 'users/registrations'
 }
+  
   resources :movies do
     collection do
       get 'search'
@@ -14,8 +17,21 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   
   resources :movies
-  resources :genres
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show] do
+    member do
+      get :followings
+      get :followers
+    end
+  end
+
+  resources :relationships, only: [:create, :destroy]
+
   resources :reviews
+  get 'reviews/new' => 'reviews#new'
+  # ここから
+  get 'reviews'     => 'reviews#index'
+  # ここまで追加
+  post 'reviews'    => 'reviews#create'
+  # これで「GETメソッドでpostsパスにアクセスするとpostsコントローラーのindexアクションにアクセスする」という設定ができます
 end
 

@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  include SessionsHelper
   include Pagy::Backend
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -8,11 +7,16 @@ class ApplicationController < ActionController::Base
     user_path(id: current_user.id)
   end
 
+  def counts(user)
+    @count_followings = user.followings.count
+    @count_followers = user.followers.count
+  end
+
   private
 
-  def require_user_logged_in
-    unless logged_in?
-      redirect_to login_url
+  def require_user_signed_in
+    unless user_signed_in?
+      redirect_to user_session_path
     end
   end
 
@@ -24,3 +28,4 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :avatar])
   end
 end
+

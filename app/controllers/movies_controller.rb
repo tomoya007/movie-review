@@ -8,6 +8,7 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
     @review = Review.new
     @reviews = @movie.reviews
+    @user = User.find_by(id: @review.user_id) 
   end
 
   def search
@@ -31,7 +32,6 @@ class MoviesController < ApplicationController
   end
 
   def conditional_search
-    set_movie_column
   end
 
 
@@ -50,11 +50,7 @@ class MoviesController < ApplicationController
       released_year_gteq:params[:q][:released_year].split('~')[0],released_year_lteq:params[:q][:released_year].split('~')[1]
     })
   end
-
-  def set_movie_column
-    @movie_date = Movie.select("genre").distinct  # 重複なくgenreカラムのデータを取り出す
-  end
-  
 end
+
 
 
