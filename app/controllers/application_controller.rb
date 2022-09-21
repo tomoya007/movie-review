@@ -14,9 +14,9 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def require_user_signed_in
+  def require_user_signed_in 
     unless user_signed_in?
-      redirect_to user_session_path
+      redirect_to user_session_path 
     end
   end
 

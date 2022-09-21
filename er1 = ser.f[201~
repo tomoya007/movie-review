@@ -1,0 +1,23 @@
+********************************* 1. row *********************************
+                    id: 1
+                  name: tomoya
+                avatar: default-avatar.png
+            created_at: 2022-09-18 08:24:31 UTC
+            updated_at: 2022-09-18 08:24:31 UTC
+                 email: admin@example.com
+    encrypted_password: $2a$12$dUJOMRZ93Tpt7NDy00vB6OyoEAD2LElYHN3vDejB3l8iaIXcGtjBO
+  reset_password_token: 
+reset_password_sent_at: 
+   remember_created_at: 
+********************************* 2. row *********************************
+                    id: 2
+                  name: aaa
+                avatar: default-avatar.png
+            created_at: 2022-09-18 08:24:31 UTC
+            updated_at: 2022-09-18 08:24:31 UTC
+                 email: ctmajor07@gmail.com
+    encrypted_password: $2a$12$dx28FEvs9CR802mM9N5ijuFicfoalu8NM7GHF2ld7kTIp7FgIdSJ.
+  reset_password_token: 
+reset_password_sent_at: 
+   remember_created_at: 
+2 rows in set

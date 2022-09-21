@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'relationships/create'
-  get 'relationships/destroy'
   # ログイン、アカウント編集後、任意のページに推移させるための記述
   devise_for :users, controllers: {
     registrations: 'users/registrations'
@@ -9,7 +7,7 @@ Rails.application.routes.draw do
   resources :movies do
     collection do
       get 'search'
-      get 'conditional_search' # 条件検索
+      get 'conditional_search' 
     end
   end
   root to: 'movies#index'
@@ -17,14 +15,8 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   
   resources :movies
-  resources :users, only: [:index, :show] do
-    member do
-      get :followings
-      get :followers
-    end
-  end
 
-  resources :relationships, only: [:create, :destroy]
+  resources :users, only: [:index, :show] 
 
   resources :reviews
   get 'reviews/new' => 'reviews#new'
