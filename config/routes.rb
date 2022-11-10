@@ -18,12 +18,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show] 
 
-  resources :reviews
-  get 'reviews/new' => 'reviews#new'
-  # ここから
-  get 'reviews'     => 'reviews#index'
-  # ここまで追加
-  post 'reviews'    => 'reviews#create'
-  # これで「GETメソッドでpostsパスにアクセスするとpostsコントローラーのindexアクションにアクセスする」という設定ができます
+  resources :reviews do 
+    resources :comments, only: [:create] 
+  end
 end
 

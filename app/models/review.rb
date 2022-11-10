@@ -5,6 +5,7 @@ class Review < ApplicationRecord
   }, presence: true
   #このバリデーションがあることで、星の評価を1〜5段階で設定し、カラムに保存できるようになる
 
-  belongs_to :user  #Review.userでコメントの所有者を取得
-  belongs_to :movie  #Review.movieでそのコメントがされた投稿を取得
+  belongs_to :user  
+  belongs_to :movie  
+  has_many :comments
 end

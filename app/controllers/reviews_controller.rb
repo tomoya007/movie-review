@@ -1,5 +1,17 @@
 class ReviewsController < ApplicationController
   before_action :require_user_signed_in, only: [:create]
+
+  def index
+    @reviews = current_user.reviews.all  
+    @review = current_user.reviews.new   
+  end
+
+  def show # コメント用に新しく追加
+    @review = Review.find(params[:id])
+    @comments = @review.comments  
+    @comment = current_user.comments.new
+  end
+
   def create
     @review = current_user.reviews.new(review_params) 
     if @review.save
