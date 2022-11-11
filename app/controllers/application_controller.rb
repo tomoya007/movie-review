@@ -7,17 +7,17 @@ class ApplicationController < ActionController::Base
     user_path(id: current_user.id)
   end
 
-  def counts(user)
-    @count_followings = user.followings.count
-    @count_followers = user.followers.count
-  end
-
   private
 
   def require_user_signed_in 
     unless user_signed_in?
       redirect_to user_session_path 
     end
+  end
+
+  def counts(user)
+    @count_followings = user.followings.count
+    @count_followers = user.followers.count
   end
 
   protected
