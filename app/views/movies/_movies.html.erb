@@ -1,8 +1,19 @@
-<div class="container-fluid area-width search-page">
-  <%= search_form_for @q, url: search_movies_path do |f| %>
-  <%= f.search_field :title_eq, placeholder:'映画タイトル' %>
-  <%= f.submit '検索' %>
-<% end %>
+
+
+
+<div class="container-fluid">
+  <%= form_tag search_movies_path, method: :get, class: "navbar-form navbar-left" do %>
+    <div class="input-group">
+      <%= search_field_tag :looking_for, nil, placeholder: '映画タイトル', class: "form-control" %>
+      <div class="input-group-btn">
+        <%= button_tag(type: 'submit', class: "btn btn-outline-secondary") do %>
+          <span class="bi bi-film"></span> 検索
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
 
 <div class="container">
   <div class="jumbotron text-center"  style="background:url(https://pakutaso.cdn.rabify.me/shared/img/thumb/BOB96P8110162.jpg?d=1420); background-size:cover;">
@@ -23,3 +34,7 @@
       <% end %>
   </div> 
 </div>
+
+
+
+  
