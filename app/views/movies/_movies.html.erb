@@ -24,7 +24,9 @@
 
 <br>
 <br>
-<div class="container">
+<%
+=begin%>
+ <div class="container">
   <div class="row">
       <% @movies.each do |movie| %>
       <div class="col-md-4">
@@ -33,8 +35,20 @@
       </div>
       <% end %>
   </div> 
+</div> 
+<%
+=end%>
+
+<div class="container">
+  <div class="row">
+      <% @movies.each do |movie| %>
+          <%= link_to "/movies/#{movie["id"]}", :target => "new" do %>        
+          <%= image_tag movie.image.thumb.url %>
+          <h3><%= movie["title"] %></h3>
+            <% end %>
+      <% end %>
+  </div> 
 </div>
 
-
-
+              
   

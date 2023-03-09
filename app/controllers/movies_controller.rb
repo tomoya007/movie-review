@@ -1,4 +1,6 @@
 class MoviesController < ApplicationController
+  include MoviesHelper
+
   before_action :set_q, only: [:index, :search, :conditional_search]
   def index
     @movies = Movie.all
@@ -9,6 +11,15 @@ class MoviesController < ApplicationController
     @review = Review.new
     @reviews = @movie.reviews
     @user = User.find_by(id: @review.user_id) 
+
+    # get current user's comment
+    @current_user_comment = Comment.find_by(user_id: current_user.id, movie_id: @movie["id"]) if user_signed_in?
+    # create new comment
+    @comment = Comment.new if user_signed_in? && watched_check(@movie["id"])
+    if Movie.exists?(@movie["id"])
+      # find movie object from database
+      @movie_db = Movie.find(@movie["id"])
+    end
   end
 
   def search

@@ -17,11 +17,12 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   
   resources :movies
+  resources :movielists, only: [:create, :destroy]
+  resources :list_movies
 
-  resources :users, only: [:index, :show] do
+  resources :users do
     member do
-      get :followings
-      get :followers
+      get :followings, :followers, :watched, :want
     end
   end
 
@@ -32,5 +33,12 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
 
   resources :genres
+
+  post 'list_movies/create', to: 'list_movies#create'
+  post 'list_movies/create_watched', to: 'list_movies#create_watched'
+  post 'list_movies/create_watched_from_want', to: 'list_movies#create_watched_from_want'
+  post 'list_movies/create_want', to: 'list_movies#create_want'
+  post 'list_movies/create_recommend', to: 'list_movies#create_recommend'
+  delete 'list_movies/destroy', to: 'list_movies#destroy'
 end
 

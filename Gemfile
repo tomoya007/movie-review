@@ -79,3 +79,5 @@ gem 'image_processing', '~> 1.2'
 
 gem 'hirb'
 gem 'hirb-unicode'
+
+gem 'kaminari'

@@ -10,8 +10,6 @@
   <div class="row">
     <div class="col-sm-12">
       <ul class="nav nav-tabs nav-justified mb-3">
-        <li class="nav-item"><a href="#" class="nav-link">視聴済み</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">後で観る</a></li>
         <li class="nav-item"><a href="<%= followings_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followings_user_path(@user)) %>">Followings  <span class="badge bg-secondary"><%= @count_followings %></span></a></li>
       <li class="nav-item"><a href="<%= followers_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followers_user_path(@user)) %>">Followers  <span class="badge bg-secondary"><%= @count_followers %></span></a></li>
       </ul>
@@ -37,6 +35,15 @@
       </script>
       <p>内容:<%= review.text%></p>
     </div>
+
+  <div class="col-lg-3" style="padding:0;">
+    <div class="d-grid gap-2">
+      <%= link_to "プロフィール", {}, :class => "btn btn-primary btn-block disabled" %>
+      <%= link_to "観た映画のリスト", { :action => "watched" }, :class => "btn btn-outline-secondary btn-block" %>
+      <%= link_to "観たい映画のリスト", { :action => "want" }, :class => "btn btn-outline-secondary btn-block" %>
+    </div>
+  </div>
+
   <% end %>
 
 <% else %>
@@ -51,8 +58,6 @@
   <div class="row">
     <div class="col-sm-12">
       <ul class="nav nav-tabs nav-justified mb-3">
-      <li class="nav-item"><a href="#" class="nav-link">視聴済み</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">後で観る</a></li>
         <li class="nav-item"><a href="#" class="nav-link">Followings</a></li>
         <li class="nav-item"><a href="#" class="nav-link">Followers</a></li>
       </ul>
@@ -82,6 +87,11 @@
 
 <%= render 'relationships/follow_button', user: @user %>
 
-
-
+<div class="col-lg-3" style="padding:0;">
+  <div class="d-grid gap-2">
+    <%= link_to "プロフィール", {}, :class => "btn btn-primary btn-block disabled" %>
+    <%= link_to "観た映画のリスト", { :action => "watched" }, :class => "btn btn-outline-secondary btn-block" %>
+    <%= link_to "観たい映画のリスト", { :action => "want" }, :class => "btn btn-outline-secondary btn-block" %>
+  </div>
+</div>
 

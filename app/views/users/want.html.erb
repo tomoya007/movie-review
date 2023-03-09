@@ -1,0 +1,69 @@
+<%= stylesheet_link_tag "custom", :media => "all" %>
+
+<div class="container-fluid area-width user">
+  <div class="row">
+    
+    <div class="col-lg-9" style="padding-left:0;padding-right:40px;">
+      <h2>観たい作品のリスト（<%= @count %>本）</h2>
+
+      <% if @list.blank? %>
+        <p>観たい作品はない</p>
+      <% end %>
+
+      <% unless @list.blank? %>
+
+        <%= paginate @list %>
+
+        <% @list.each do |m| %>
+          <% movie = Movie.find(m.movie_id) %> 
+
+          <div class="row movie-box">
+            <%= link_to "/movies/#{movie["id"]}", :target => "new" do %>
+              <div class="col-md-3 col-sm-3">           
+                <%= image_tag movie.image.thumb.url %>
+              </div>
+              
+              <div class="col-md-9 col-sm-9">
+                  <h3><%= movie["title"] %></h3>
+              </div>
+            <% end %>
+          
+            <div class="col-md-3 col-sm-3"> </div>
+            <div class="col-md-9 col-sm-9" style="padding-left:0;">
+              <div class="row btn-date">
+                <div class="col-md-8 col-sm-6 btn-toolbar">
+                  <% if current_user?(User.find(@movielist.user_id)) %>
+                      <%= button_to "観た",
+                                    { :controller => "list_movies", :action => "create_watched_from_want",
+                                      :movie_id => "#{movie["id"]}"},
+                                    :class => "btn btn-info btn-md", :style => "margin-right:10px;" %>
+                      <%= button_to "削除", list_movies_destroy_path,
+                                    :method => "delete",
+                                    :class => "btn btn-md btn-danger",
+                                    :data => { :confirm => "本当に削除しますか？" },
+                                    :params => {:movielist_id => @movielist.id, :movie_id => movie["id"]} %>
+                  <% end %>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                  <span style="text-align:right">追加日：<%= m.created_at.to_s[0..9] %></span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        <% end %>
+        <%= paginate @list %>
+      <% end %>
+    </div>
+
+    <div class="col-lg-3" style="padding:0;">
+      <div class="d-grid gap-2">
+        <%= link_to "プロフィール", { :action => "show" }, :class => "btn btn-outline-secondary btn-block" %>
+        <%= link_to "観た映画のリスト", { :action => "watched" }, :class => "btn btn-outline-secondary btn-block" %>
+        <%= link_to "観たい映画のリスト", {}, :class => "btn btn-primary btn-block disabled" %>
+      </div>
+    </div>
+
+  </div>
+</div>
+

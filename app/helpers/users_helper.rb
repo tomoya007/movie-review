@@ -4,4 +4,8 @@ module UsersHelper
     size = options[:size]
     "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
   end
+
+  def current_user?(user)
+		user == current_user
+	end
 end

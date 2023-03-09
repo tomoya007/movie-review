@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_23_015358) do
+ActiveRecord::Schema.define(version: 2023_03_07_122055) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "namespace"
@@ -97,6 +97,24 @@ ActiveRecord::Schema.define(version: 2023_02_23_015358) do
     t.index ["user_id"], name: "index_later_watcheds_on_user_id"
   end
 
+  create_table "list_movies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "movie_id"
+    t.bigint "movielist_id"
+    t.string "history"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_id"], name: "index_list_movies_on_movie_id"
+    t.index ["movielist_id"], name: "index_list_movies_on_movielist_id"
+  end
+
+  create_table "movielists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "listname"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_movielists_on_user_id"
+  end
+
   create_table "movies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "title", null: false
     t.string "image", null: false
@@ -107,6 +125,7 @@ ActiveRecord::Schema.define(version: 2023_02_23_015358) do
     t.integer "screening_time", null: false
     t.text "synposis", null: false
     t.string "genre", null: false
+    t.integer "watched_num"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -154,6 +173,9 @@ ActiveRecord::Schema.define(version: 2023_02_23_015358) do
   add_foreign_key "genre_movies", "movies"
   add_foreign_key "later_watcheds", "movies"
   add_foreign_key "later_watcheds", "users"
+  add_foreign_key "list_movies", "movielists"
+  add_foreign_key "list_movies", "movies"
+  add_foreign_key "movielists", "users"
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"
   add_foreign_key "reviews", "movies"
