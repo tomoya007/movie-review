@@ -1,65 +1,48 @@
-<%
-=begin%>
- <%= provide(:title, "#{@user.username}の観た映画リスト") %> 
-<%
-=end%>
-
+<%= stylesheet_link_tag "custom", :media => "all" %>
 <div class="container-fluid area-width user">
   <div class="row">
 
-    <div class="col-md-9 col-sm-9" style="padding-left:0;padding-right:40px;">
+    <div class="col-lg-9" style="padding-left:0;padding-right:40px;">
       <h2>観た作品のリスト（<%= @count %>本）</h2>
+
+      <% if @list.blank? %>
+        <p>観た作品はない</p>
+      <% end %>
 
       <% unless @list.blank? %>
 
         <%= paginate @list %>
 
         <% @list.each do |m| %>
-          <%
-=begin%>
- <% movie = Movie.details(m.movie_id) %> 
-<%
-=end%>
-
-          <% @movie = Movie.find(params[:movie_id]) %>
+          <% movie = Movie.find(m.movie_id) %> 
 
           <div class="row movie-box">
-
-            <%
-=begin%>
- <%= link_to "/movies/#{movie["id"]}", :target => "new" do %>
+            <%= link_to "/movies/#{movie["id"]}", :target => "new" do %>
               <div class="col-md-3 col-sm-3">           
-                <%= image_tag("https://image.tmdb.org/t/p/w200#{movie["poster_path"]}", 
-                              :size => "165x247", :class => "img-responsive", :alt => "poster") %>
+                <%= image_tag movie.image.thumb.url %>
               </div>
               
               <div class="col-md-9 col-sm-9">
-                <% if movie["original_language"] != "ja" %>
                   <h3><%= movie["title"] %></h3>
-                <% else %>
-                  <h3><%= movie["original_title"] %></h3>
-                <% end %>
-                <h5><%= movie["release_date"] %></h5>
-                <% unless movie["overview"].blank? %>
-                  <%= movie["overview"] %>
-                <% end %>
               </div>
-            <% end %> 
-<%
-=end%>
+            <% end %>
 
             <div class="col-md-3 col-sm-3"> </div>
             <div class="col-md-9 col-sm-9" style="padding-left:0;">
               <div class="row btn-date">
                 <div class="col-md-8 col-sm-6 btn-toolbar">
                   <% if current_user?(User.find(@movielist.user_id)) %>
-                      <% unless recommend_check(movie["id"]) %>
+                      <%
+=begin%>
+ <% unless recommend_check(movie["id"]) %>
                         <% rec_list = Movielist.find_by(user_id: @user.id, listname: "recommend") %>
                         <%= button_to "おすすめ", list_movies_create_recommend_path,
                                       :class => "btn btn-info btn-md",
                                       :style => "margin-right:10px;",
                                       :params => {:movielist_id => rec_list.id, :movie_id => movie["id"]} %>
-                      <% end %>
+                      <% end %> 
+<%
+=end%>
                       <% watched_list = Movielist.find_by(user_id: @user.id, listname: "watched") %>
                       <%= button_to "削除", list_movies_destroy_path,
                                     :method => "delete",
@@ -73,49 +56,20 @@
                 </div>
               </div>
             </div>
-
           </div>
         <% end %>
-
         <%= paginate @list %>
       <% end %>
     </div>
 
-    <%
-=begin%>
- <div class="col-md-3 col-sm-3" style="padding:0;"> 
-<%
-=end%>
-      <%
-=begin%>
- <h1>
-        <% if @user.picture? == false %>
-          <%= image_tag("panda.png", :size => "100x100", :alt => "profile") %>
-        <% else %>
-          <%= image_tag(@user.picture, :size => "100x100", :alt => "profile pic") %>
-        <% end %>
-        <%= @user.username %>
-        <%= render 'follow_unfollow_button' if logged_in? %>
-      </h1> 
-<%
-=end%>
-      
-      <%
-=begin%>
- <div class="row text-center">
-        <div class="stats col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
-          <%= render 'shared/stats' %>
-        </div>
-      </div> 
-<%
-=end%>
-
-      <div class="lists">
-        <%= link_to "プロフィール", { :action => "show" }, :class => "btn btn-default btn-block" %>
+    <div class="col-lg-3" style="padding:0;">
+      <div class="d-grid gap-2">
+        <%= link_to "プロフィール", { :action => "show" }, :class => "btn btn-outline-secondary btn-block" %>
         <%= link_to "観た映画のリスト", {}, :class => "btn btn-primary btn-block disabled" %>
-        <%= link_to "観たい映画のリスト", { :action => "want" }, :class => "btn btn-default btn-block" %>
+        <%= link_to "観たい映画のリスト", { :action => "want" }, :class => "btn btn-outline-secondary btn-block" %>
       </div>
     </div>
 
   </div>
 </div>
+

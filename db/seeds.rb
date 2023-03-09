@@ -34,6 +34,12 @@ Genre.create!(
   ]
 )
 
+User.all.each do |user|
+	Movielist.create(user_id: user.id, listname: "watched")
+	Movielist.create(user_id: user.id, listname: "want")
+	Movielist.create(user_id: user.id, listname: "recommend")
+end
+
 
 Movie.create!(
   [
@@ -87,8 +93,3 @@ Movie.create!(
 # )
 
 
-User.all.each do |user|
-	Movielist.create(user_id: user.id, listname: "watched")
-	Movielist.create(user_id: user.id, listname: "want")
-	Movielist.create(user_id: user.id, listname: "recommend")
-end

@@ -11,7 +11,7 @@ class CreateMovies < ActiveRecord::Migration[6.0]
       t.text :synposis, null: false
       t.string :genre, null: false
 
-      t.integer  :watched_num
+      t.integer  :watched_num, default: 0
       t.timestamps
     end
   end

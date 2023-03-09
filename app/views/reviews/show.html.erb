@@ -1,22 +1,4 @@
-<h2>レビュー詳細</h2>
-  <p>内容:<%= @review.text %></p>
 
-<br>
-<h2>コメントをする</h2>
-  <%= form_with(model:[@review, @comment], method: :review, local: true) do |f| %>
-    <%= f.text_area :text %>
-    <%= f.hidden_field :review_id, value: @review.id %>
-    <%= f.submit 'コメントする' %>
-  <% end %>
-
-<br>
-<h2> コメント一覧</h2>
-  <% @comments.each do |comment| %>
-    <p>内容:<%= comment.text%></p>
-  <% end %>
-
-<br>
-  <%= link_to 'ホームへ戻る', root_path %>
 
 
 
