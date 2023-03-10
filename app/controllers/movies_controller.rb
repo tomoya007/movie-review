@@ -12,6 +12,8 @@ class MoviesController < ApplicationController
     @reviews = @movie.reviews
     @user = User.find_by(id: @review.user_id) 
 
+    @comments = @movie.comments
+
     # get current user's comment
     @current_user_comment = Comment.find_by(user_id: current_user.id, movie_id: @movie["id"]) if user_signed_in?
     # create new comment

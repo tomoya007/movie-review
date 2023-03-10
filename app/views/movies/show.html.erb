@@ -18,56 +18,8 @@
 
 <%= image_tag @movie.image.thumb.url %>
 
-<%= form_for @review do |f| %>
-<div class="field" id="star">
-  <%= f.label :raty, "星評価：" %>
-  <%= f.hidden_field :raty, id: :review_star %>
-<script>
-    $('#star').raty({
-      starOff: "<%= asset_path('star-off.png') %>",
-      starOn: "<%= asset_path('star-on.png') %>",
-      starHalf: '<%= asset_path('star-half.png') %>',
-      scoreName: 'review[raty]',  <!-- ratyカラムへの保存 -->
-      half: true  <!-- 星半分の入力 -->
-    });
-</script>
-</div>
-  <%= f.hidden_field :movie_id, value: @movie.id %>
-  <%= f.text_field :text, class: "text-field" %>
-  
-  <%= f.submit '投稿', class: "submit-btn" %>
-<% end %>
-
-
 
 <%= link_to '一覧に戻る', movies_path %>
-
-
-
-<h1>レビュー一覧</h1>
-<% @reviews.each do |review|%>
-  <div class=card>
-    <%= link_to review.user.name, user_path(review.user_id) %>
-    <p>評価 :<%= review.raty %>点</p>
-    <div id="star-rate<%= review.id %>"></div>    
-    <script>
-      $('#star-rate<%= review.id%>').raty({
-        size      : 36,
-        starOff   : '<%= asset_path('star-off.png') %>',
-        starOn    : '<%= asset_path('star-on.png') %>',
-        starHalf: '<%= asset_path('star-half.png') %>',
-        readOnly: true,  <!-- 星を読み取り専用にしていじれないようにする -->
-        score: <%= review.raty %>,
-      });
-    </script>
-    <p>内容:<%= review.text%></p>
-  </div>
-<% end %>
-
-
-<% @movie.genres.each do |genre| %>
-    <%= genre.name %>
-<% end %>
 
 
 <div class="btn-toolbar">
@@ -75,30 +27,20 @@
     </div>
 
     <% if watched_check(@movie["id"]) %>
-        <% if !@current_user_comment.nil? %>
+        <% if !@current_user_review.nil? %>
           <h5>あなたのコメント・感想：</h5>
-          <p><%= @current_user_comment.content %></p>
-          <%= link_to "削除", @current_user_comment, method: :delete, data: { confirm: "本当に削除しますか？" } %>
+          <p><%= @current_user_review.text %></p>
+          <%= link_to "削除", @current_user_review, method: :delete, data: { confirm: "本当に削除しますか？" } %>
         <% else %>
-          <%= render 'comment_form' %>
+          <%= render 'reviews/review_form' %>
         <% end %>
       <% end %>
 
-      <% if !@movie_db.nil? && @movie_db.comments.any? %>
-    <div class="container-fluid comments">
-      <h5>コメント・感想（<%= @movie_db.comments.count %>件）</h5>
+      <% if !@movie_db.nil? && @movie_db.reviews.any? %>
+    <div class="container-fluid reviews">
+      <h5>コメント・感想（<%= @movie_db.reviews.count %>件）</h5>
       <ol>
-        <%
-=begin%>
- <%= render @comments %> 
-<%
-=end%>
-        <%= render 'comments/comment' %>
+        <%= render @reviews %>
       </ol>
-      <%
-=begin%>
- <%= will_paginate @comments %> 
-<%
-=end%>
     </div>
   <% end %>

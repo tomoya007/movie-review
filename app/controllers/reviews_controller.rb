@@ -8,8 +8,6 @@ class ReviewsController < ApplicationController
 
   def show # コメント用に新しく追加
     @review = Review.find(params[:id])
-    @comments = @review.comments  
-    @comment = current_user.comments.new
   end
 
   def create

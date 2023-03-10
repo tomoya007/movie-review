@@ -5,9 +5,6 @@ class CommentsController < ApplicationController
   def create
     # comment = Comment.new(comment_params)
     @comment = Comment.new(comment_params)
-    # @comment.user_id = current_user.id
-    # puts @comment.user_id
-    # @comment.movie_id = params[:id]
     if @comment.save
       flash[:success] = "コメント発表成功！"
     else

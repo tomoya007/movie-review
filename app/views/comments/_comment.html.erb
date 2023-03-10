@@ -1,32 +1,16 @@
 <%
 =begin%>
- <li id="comment-<%= comment.id %>" data-comment-id="<%= comment.id %>">
-  <%= image_tag(profile_pic(comment.user), :size => "50x50", :alt => "profile", :class => "profile") %>
-  <span class="user"><%= link_to comment.user.username, comment.user %></span>
-  <span class="date"><%= comment.created_at.strftime('%Y年%m月%d日') %></span>
-  <span class="content"><%= comment.content %></span>
-  <%= render "likes/like", comment: comment %>
-</li> 
-<%
-=end%>
-
-<li id="@comment-<%= @comment.id %>" data-@comment-id="<%= @comment.id %>">
-  <%
-=begin%>
- <%= image_tag(profile_pic(@comment.user), :size => "50x50", :alt => "profile", :class => "profile") %> 
-<%
-=end%>
-  <%
-=begin%>
- <span class="user"><%= link_to @comment.user.name, @comment.user %></span>
-  <span class="date"><%= @comment.created_at.strftime('%Y年%m月%d日') %></span>
-  <span class="content"><%= @comment.content %></span>
-  <%= render "likes/like", comment: comment %>
-</li> 
-<%
-=end%>
-
+ <li id="@comment-<%= @comment.id %>" data-@comment-id="<%= @comment.id %>">
 <span class="user"><%= link_to @comment.user_id, @comment.user %></span>
 <span class="content"><%= @comment.content %></span>
   <%= render "likes/like" %>
-</li>
+</li> 
+<%
+=end%>
+
+<% @comments.each do |comment|%>
+  <div class=card>
+    <%= link_to comment.user.name, user_path(comment.user_id) %>
+    <p>内容:<%= comment.content %></p>
+  </div>
+<% end %>
