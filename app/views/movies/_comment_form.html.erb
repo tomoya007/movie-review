@@ -1,0 +1,30 @@
+<%= form_for(@comment) do |f| %>
+  <%= render 'comments/error_comments', object: f.object %>
+  <div class="field">
+    <%= f.hidden_field :movie_id, :value => params[:id] %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.label "コメント・感想" %>
+    <%= f.text_area :content, placeholder: "250文字以内で入力してください..." , onKeyUp: "countLength(value, 'textlength');",
+                    class: "input-field", style: "margin-bottom:0;" %>
+    <p id="textlength" style="text-align:right; margin-bottom:0;">0/250文字</p>
+  </div>
+  <%= f.submit "送信", class: "btn btn-primary" %>
+<% end %>
+
+<script type="text/javascript">
+  function countLength( text, field ) {
+    document.getElementById(field).innerHTML = text.length + "/250文字";
+    if (text.length>250) {
+      $('#textlength').css({
+          color:'#ff0000',
+          fontWeight:'bold'
+      });
+    }
+    else {
+      $('#textlength').css({
+          color:'#000000',
+          fontWeight:'normal'
+      });
+    }
+  }
+</script>

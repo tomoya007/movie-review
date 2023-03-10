@@ -10,9 +10,14 @@ class User < ApplicationRecord
   has_one_attached :avatar
   
   has_many :reviews  
-  has_many :comments 
 
   has_many :movielists, dependent: :destroy
+
+  has_many :comments, dependent: :destroy
+  has_many :movies, through: :comments
+
+  has_many :likes, dependent: :destroy
+  has_many :liked_comments, through: :likes, source: :comment
 
   has_many :relationships
   has_many :followings, through: :relationships, source: :follow
@@ -73,5 +78,14 @@ class User < ApplicationRecord
       end
     end
     my_unwatched
+  end
+
+  
+  # def already_liked?(comment)
+  #   self.likes.exists?(comment: comment)
+  # end
+
+  def already_liked?(comment)
+    self.likes.exists?(comment_id: comment)
   end
 end

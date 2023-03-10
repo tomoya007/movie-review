@@ -1,0 +1,41 @@
+<%
+=begin%>
+ <% if user_signed_in? && !current_user?(comment.user) %>
+    <span class="like">
+    <% if current_user.already_liked?(comment) %>
+      <%= form_for(comment.likes.find_by(user: current_user), method: :delete, remote: true) do |f| %>
+        <%= button_tag(class: "btn btn-default btn-xs") do %>
+          <%= content_tag :span, "#{comment.likes_count}", class: "glyphicon glyphicon-heart" %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= form_for(comment.likes.build, remote: true) do |f| %>
+        <%= button_tag(class: "btn btn-default btn-xs") do %>
+          <div><%= hidden_field_tag :comment_id, comment.id %></div>
+          <%= content_tag :span, "#{comment.likes_count}", class: "glyphicon glyphicon-heart-empty" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </span>
+<% end %> 
+<%
+=end%>
+
+<% if user_signed_in? && !current_user?(@comment.user) %>
+    <span class="like">
+    <% if current_user.already_liked?(@comment) %>
+      <%= form_for(@comment.likes.find_by(user: current_user), method: :delete, remote: true) do |f| %>
+        <%= button_tag(class: "btn btn-default btn-xs") do %>
+          <%= content_tag :span, "#{@comment.likes_count}", class: "glyphicon glyphicon-heart" %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= form_for(@comment.likes.build, remote: true) do |f| %>
+        <%= button_tag(class: "btn btn-default btn-xs") do %>
+          <div><%= hidden_field_tag :@comment_id, @comment.id %></div>
+          <%= content_tag :span, "#{@comment.likes_count}", class: "glyphicon glyphicon-heart-empty" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </span>
+<% end %>

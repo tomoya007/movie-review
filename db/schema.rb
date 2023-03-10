@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_09_133442) do
+ActiveRecord::Schema.define(version: 2023_03_09_215627) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "namespace"
@@ -96,6 +96,15 @@ ActiveRecord::Schema.define(version: 2023_03_09_133442) do
     t.index ["user_id"], name: "index_later_watcheds_on_user_id"
   end
 
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "comment_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["comment_id"], name: "index_likes_on_comment_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "list_movies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "movie_id"
     t.bigint "movielist_id"
@@ -171,6 +180,8 @@ ActiveRecord::Schema.define(version: 2023_03_09_133442) do
   add_foreign_key "genre_movies", "movies"
   add_foreign_key "later_watcheds", "movies"
   add_foreign_key "later_watcheds", "users"
+  add_foreign_key "likes", "comments"
+  add_foreign_key "likes", "users"
   add_foreign_key "list_movies", "movielists"
   add_foreign_key "list_movies", "movies"
   add_foreign_key "movielists", "users"

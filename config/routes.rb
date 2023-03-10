@@ -28,6 +28,9 @@ Rails.application.routes.draw do
 
   resources :reviews 
 
+  resources :comments, only: [:create, :destroy]
+  resources :likes, only: [:create, :destroy]
+
   resources :relationships, only: [:create, :destroy]
 
   resources :genres

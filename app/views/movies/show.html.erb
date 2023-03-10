@@ -73,3 +73,32 @@
 <div class="btn-toolbar">
       <%= render 'devise/shared/buttons', movie: @movie %>
     </div>
+
+    <% if watched_check(@movie["id"]) %>
+        <% if !@current_user_comment.nil? %>
+          <h5>あなたのコメント・感想：</h5>
+          <p><%= @current_user_comment.content %></p>
+          <%= link_to "削除", @current_user_comment, method: :delete, data: { confirm: "本当に削除しますか？" } %>
+        <% else %>
+          <%= render 'comment_form' %>
+        <% end %>
+      <% end %>
+
+      <% if !@movie_db.nil? && @movie_db.comments.any? %>
+    <div class="container-fluid comments">
+      <h5>コメント・感想（<%= @movie_db.comments.count %>件）</h5>
+      <ol>
+        <%
+=begin%>
+ <%= render @comments %> 
+<%
+=end%>
+        <%= render 'comments/comment' %>
+      </ol>
+      <%
+=begin%>
+ <%= will_paginate @comments %> 
+<%
+=end%>
+    </div>
+  <% end %>
