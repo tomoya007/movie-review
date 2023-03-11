@@ -269,6 +269,11 @@ footer {
       color: $moasis;
     }
   }
+  // movies/show↓画像の大きさ
+  .movie_image {
+    max-width: 100%;
+    height: auto;
+  }
   /* original title */
   h2 {
       font-size: 21px;
@@ -353,7 +358,7 @@ footer {
   .content {
     clear: both;
     display: block;
-    margin: 20px 15px 10px 15px;
+    margin: 10px 15px 0px 15px; 
     word-wrap: break-word;
   }
   form {

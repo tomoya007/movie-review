@@ -32,17 +32,6 @@
               <div class="row btn-date">
                 <div class="col-md-8 col-sm-6 btn-toolbar">
                   <% if current_user?(User.find(@movielist.user_id)) %>
-                      <%
-=begin%>
- <% unless recommend_check(movie["id"]) %>
-                        <% rec_list = Movielist.find_by(user_id: @user.id, listname: "recommend") %>
-                        <%= button_to "おすすめ", list_movies_create_recommend_path,
-                                      :class => "btn btn-info btn-md",
-                                      :style => "margin-right:10px;",
-                                      :params => {:movielist_id => rec_list.id, :movie_id => movie["id"]} %>
-                      <% end %> 
-<%
-=end%>
                       <% watched_list = Movielist.find_by(user_id: @user.id, listname: "watched") %>
                       <%= button_to "削除", list_movies_destroy_path,
                                     :method => "delete",

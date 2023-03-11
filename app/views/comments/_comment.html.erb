@@ -1,16 +1,26 @@
-<%
+<li id="comment-<%= comment.id %>" data-comment-id="<%= comment.id %>">
+  <% if comment.user.avatar? %>
+    <%= image_tag comment.user.avatar.url, class: "rounded-circle profile", size: "50x50" %>
+  <% else %>
+    <%= image_tag ("default-avatar.png"), class: "rounded-circle profile", size: "50x50" %>
+  <% end %>
+  <span class="user"><%= link_to comment.user.name, comment.user %></span>
+  <span class="date"><%= comment.created_at.strftime('%Y年%m月%d日') %></span>
+    <%
 =begin%>
- <li id="@comment-<%= @comment.id %>" data-@comment-id="<%= @comment.id %>">
-<span class="user"><%= link_to @comment.user_id, @comment.user %></span>
-<span class="content"><%= @comment.content %></span>
-  <%= render "likes/like" %>
-</li> 
+ <p>評価 :<%= comment.raty %>点</p> 
 <%
 =end%>
-
-<% @comments.each do |comment|%>
-  <div class=card>
-    <%= link_to comment.user.name, user_path(comment.user_id) %>
-    <p>内容:<%= comment.content %></p>
-  </div>
-<% end %>
+    <div id="star-rate<%= comment.id %>"></div>    
+    <script>
+      $('#star-rate<%= comment.id%>').raty({
+        size      : 36,
+        starOff   : '<%= asset_path('star-off.png') %>',
+        starOn    : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        readOnly: true, // 星を読み取り専用にしていじれないようにする 
+        score: <%= comment.raty %>,
+      });
+    </script>
+  <span class="content"><%= comment.content %></span>
+</li>

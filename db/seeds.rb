@@ -45,7 +45,7 @@ Movie.create!(
   [
     {
       title:'stand by me',
-  image:File.open('./app/assets/images/J00676_01.jpeg'),
+  image:File.open('./app/assets/images/J00676_01.jpg'),
   released_year:'1986',
   country:'アメリカ合衆国',
   screening_time:'89',
@@ -56,7 +56,7 @@ Movie.create!(
     },
     {
       title:'きっと、うまくいく',
-      image:File.open('./app/assets/images/81LDJdUigBL._SL1500_1.webp'),
+      image:File.open('./app/assets/images/SL1500_1.webp'),
       released_year:'2013',
       country:'インド',
       screening_time:'170',
@@ -70,7 +70,7 @@ Movie.create!(
 
 Movie.create!(
   title:'存在のない子供たち',
-  image:File.open('./app/assets/images/1015706_03.jpeg'),
+  image:File.open('./app/assets/images/1015706_03.jpg'),
   released_year:'2019',
   country:'レバノン',
   screening_time:'125',
@@ -80,16 +80,16 @@ Movie.create!(
   genre:'ドラマ'
 )
 
-# Movie.create!(
-#   title:'The Godfather',
-#   image:File.open('./app/assets/images/d7517-13-653199-0.jpeg'),
-#   released_year:'1972',
-#   country:'アメリカ合衆国',
-#   screening_time:'175',
-#   synposis:'信頼が厚く絶大な権力を持つアメリカ・マフィアのボス。ビジネスの陳情を断られた組織が、彼を襲撃し権力闘争の挑戦状を叩きつける。ファミリーで唯一堅気だった末息子は、父の命が狙われたことに心火を燃やす。',
-#   genre:'ドラマ',
-#   released_month:'7',
-#   released_day:'15'
-# )
+Movie.create!(
+  title:'The Godfather',
+  image:File.open('./app/assets/images/d7517-13-653199-0.jpg'),
+  released_year:'1972',
+  country:'アメリカ合衆国',
+  screening_time:'175',
+  synposis:'信頼が厚く絶大な権力を持つアメリカ・マフィアのボス。ビジネスの陳情を断られた組織が、彼を襲撃し権力闘争の挑戦状を叩きつける。ファミリーで唯一堅気だった末息子は、父の命が狙われたことに心火を燃やす。',
+  genre:'ドラマ',
+  released_month:'7',
+  released_day:'15'
+)
 
 

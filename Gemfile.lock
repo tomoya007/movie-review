@@ -99,6 +99,9 @@ GEM
     config (4.0.0)
       deep_merge (~> 1.2, >= 1.2.1)
       dry-validation (~> 1.0, >= 1.0.0)
+    counter_culture (3.3.0)
+      activerecord (>= 4.2)
+      activesupport (>= 4.2)
     crass (1.0.6)
     deep_merge (1.2.2)
     devise (4.8.1)
@@ -333,6 +336,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   carrierwave
   config
+  counter_culture
   devise
   hirb
   hirb-unicode

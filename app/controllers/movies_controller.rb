@@ -8,12 +8,13 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
-    @review = Review.new
-    @reviews = @movie.reviews
-    @user = User.find_by(id: @review.user_id) 
-
+    # @review = Review.new
+    # @reviews = @movie.reviews
+    @comment = Comment.new
     @comments = @movie.comments
+    @user = User.find_by(id: @comment.user_id) 
 
+    
     # get current user's comment
     @current_user_comment = Comment.find_by(user_id: current_user.id, movie_id: @movie["id"]) if user_signed_in?
     # create new comment

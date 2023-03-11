@@ -81,3 +81,6 @@ gem 'hirb'
 gem 'hirb-unicode'
 
 gem 'kaminari'
+
+# いいねcounter
+gem 'counter_culture'

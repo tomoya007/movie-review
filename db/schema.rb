@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2023_03_09_215627) do
     t.bigint "user_id", null: false
     t.bigint "movie_id", null: false
     t.integer "likes_count", default: 0
+    t.float "raty", default: 1.0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["movie_id"], name: "index_comments_on_movie_id"
@@ -102,6 +103,7 @@ ActiveRecord::Schema.define(version: 2023_03_09_215627) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["comment_id"], name: "index_likes_on_comment_id"
+    t.index ["user_id", "comment_id"], name: "index_likes_on_user_id_and_comment_id", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 

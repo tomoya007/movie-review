@@ -1,8 +1,4 @@
-
-
-
-<div class="container-fluid">
-  <%= form_tag search_movies_path, method: :get, class: "navbar-form navbar-left" do %>
+<%= form_tag search_movies_path, method: :get, class: "navbar-form navbar-left" do %>
     <div class="input-group">
       <%= search_field_tag :looking_for, nil, placeholder: '映画タイトル', class: "form-control" %>
       <div class="input-group-btn">
@@ -24,28 +20,16 @@
 
 <br>
 <br>
-<%
-=begin%>
- <div class="container">
-  <div class="row">
-      <% @movies.each do |movie| %>
-      <div class="col-md-4">
-        <%= image_tag movie.image.thumb.url %>
-        <ul><%= link_to movie.title, movie %>
-      </div>
-      <% end %>
-  </div> 
-</div> 
-<%
-=end%>
 
 <div class="container">
   <div class="row">
       <% @movies.each do |movie| %>
+      <div class="col-md-4">
           <%= link_to "/movies/#{movie["id"]}", :target => "new" do %>        
           <%= image_tag movie.image.thumb.url %>
           <h3><%= movie["title"] %></h3>
             <% end %>
+      </div> 
       <% end %>
   </div> 
 </div>
