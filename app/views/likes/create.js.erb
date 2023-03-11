@@ -1,1 +1,7 @@
 $("#comment-<%= @comment.id %> .like").html("<%= escape_javascript(render "likes/like", comment: @comment) %>");
+
+
+
+<%# alert('いいねが出来ている'); %>
+
+$('#likes_buttons_<%= @comment.id %>').html("<%= j(render partial: 'likes/like', locals: {comment: @comment}) %>");

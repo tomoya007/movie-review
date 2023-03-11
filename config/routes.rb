@@ -26,8 +26,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :comments
-  resources :likes, only: [:create, :destroy]
+  # resources :comments, only: [:create, :destroy]
+  # resources :likes, only: [:create, :destroy]
+
+  resources :comments, only: [:create, :destroy] do
+    resources :likes, only: [:create, :destroy]
+  end
 
   resources :relationships, only: [:create, :destroy]
 
@@ -37,7 +41,10 @@ Rails.application.routes.draw do
   post 'list_movies/create_watched', to: 'list_movies#create_watched'
   post 'list_movies/create_watched_from_want', to: 'list_movies#create_watched_from_want'
   post 'list_movies/create_want', to: 'list_movies#create_want'
-  post 'list_movies/create_recommend', to: 'list_movies#create_recommend'
+  # post 'list_movies/create_recommend', to: 'list_movies#create_recommend'
   delete 'list_movies/destroy', to: 'list_movies#destroy'
+
+  post 'like/:id', to: 'likes#create', as: 'create_like'
+  delete 'like/:id', to: 'likes#destroy', as: 'destroy_like'
 end
 

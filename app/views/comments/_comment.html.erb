@@ -23,4 +23,9 @@
       });
     </script>
   <span class="content"><%= comment.content %></span>
+  <div id="likes_buttons_<%= comment.id %>">
+  <%= render "likes/like", comment: comment %>
+  </div>
 </li>
+
+

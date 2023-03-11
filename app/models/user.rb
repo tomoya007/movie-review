@@ -56,6 +56,10 @@ class User < ApplicationRecord
     feed_items.sort_by!{ |a| a["created_at"] }.reverse!
   end
 
+  def self.search(term)
+    User.where(['username LIKE ?', "%#{term}%"])
+  end
+
   def self.my_watched(other_user_list_id, current_user_id)
     current_user_movielist = User.find(current_user_id).movielists.find_by(listname: "watched")
     other_user_list = ListMovie.where(movielist_id: other_user_list_id)
