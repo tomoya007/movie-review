@@ -47,17 +47,23 @@ class UsersController < ApplicationController
   end
 
   def followings
+    # @user = User.find(params[:id])
+    # @pagy, @followings = pagy(@user.followings)
+    # counts(@user)
+    @title = "Following"
     @user = User.find(params[:id])
-    @pagy, @followings = pagy(@user.followings)
-    counts(@user)
-    @reviews = @user.reviews
+    @users = @user.followings
+    render 'show_follow'
   end
 
   def followers
+    # @user = User.find(params[:id])
+    # @pagy, @followers = pagy(@user.followers)
+    # counts(@user)
+    @title = "Followers"
     @user = User.find(params[:id])
-    @pagy, @followers = pagy(@user.followers)
-    counts(@user)
-    @reviews = @user.reviews
+    @users = @user.followers
+    render 'show_follow'
   end
 
   def watched

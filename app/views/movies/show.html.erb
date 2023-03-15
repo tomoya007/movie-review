@@ -1,11 +1,8 @@
-<%= stylesheet_link_tag "custom", :media => "all" %>
-
 <div class="container-fluid movie-info">
 <div class="row">
   <div class="col-lg-6" style="padding-left:20px;padding-right:20px;">
   
     <%= image_tag @movie.image.url, class: "movie_image" %>
-
 
     <div class="btn-toolbar">
           <%= render 'devise/shared/buttons', movie: @movie %>
@@ -27,18 +24,20 @@
   <div class="col-lg-6" style="padding-left:20px;padding-right:20px;">
     <h1><%= @movie.title %></h1>
 
-    
-      <div class="released">
-        <p>公開年：<%= @movie.released_year %>年</p>
-        <p><%= @movie.released_month %>月</p>
-        <p><%= @movie.released_day %>日</p>
-      </div>
+    <div class="released">
+      <p>公開年：<%= @movie.released_year %>年</p>
+      <p><%= @movie.released_month %>月</p>
+      <p><%= @movie.released_day %>日</p>
+    </div>
 
-
-      <p>ジャンル：<%= @movie.genre %></p>
-        <p>作成国：<%= @movie.country %></p>
-        <p>上映時間：<%= @movie.screening_time %>分</p>
-        <p>あらすじ…<%= @movie.synposis %></p>
+    <p>ジャンル：
+      <% @movie.genres.each do |genre| %>
+        <%= genre.name %>
+      <% end %>
+    </p>
+    <p>作成国：<%= @movie.country %></p>
+    <p>上映時間：<%= @movie.screening_time %>分</p>
+    <p>あらすじ…<%= @movie.synposis %></p>
   
 </div>
   <% if !@movie_db.nil? && @movie_db.comments.any? %>

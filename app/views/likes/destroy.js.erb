@@ -4,5 +4,4 @@ $("#comment-<%= @comment.id %> .like").html("<%= escape_javascript(render "likes
 
 <%# alert('いいねを解除している'); %>
 
-$('#likes_buttons_<%= @comment.id %>').html("<%= j(render partial: 'likes/like', locals: {comment: @comment}) %>");
 

@@ -1,8 +1,14 @@
-<% if users.any? %>
+<%
+=begin%>
+ <% if users.any? %>
   <ul class="list-unstyled">
     <% users.each do |user| %>
       <li class="mb-3 d-flex">
-        <img class="rounded me-2" src="<%= gravatar_url(user, { size: 64 }) %>" alt="">
+        <% if user.avatar? %>
+          <%= image_tag avatar.url, class: "rounded-circle", size: "50x50" %>
+        <% else %>
+          <%= image_tag ("default-avatar.png"), class: "rounded-circle", size: "50x50" %>
+        <% end %>
         <div>
           <div>
             <%= user.name %>
@@ -15,4 +21,30 @@
     <% end %>
   </ul>
   <%== pagy_bootstrap_nav(@pagy) %>
+<% end %> 
+<%
+=end%>
+      
+  <% @users.each do |user| %>
+  <div class="card">
+  <div class="avatar">
+    <%= link_to "/users/#{user["id"]}", :target => "new" do %>
+      <% if user.avatar? %>
+        <%= image_tag avatar.url, class: "rounded-circle mx-auto d-block", size: "50x50" %>
+      <% else %>
+        <%= image_tag ("default-avatar.png"), class: "rounded-circle mx-auto d-block", size: "50x50" %>
+      <% end %>
+      </div>
+      <div class="name">
+        <p><%= user.name %></p>
+      </div>
+    <% end %>
+    </div>
 <% end %>
+  <%
+=begin%>
+ <% if current_user.admin? && !current_user?(user) %>
+    <%= link_to "delete", user, method: :delete, data: { confirm: "本当に削除しますか?" } %>
+  <% end %> 
+<%
+=end%>

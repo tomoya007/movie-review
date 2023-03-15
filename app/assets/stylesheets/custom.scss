@@ -1,8 +1,3 @@
-// @import "bootstrap-sprockets";
-// @import "bootstrap";
-// @import "bootstrap-social";
-// @import "font-awesome";
-
 /* variables */
 $light-gray: #777;
 $gray-medium-light: #eaeaea;
@@ -139,7 +134,7 @@ footer {
   margin-top: 20px;
   padding-top: 70px;
   margin-bottom: 50px;
-  background: image-url("banner2.png") no-repeat;
+  background: image-url("banner.jpeg") no-repeat;
   background-size: 100% auto;
   /* background-size: cover; */
   p, h1, h3 {
@@ -245,7 +240,6 @@ footer {
     margin-right: 200px;
   }
 }
-
 
 
 /* movie info */
@@ -451,7 +445,15 @@ footer {
         color: $light-gray;
       }
     }
+    .datils {
+      h3 {
+          // margin-top: 30px;
+      text-align: center;
+      }
+    }
   }
+
+  
 
   /* report */
   h4 {
@@ -496,7 +498,7 @@ footer {
 
 .like-btn {
   font-size: 15px;
-  color: #808080; 
+  color: #808080;
   margin-left: 20px;
   }
   
@@ -573,3 +575,13 @@ footer {
   margin-left: auto;
   margin-right: auto;
 }
+
+
+.avatar {//_users.html
+  margin-top: 5px;
+}
+
+.name { //_users.html
+  margin-left: 10px;
+}
+

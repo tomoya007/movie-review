@@ -3,8 +3,15 @@ Rails.application.routes.draw do
   get 'relationships/destroy'
   # ログイン、アカウント編集後、任意のページに推移させるための記述
   devise_for :users, controllers: {
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    passwords: 'users/passwords'
 }
+
+devise_scope :user do
+  post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+end
+
+get '/about', to: 'layouts#about'
   
   resources :movies do
     collection do
@@ -22,12 +29,9 @@ Rails.application.routes.draw do
 
   resources :users do
     member do
-      get :followings, :followers, :watched, :want
+      get :watched, :want, :followings, :followers
     end
   end
-
-  # resources :comments, only: [:create, :destroy]
-  # resources :likes, only: [:create, :destroy]
 
   resources :comments, only: [:create, :destroy] do
     resources :likes, only: [:create, :destroy]
@@ -35,13 +39,16 @@ Rails.application.routes.draw do
 
   resources :relationships, only: [:create, :destroy]
 
-  resources :genres
+  get '/search_movies_result', to: 'searchs#search_movies'
+  get '/search_filter', to: 'searchs#search_filter' 
+  get '/search', to: 'searchs#discover'
+  get '/genres', to: 'searchs#show_genre'
+  get '/years', to: 'searchs#show_single_year'
 
   post 'list_movies/create', to: 'list_movies#create'
   post 'list_movies/create_watched', to: 'list_movies#create_watched'
   post 'list_movies/create_watched_from_want', to: 'list_movies#create_watched_from_want'
   post 'list_movies/create_want', to: 'list_movies#create_want'
-  # post 'list_movies/create_recommend', to: 'list_movies#create_recommend'
   delete 'list_movies/destroy', to: 'list_movies#destroy'
 
   post 'like/:id', to: 'likes#create', as: 'create_like'
