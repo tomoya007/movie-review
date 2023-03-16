@@ -52,7 +52,6 @@ class User < ApplicationRecord
     ListMovie.where("movielist_id IN (#{movielists_ids})", user_id: id).each do |movie|
       feed_items << movie
     end
-    # puts feed_items
     feed_items.sort_by!{ |a| a["created_at"] }.reverse!
   end
 
@@ -72,7 +71,6 @@ class User < ApplicationRecord
     my_watched
   end
 
-  # compare given user's given list with current user's watched list to get current user's unwatched list
   def self.my_unwatched(other_user_list_id, current_user_id)
     current_user_movielist = User.find(current_user_id).movielists.find_by(listname: "watched")
     other_user_list = ListMovie.where(movielist_id: other_user_list_id)
@@ -84,11 +82,6 @@ class User < ApplicationRecord
     end
     my_unwatched
   end
-
-  
-  # def already_liked?(comment)
-  #   self.likes.exists?(comment: comment)
-  # end
 
   def already_liked?(comment)
     self.likes.exists?(comment_id: comment)

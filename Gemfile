@@ -81,6 +81,7 @@ gem 'hirb'
 gem 'hirb-unicode'
 
 gem 'kaminari'
+gem 'bootstrap5-kaminari-views'
 
 # いいねcounter
 gem 'counter_culture'
