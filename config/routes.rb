@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'toppages/index'
   get 'relationships/create'
   get 'relationships/destroy'
   # ログイン、アカウント編集後、任意のページに推移させるための記述
@@ -19,7 +20,7 @@ get '/about', to: 'layouts#about'
       get 'conditional_search' 
     end
   end
-  root to: 'movies#index'
+  root to: 'toppages#index'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   
