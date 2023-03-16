@@ -20,6 +20,14 @@ User.create!(
   password:'tomoya1378'
 )
 
+30.times do |n|
+  User.create!(
+    email: "test#{n + 1}@test.com",
+    name: "テスト太郎#{n + 1}",
+    password:'tomoya1378#{n + 1}'
+  )
+end
+
 Genre.create!(
   [
     {
@@ -67,7 +75,6 @@ Movie.create!(
   synposis:'1959年の夏、オレゴン州の田舎町。12歳の少年4人は、性格も個性も異なっていたが仲良しで、いつも一緒に遊んでいた。そんなある日、行方不明の少年の死体が線路上に放置されているとの噂を聞きつけた彼らは、死体探しの旅に出かける。途中で喧嘩をしながらも、少年たちは助け合いながら、鉄道の線路に沿って冒険のような旅を続ける。',
   released_month:'8',
   released_day:'2'
-  # genre:'サスペンス'
     },
     {
       title:'きっと、うまくいく',
@@ -78,7 +85,6 @@ Movie.create!(
       synposis:'インドで興行収入歴代ナンバーワンを記録する大ヒットとなったコメディドラマ。インド屈指のエリート理系大学ICEを舞台に、型破りな自由人のランチョー、機械よりも動物が大好きなファラン、なんでも神頼みの苦学生ラジューの3人が引き起こす騒動を描きながら、行方不明になったランチョーを探すミステリー仕立ての10年後の物語が同時進行で描かれる。',
       released_month:'5',
       released_day:'18'
-      # genre:'ラブロマンス'
     }
   ]
 )
@@ -92,7 +98,6 @@ Movie.create!(
   synposis:'中東の貧民窟で暮らす12歳のゼインは、貧しい両親が出生届を提出していないため、IDを持っていない。ある日、ゼインが仲良くしていた妹が、知り合いの年上の男性と強制的に結婚させられてしまい、それに反発したゼインは家を飛び出す。仕事を探そうとしたがIDを持っていないため職に就くことができない彼は、沿岸部のある町でエチオピア移民の女性と知り合い、彼女の赤ん坊を世話しながら一緒に暮らすことになる。しかしその後、再び家に戻ったゼインは、強制結婚させられた妹が亡くなったことを知り……。',
   released_month:'7',
   released_day:'20'
-  # genre:'ドラマ'
 )
 
 Movie.create!(
@@ -104,8 +109,20 @@ Movie.create!(
   synposis:'信頼が厚く絶大な権力を持つアメリカ・マフィアのボス。ビジネスの陳情を断られた組織が、彼を襲撃し権力闘争の挑戦状を叩きつける。ファミリーで唯一堅気だった末息子は、父の命が狙われたことに心火を燃やす。',
   released_month:'7',
   released_day:'15'
-  # genre:'ドラマ'
 )
+
+30.times do |n|
+  Movie.create!(
+    title:'movie#{n + 1}',
+    image:File.open('./app/assets/images/banner.jpeg'),
+    released_year:'1',
+    country:'a',
+    screening_time:'1',
+    synposis:'aaa',
+    released_month:'1',
+    released_day:'1'
+  )
+end
 
 GenreMovie.create!(
   [
@@ -129,5 +146,115 @@ GenreMovie.create!(
       movie_id: 4,
       genre_id: 2
     }
+  ]
+)
+
+
+Relationship.create!(
+  [
+    {
+      user_id: 1,
+      follow_id: 2
+    },
+    {
+      user_id: 1,
+      follow_id: 3
+    },
+    {
+      user_id: 1,
+      follow_id: 4
+    },
+    {
+      user_id: 1,
+      follow_id: 5
+    },
+    {
+      user_id: 1,
+      follow_id: 6
+    },
+    {
+      user_id: 1,
+      follow_id: 7
+    },
+    {
+      user_id: 1,
+      follow_id: 8
+    },
+    {
+      user_id: 1,
+      follow_id: 9
+    },
+    {
+      user_id: 1,
+      follow_id: 10
+    },
+    {
+      user_id: 1,
+      follow_id: 11
+    },
+    {
+      user_id: 1,
+      follow_id: 12
+    },    
+    {
+      user_id: 1,
+      follow_id: 13
+    },
+    {
+      user_id: 1,
+      follow_id: 14
+    },
+    {
+      user_id: 1,
+      follow_id: 15
+    },
+    {
+      user_id: 1,
+      follow_id: 16
+    },
+    {
+      user_id: 1,
+      follow_id: 17
+    },
+    {
+      user_id: 1,
+      follow_id: 18
+    },
+    {
+      user_id: 1,
+      follow_id: 19
+    },
+    {
+      user_id: 1,
+      follow_id: 20
+    },
+    {
+      user_id: 1,
+      follow_id: 21
+    },
+    {
+      user_id: 1,
+      follow_id: 22
+    },
+    {
+      user_id: 1,
+      follow_id: 23
+    },
+    {
+      user_id: 1,
+      follow_id: 24
+    },
+    {
+      user_id: 1,
+      follow_id: 25
+    },
+    {
+      user_id: 1,
+      follow_id: 26
+    },
+    {
+      user_id: 1,
+      follow_id: 27
+    },
   ]
 )

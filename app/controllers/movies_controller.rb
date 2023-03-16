@@ -4,7 +4,7 @@ class MoviesController < ApplicationController
   before_action :set_q, only: [:index, :search, :conditional_search]
 
   def index
-    @movies = Movie.all
+    @pagy, @movies = pagy(Movie.all)
   end
 
   def show

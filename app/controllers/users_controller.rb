@@ -52,7 +52,7 @@ class UsersController < ApplicationController
     # counts(@user)
     @title = "Following"
     @user = User.find(params[:id])
-    @users = @user.followings
+    @pagy, @users = pagy(@user.followings)
     render 'show_follow'
   end
 
@@ -62,7 +62,7 @@ class UsersController < ApplicationController
     # counts(@user)
     @title = "Followers"
     @user = User.find(params[:id])
-    @users = @user.followers
+    @pagy, @users = pagy(@user.followers)
     render 'show_follow'
   end
 
@@ -76,19 +76,21 @@ class UsersController < ApplicationController
     paginate_list(list)
   end
 
-  def my_watched
-    @list = listup("recommend")
-    @count = @list.count
-    @my_watched = User.my_watched(@movielist.id, params[:my_id])
-    @my_watched = Kaminari.paginate_array(@my_watched).page(params[:page]).per(20) unless @my_watched.blank?
-  end
+  # def my_watched
+  #   @list = listup("recommend")
+  #   @count = @list.count
+  #   @my_watched = User.my_watched(@movielist.id, params[:my_id])
+  #   @my_watched = Kaminari.paginate_array(@my_watched).page(params[:page]).per(20) unless @my_watched.blank?@my_watched.blank?
+  # end
 
-  def my_unwatched
-    @list = listup("recommend")
-    @count = @list.count
-    @my_unwatched = User.my_unwatched(@movielist.id, params[:my_id])
-    @my_unwatched = Kaminari.paginate_array(@my_unwatched).page(params[:page]).per(20) unless @my_unwatched.blank?
-  end
+
+
+  # def my_unwatched
+  #   @list = listup("recommend")
+  #   @count = @list.count
+  #   @my_unwatched = User.my_unwatched(@movielist.id, params[:my_id])
+  #   @my_unwatched = Kaminari.paginate_array(@my_unwatched).page(params[:page]).per(20) unless @my_unwatched.blank?
+  # end
 
 
   private
@@ -111,7 +113,11 @@ class UsersController < ApplicationController
       list.each do |movie|
         @list << movie
       end
-      @list = Kaminari.paginate_array(@list).page(params[:page]).per(20)
+      @list = Kaminari.paginate_array(@list).page(params[:page]).per(10)
     end
   end
 end
+
+
+
+
