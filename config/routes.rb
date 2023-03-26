@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   get 'toppages/index'
-  get 'toppages/index'
   get 'relationships/create'
   get 'relationships/destroy'
   # ログイン、アカウント編集後、任意のページに推移させるための記述
@@ -8,12 +7,6 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     passwords: 'users/passwords'
 }
-
-devise_scope :user do
-  post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
-end
-
-get '/about', to: 'layouts#about'
 
 devise_scope :user do
   post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
@@ -28,7 +21,6 @@ get '/about', to: 'layouts#about'
     end
   end
   root to: 'toppages#index'
-  root to: 'toppages#index'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   
@@ -42,9 +34,6 @@ get '/about', to: 'layouts#about'
     end
   end
 
-  resources :comments, only: [:create, :destroy] do
-    resources :likes, only: [:create, :destroy]
-  end
   resources :comments, only: [:create, :destroy] do
     resources :likes, only: [:create, :destroy]
   end
