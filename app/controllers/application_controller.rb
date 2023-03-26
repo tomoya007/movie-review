@@ -1,19 +1,23 @@
 class ApplicationController < ActionController::Base
-  include Pagy::Backend
+  include Pagy::Backend #追記
   before_action :configure_permitted_parameters, if: :devise_controller?
+
+  before_action :name_search
 
   # ログイン後、プロフィール画面に移動する
   def after_sign_in_path_for(resource) 
     user_path(id: current_user.id)
   end
 
+  def name_search
+    @q = Movie.ransack(params[:q])
+    @results = @q.result
+  end
+
+
   def add_movies_to_db movies
-    # genres = ""
     movies.each do |m|
       unless Movie.exists?(m["id"])
-        # m["genre_ids"].each do |id|
-        #   genres << GENRES.key(id)+',' unless m["genre_ids"].blank?
-        # end
         Movie.add(m["id"], m["title"], m["poster_path"], m["genre_ids"])
       end
     end

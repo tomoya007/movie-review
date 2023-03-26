@@ -10,6 +10,10 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+
+    <%= stylesheet_link_tag "custom", :media => "all" %>
+
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -28,6 +32,7 @@
 
   <body>
     <%= yield %>
+    <%= render 'layouts/footer' %>
   </body>
 </html>
 

@@ -74,6 +74,9 @@ GEM
     bindex (0.8.1)
     bootsnap (1.11.1)
       msgpack (~> 1.2)
+    bootstrap5-kaminari-views (0.0.1)
+      kaminari (>= 0.13)
+      rails (>= 3.1)
     builder (3.2.4)
     byebug (11.1.3)
     capybara (3.36.0)
@@ -99,6 +102,9 @@ GEM
     config (4.0.0)
       deep_merge (~> 1.2, >= 1.2.1)
       dry-validation (~> 1.0, >= 1.0.0)
+    counter_culture (3.3.0)
+      activerecord (>= 4.2)
+      activesupport (>= 4.2)
     crass (1.0.6)
     deep_merge (1.2.2)
     devise (4.8.1)
@@ -329,10 +335,12 @@ DEPENDENCIES
   activeadmin
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
+  bootstrap5-kaminari-views
   byebug
   capybara (>= 2.15)
   carrierwave
   config
+  counter_culture
   devise
   hirb
   hirb-unicode

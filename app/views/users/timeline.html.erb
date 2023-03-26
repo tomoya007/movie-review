@@ -1,0 +1,89 @@
+<% provide(:title, 'Timeline') %>
+
+<div class="container-fluid timeline row justify-content-center">
+  <div class="col-lg-8 col-lg-offset-2">
+    <h2>タイムライン</h2>
+    <% if @feed_items.blank? %>
+      <p>ユーザアクティビティがありません。</p>
+    <% else %>
+
+      <% @feed_items.each do |item| %>
+        <hr>
+
+        <% if item.is_a?(Comment) %>
+          <div class="comment row">
+            <div class="col-lg-7">
+              <%= link_to item.user, :target => "new" do %>
+                <% if @user.avatar? %>
+                  <%= image_tag @user.avatar.url, class: "rounded-circle", size: "50x50" %>
+                <% else %>
+                  <%= image_tag ("default-avatar.png"), class: "rounded-circle", size: "50x50" %>
+                <% end %>
+              <% end %>
+              <span class="info"><%= link_to item.user.name, item.user, :target => "new" %> が
+                                <%= link_to item.movie.title, item.movie, :target => "new" %>をコメントしました</span>
+              <span class="date"><%= item.created_at.to_s[0..15] %></span>
+              <span class="content"><%= item.content %></span>
+            </div>
+            <div class="col-lg-5">
+              <%= link_to item.movie, :target => "new" do %>
+                <%= image_tag item.movie.image.thumb.url %>
+              <% end %>
+            </div>
+          </div>
+
+        <% else %>
+          <% user = item.movielist.user %>
+          <% if item.movielist.listname == "watched" %>
+            <div class="watched row">
+              <div class="col-lg-7">
+                <%= link_to user, :target => "new" do %>
+                  <% if @user.avatar? %>
+                    <%= image_tag @user.avatar.url, class: "rounded-circle", size: "50x50" %>
+                  <% else %>
+                    <%= image_tag ("default-avatar.png"), class: "rounded-circle", size: "50x50" %>
+                  <% end %>
+                <% end %>
+                <span class="info"><%= link_to user.name, user, :target => "new" %> が
+                                  <%= link_to item.movie.title, item.movie, :target => "new" %>を観た！とマークしました</span>
+                <span class="date"><%= item.created_at.to_s[0..15] %></span>
+              </div>
+              <div class="col-lg-5">
+                <%= link_to item.movie, :target => "new" do %>
+                  <%= image_tag item.movie.image.thumb.url %>
+                <% end %>
+              </div>
+            </div>
+
+          <% else item.movielist.listname == "want" %>
+            <div class="want row">
+              <div class="col-lg-7">
+                <%= link_to user, :target => "new" do %>
+                  <% if @user.avatar? %>
+                    <%= image_tag @user.avatar.url, class: "rounded-circle", size: "50x50" %>
+                  <% else %>
+                    <%= image_tag ("default-avatar.png"), class: "rounded-circle", size: "50x50" %>
+                  <% end %>
+                <% end %>
+                <span class="info"><%= link_to user.name, user, :target => "new" %> が
+                                  <%= link_to item.movie.title, item.movie, :target => "new" %>を観たいとマークしました</span>
+                <span class="date"><%= item.created_at.to_s[0..15] %></span>
+              </div>
+              <div class="col-lg-5">
+                <%= link_to item.movie, :target => "new" do %>
+                  <%= image_tag item.movie.image.thumb.url %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <%= paginate @feed_items %>
+    <% end %>
+
+
+  </div>
+  
+</div>
+

@@ -9,7 +9,7 @@ class CreateMovies < ActiveRecord::Migration[6.0]
       t.string :country, null: false
       t.integer :screening_time, null: false
       t.text :synposis, null: false
-      t.string :genre, null: false
+      t.string :feeling
 
       t.integer  :watched_num, default: 0
       t.timestamps

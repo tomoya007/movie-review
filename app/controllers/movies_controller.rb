@@ -2,16 +2,18 @@ class MoviesController < ApplicationController
   include MoviesHelper
 
   before_action :set_q, only: [:index, :search, :conditional_search]
+
   def index
-    @movies = Movie.all
+    @pagy, @movies = pagy(Movie.all)
   end
 
   def show
     @movie = Movie.find(params[:id])
-    @review = Review.new
-    @reviews = @movie.reviews
-    @user = User.find_by(id: @review.user_id) 
+    @comment = Comment.new
+    @comments = @movie.comments
+    @user = User.find_by(id: @comment.user_id) 
 
+    
     # get current user's comment
     @current_user_comment = Comment.find_by(user_id: current_user.id, movie_id: @movie["id"]) if user_signed_in?
     # create new comment
@@ -22,7 +24,7 @@ class MoviesController < ApplicationController
     end
   end
 
-  def search
+  def search  #→application_controller.rbに移動
     if params[:q][:title_eq].blank?&&params[:q].blank?
       flash.now[:danger] = '検索結果は0件でした。'
       @results=[]
@@ -37,14 +39,17 @@ class MoviesController < ApplicationController
     end
     if @results.count==0
       flash.now[:danger] = '検索結果は0件でした。'
-      @movies = Movie.all
+      @pagy, @movies = pagy(Movie.all)
       render :index
     end
   end
 
-  def conditional_search
+  def conditional_search   
+    @genres = Genre.all
+    @genre = Genre.find_by(params[:genre_id])
+    @movie = Movie.find_by(params[:movie_id])
   end
-
+  
 
   private
 

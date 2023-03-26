@@ -8,8 +8,9 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
   has_one_attached :avatar
-  
-  has_many :reviews  
+
+  # mount_uploader :image, ImageUploader
+  # has_one_attached :image
 
   has_many :movielists, dependent: :destroy
 
@@ -40,8 +41,8 @@ class User < ApplicationRecord
   end
 
   def feed
-    following_ids = "SELECT followed_id FROM relationships
-                    WHERE  follower_id = :user_id"
+    following_ids = "SELECT follow_id FROM relationships
+                    WHERE  user_id = :user_id"
     movielists_ids = "SELECT movielist_id FROM movielists
                     WHERE user_id IN (#{following_ids}) OR user_id = :user_id"
     feed_items = []
@@ -51,8 +52,11 @@ class User < ApplicationRecord
     ListMovie.where("movielist_id IN (#{movielists_ids})", user_id: id).each do |movie|
       feed_items << movie
     end
-    # puts feed_items
     feed_items.sort_by!{ |a| a["created_at"] }.reverse!
+  end
+
+  def self.search(term)
+    User.where(['username LIKE ?', "%#{term}%"])
   end
 
   def self.my_watched(other_user_list_id, current_user_id)
@@ -67,7 +71,6 @@ class User < ApplicationRecord
     my_watched
   end
 
-  # compare given user's given list with current user's watched list to get current user's unwatched list
   def self.my_unwatched(other_user_list_id, current_user_id)
     current_user_movielist = User.find(current_user_id).movielists.find_by(listname: "watched")
     other_user_list = ListMovie.where(movielist_id: other_user_list_id)
@@ -80,12 +83,16 @@ class User < ApplicationRecord
     my_unwatched
   end
 
-  
-  # def already_liked?(comment)
-  #   self.likes.exists?(comment: comment)
-  # end
-
   def already_liked?(comment)
     self.likes.exists?(comment_id: comment)
+  end
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.name = "ゲスト"
+      user.password = SecureRandom.urlsafe_base64
+      # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
+      # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
+    end
   end
 end

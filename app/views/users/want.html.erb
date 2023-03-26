@@ -1,35 +1,30 @@
-<%= stylesheet_link_tag "custom", :media => "all" %>
-
 <div class="container-fluid area-width user">
   <div class="row">
     
     <div class="col-lg-9" style="padding-left:0;padding-right:40px;">
       <h2>観たい作品のリスト（<%= @count %>本）</h2>
 
-      <% if @list.blank? %>
-        <p>観たい作品はない</p>
-      <% end %>
-
       <% unless @list.blank? %>
-
-        <%= paginate @list %>
 
         <% @list.each do |m| %>
           <% movie = Movie.find(m.movie_id) %> 
 
           <div class="row movie-box">
             <%= link_to "/movies/#{movie["id"]}", :target => "new" do %>
-              <div class="col-md-3 col-sm-3">           
+              <div class="row">
+              <div class="col-lg-6">         
                 <%= image_tag movie.image.thumb.url %>
               </div>
-              
-              <div class="col-md-9 col-sm-9">
+          
+              <div class="col-lg-6 details"> 
                   <h3><%= movie["title"] %></h3>
               </div>
+              </div>
+              <h5><%= movie["synposis"] %></h5>
             <% end %>
           
-            <div class="col-md-3 col-sm-3"> </div>
-            <div class="col-md-9 col-sm-9" style="padding-left:0;">
+            <div class="col-lg-3"> </div>
+            <div class="col-lg-9" style="padding-left:0;">
               <div class="row btn-date">
                 <div class="col-md-8 col-sm-6 btn-toolbar">
                   <% if current_user?(User.find(@movielist.user_id)) %>
@@ -51,16 +46,31 @@
             </div>
           </div>
         <% end %>
-        <%= paginate @list %>
+        <%= paginate @list, theme: 'bootstrap-5' %>
       <% end %>
     </div>
 
     <div class="col-lg-3" style="padding:0;">
-      <div class="d-grid gap-2">
+    <h1>
+        <% if @user.avatar? %>
+          <%= image_tag @user.avatar.url, class: "rounded-circle", size: "100x100" %>
+        <% else %>
+          <%= image_tag ("default-avatar.png"), class: "rounded-circle", size: "100x100" %>
+        <% end %>
+        <%= @user.name %>
+        <%= render 'relationships/follow_button', user: @user if user_signed_in? %>
+      </h1>
+
+      <div class="row text-center">
+        <div class="stats col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+          <%= render 'devise/shared/stats' %>
+        </div>
+      </div>
+
+      <div class="lists d-grid gap-2">
         <%= link_to "プロフィール", { :action => "show" }, :class => "btn btn-outline-secondary btn-block" %>
         <%= link_to "観た映画のリスト", { :action => "watched" }, :class => "btn btn-outline-secondary btn-block" %>
         <%= link_to "観たい映画のリスト", {}, :class => "btn btn-primary btn-block disabled" %>
-      </div>
     </div>
 
   </div>

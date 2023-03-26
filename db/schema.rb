@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2023_03_09_215627) do
     t.bigint "user_id", null: false
     t.bigint "movie_id", null: false
     t.integer "likes_count", default: 0
+    t.float "raty", default: 1.0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["movie_id"], name: "index_comments_on_movie_id"
@@ -71,8 +72,8 @@ ActiveRecord::Schema.define(version: 2023_03_09_215627) do
   end
 
   create_table "genre_movies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.bigint "genre_id", null: false
-    t.bigint "movie_id", null: false
+    t.bigint "genre_id"
+    t.bigint "movie_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["genre_id"], name: "index_genre_movies_on_genre_id"
@@ -102,6 +103,7 @@ ActiveRecord::Schema.define(version: 2023_03_09_215627) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["comment_id"], name: "index_likes_on_comment_id"
+    t.index ["user_id", "comment_id"], name: "index_likes_on_user_id_and_comment_id", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
@@ -132,7 +134,7 @@ ActiveRecord::Schema.define(version: 2023_03_09_215627) do
     t.string "country", null: false
     t.integer "screening_time", null: false
     t.text "synposis", null: false
-    t.string "genre", null: false
+    t.string "feeling"
     t.integer "watched_num", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -146,17 +148,6 @@ ActiveRecord::Schema.define(version: 2023_03_09_215627) do
     t.index ["follow_id"], name: "index_relationships_on_follow_id"
     t.index ["user_id", "follow_id"], name: "index_relationships_on_user_id_and_follow_id", unique: true
     t.index ["user_id"], name: "index_relationships_on_user_id"
-  end
-
-  create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.text "text", null: false
-    t.bigint "user_id", null: false
-    t.bigint "movie_id", null: false
-    t.float "raty", default: 1.0, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["movie_id"], name: "index_reviews_on_movie_id"
-    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -187,6 +178,4 @@ ActiveRecord::Schema.define(version: 2023_03_09_215627) do
   add_foreign_key "movielists", "users"
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"
-  add_foreign_key "reviews", "movies"
-  add_foreign_key "reviews", "users"
 end
