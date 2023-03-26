@@ -28,6 +28,14 @@ User.create!(
   )
 end
 
+30.times do |n|
+  User.create!(
+    email: "test#{n + 1}@test.com",
+    name: "テスト太郎#{n + 1}",
+    password:'tomoya1378#{n + 1}'
+  )
+end
+
 Genre.create!(
   [
     {
@@ -37,6 +45,22 @@ Genre.create!(
       name:'ドラマ'
     },
     {
+      name:'ロマンス'
+    },
+    {
+      name:'コメディ'
+    },
+    {
+      name:'ファミリー'
+    },
+    {
+      name:'ミステリー'
+    },
+    {
+      name:'SF'
+    },
+    {
+      name:'ファンタジー'
       name:'ロマンス'
     },
     {
@@ -71,7 +95,7 @@ Movie.create!(
   [
     {
       title:'stand by me',
-  image:File.open('./app/assets/images/J00676_01.jpeg'),
+  image:File.open('./app/assets/images/J00676_01.jpg'),
   released_year:'1986',
   country:'アメリカ合衆国',
   screening_time:'89',
@@ -80,9 +104,11 @@ Movie.create!(
   released_day:'2',
   feeling: '涙なしでは観れない'
   
+  released_day:'2'
     },
     {
       title:'きっと、うまくいく',
+      image:File.open('./app/assets/images/SL1500_1.webp'),
       image:File.open('./app/assets/images/SL1500_1.webp'),
       released_year:'2013',
       country:'インド',
@@ -91,13 +117,14 @@ Movie.create!(
       released_month:'5',
       released_day:'18',
       feeling: 'とにかく泣ける！'
+      released_day:'18'
     }
   ]
 )
 
 Movie.create!(
   title:'存在のない子供たち',
-  image:File.open('./app/assets/images/1015706_03.jpeg'),
+  image:File.open('./app/assets/images/1015706_03.jpg'),
   released_year:'2019',
   country:'レバノン',
   screening_time:'125',
@@ -105,11 +132,13 @@ Movie.create!(
   released_month:'7',
   released_day:'20',
   feeling: 'やっぱり家族っていいなあ'
+  released_day:'20'
 )
 
 Movie.create!(
   title:'The Godfather',
   image:File.open('./app/assets/images/d7517-13-653199-0.jpeg'),
+  image:File.open('./app/assets/images/d7517-13-653199-0.jpg'),
   released_year:'1972',
   country:'アメリカ合衆国',
   screening_time:'175',
@@ -117,6 +146,7 @@ Movie.create!(
   released_month:'7',
   released_day:'15',
   feeling: '今日も1日おつかれさまの一本'
+  released_day:'15'
 )
 
 30.times do |n|
@@ -132,6 +162,60 @@ Movie.create!(
     feeling: '常識にとらわれない'
   )
 end
+
+GenreMovie.create!(
+  [
+    {
+      movie_id: 1,
+      genre_id: 2
+    },
+    {
+      movie_id: 1,
+      genre_id: 4
+    },
+    {
+      movie_id: 2,
+      genre_id: 3
+    },
+    {
+      movie_id: 3,
+      genre_id: 1
+    },
+    {
+      movie_id: 4,
+      genre_id: 2
+    }
+  ]
+)
+
+    released_day:'1'
+  )
+end
+
+GenreMovie.create!(
+  [
+    {
+      movie_id: 1,
+      genre_id: 2
+    },
+    {
+      movie_id: 1,
+      genre_id: 4
+    },
+    {
+      movie_id: 2,
+      genre_id: 3
+    },
+    {
+      movie_id: 3,
+      genre_id: 1
+    },
+    {
+      movie_id: 4,
+      genre_id: 2
+    }
+  ]
+)
 
 GenreMovie.create!(
   [

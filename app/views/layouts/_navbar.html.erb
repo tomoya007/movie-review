@@ -6,19 +6,6 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-<div class="container-fluid area-width search-page">
-<%= search_form_for @q, url: search_movies_path do |f| %>
-  <%= f.search_field :title_cont, placeholder: '映画タイトル',required: true %>
-  <%
-=begin%>
- <%= f.submit '検索' %> 
-<%
-=end%>
-<% end %>
-</div>  
-
-
-
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <% if user_signed_in? %>
       <div class="btn-group">

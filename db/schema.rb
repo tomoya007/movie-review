@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_09_215627) do
+ActiveRecord::Schema.define(version: 2023_03_13_024725) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "namespace"
@@ -72,8 +72,8 @@ ActiveRecord::Schema.define(version: 2023_03_09_215627) do
   end
 
   create_table "genre_movies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.bigint "genre_id"
     t.bigint "movie_id"
+    t.bigint "genre_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["genre_id"], name: "index_genre_movies_on_genre_id"
@@ -134,7 +134,7 @@ ActiveRecord::Schema.define(version: 2023_03_09_215627) do
     t.string "country", null: false
     t.integer "screening_time", null: false
     t.text "synposis", null: false
-    t.string "feeling"
+    t.string "genre", null: false
     t.integer "watched_num", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
