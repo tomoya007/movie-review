@@ -67,8 +67,5 @@ get '/about', to: 'layouts#about'
 
   post 'like/:id', to: 'likes#create', as: 'create_like'
   delete 'like/:id', to: 'likes#destroy', as: 'destroy_like'
-
-  post 'like/:id', to: 'likes#create', as: 'create_like'
-  delete 'like/:id', to: 'likes#destroy', as: 'destroy_like'
 end
 
