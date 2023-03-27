@@ -56,8 +56,12 @@ production:
   encoding: utf8mb4
   charset: utf8mb4
   collation: utf8mb4_general_ci
-  username: <%= Rails.application.credentials.db[:user_name] %>
-  password: <%= Rails.application.credentials.db[:password] %>
-  host: <%= Rails.application.credentials.db[:endpoint] %>
+  # username: <%= Rails.application.credentials.db[:user_name] %>
+  # password: <%= Rails.application.credentials.db[:password] %>
+  # host: <%= Rails.application.credentials.db[:endpoint] %>
+  username: root
+  password: admin
+  host: database-1.caqwwnowgkph.ap-northeast-1.rds.amazonaws.com
   pool: 20
   timeout: 1000
+
