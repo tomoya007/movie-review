@@ -12,6 +12,8 @@ yarn \
 && apt-get clean \
 && rm -rf /var/lib/apt/lists/*
 
+
+
 # ご自身のアプリ名にすると良い(任意)
 ENV APP_ROOT /movie-review
 
