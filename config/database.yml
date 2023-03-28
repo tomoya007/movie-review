@@ -58,9 +58,10 @@ production:
   collation: utf8mb4_general_ci
   # username: <%= Rails.application.credentials.db[:user_name] %>
   # password: <%= Rails.application.credentials.db[:password] %>
-  username: root
-  password: admin
-  host: <%= Rails.application.credentials.db[:endpoint] %>
+  # host: <%= Rails.application.credentials.db[:endpoint] %>
+  host: <%= ENV['DATABASE_HOST_PRODUCTION'] %>
+  username: <%= ENV['DATABASE_USER_NAME_PRODUCTION'] %>
+  password: <%= ENV['DATABASE_PASSWORD_PRODUCTION'] %>
   pool: 20
   timeout: 1000
 
