@@ -86,5 +86,3 @@ gem 'bootstrap5-kaminari-views'
 # いいねcounter
 gem 'counter_culture'
 
-# 環境変数を設定する
-gem 'dotenv-rails'

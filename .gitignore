@@ -41,6 +41,3 @@ config/environments/*.local.yml
 
 # 追加
 /public/uploads 
-
-# 環境変数
-/.env
