@@ -28,6 +28,7 @@ RUN bundle install
 COPY . ./
 EXPOSE 3001
 
-
+# puma.sockを配置するディレクトリを作成（追記これだけ）
+RUN mkdir -p tmp/sockets
 
 

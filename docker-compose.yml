@@ -12,9 +12,11 @@ services:
     #   - db
     volumes:
       - .:/movie-review
+      - public-data:/myapp/public  #追加
       - tmp-data:/movie-review/tmp
-    ports:
-      - "3001:3000"
+      - log-data:/myapp/log  #追加
+    # ports:
+    #   - "3001:3000"
   # db:
   #   image: mysql:5.7
   #   environment:
@@ -25,5 +27,7 @@ services:
   #     - "3306:3306"
 
 volumes:
-  mysql-data:
+  # mysql-data:
+  public-data:  #追加
   tmp-data:
+  log-data:  #追加
