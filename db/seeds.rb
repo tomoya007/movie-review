@@ -14,12 +14,6 @@ User.create!(
   password:'password'
 )
 
-User.create!(
-  name:'aaa',
-  email:'ctmajor07@gmail.com',
-  password:'tomoya1378'
-)
-
 30.times do |n|
   User.create!(
     email: "test#{n + 1}@test.com",
@@ -28,13 +22,6 @@ User.create!(
   )
 end
 
-30.times do |n|
-  User.create!(
-    email: "test#{n + 1}@test.com",
-    name: "テスト太郎#{n + 1}",
-    password:'tomoya1378#{n + 1}'
-  )
-end
 
 Genre.create!(
   [
@@ -61,22 +48,6 @@ Genre.create!(
     },
     {
       name:'ファンタジー'
-      name:'ロマンス'
-    },
-    {
-      name:'コメディ'
-    },
-    {
-      name:'ファミリー'
-    },
-    {
-      name:'ミステリー'
-    },
-    {
-      name:'SF'
-    },
-    {
-      name:'ファンタジー'
     }
   ]
 )
@@ -86,8 +57,6 @@ User.all.each do |user|
 	Movielist.create(user_id: user.id, listname: "want")
 	Movielist.create(user_id: user.id, listname: "recommend")
 end
-
-
 
 
 
@@ -163,59 +132,6 @@ Movie.create!(
   )
 end
 
-GenreMovie.create!(
-  [
-    {
-      movie_id: 1,
-      genre_id: 2
-    },
-    {
-      movie_id: 1,
-      genre_id: 4
-    },
-    {
-      movie_id: 2,
-      genre_id: 3
-    },
-    {
-      movie_id: 3,
-      genre_id: 1
-    },
-    {
-      movie_id: 4,
-      genre_id: 2
-    }
-  ]
-)
-
-    released_day:'1'
-  )
-end
-
-GenreMovie.create!(
-  [
-    {
-      movie_id: 1,
-      genre_id: 2
-    },
-    {
-      movie_id: 1,
-      genre_id: 4
-    },
-    {
-      movie_id: 2,
-      genre_id: 3
-    },
-    {
-      movie_id: 3,
-      genre_id: 1
-    },
-    {
-      movie_id: 4,
-      genre_id: 2
-    }
-  ]
-)
 
 GenreMovie.create!(
   [
