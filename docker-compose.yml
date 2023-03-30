@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/rails/Dockerfile
-    command: bundle exec puma -C config/puma.rb -e production
+    #command: bundle exec puma -C config/puma.rb -e production
     #command: bash -c "rm -f tmp/pids/server.pid && rails s -b 0.0.0.0"
     tty: true
     stdin_open: true
@@ -12,9 +12,9 @@ services:
     #   - db
     volumes:
       - .:/movie-review
-      #- public-data:/myapp/public  #追加
+      - public-data:/myapp/public  #追加
       - tmp-data:/movie-review/tmp
-      #- log-data:/myapp/log  #追加
+      - log-data:/myapp/log  #追加
     # ports:
     #   - "3001:3000"
   # db:
@@ -28,6 +28,6 @@ services:
 
 volumes:
   # mysql-data:
-  #public-data:  #追加
+  public-data:  #追加
   tmp-data:
-  #log-data:  #追加
+  log-data:  #追加
