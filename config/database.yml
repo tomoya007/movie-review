@@ -16,6 +16,7 @@ test:
 
 production:
   <<: *default
+  database: movie-review_production
   # database: movie_review_production
   adapter: mysql2
   encoding: utf8mb4
@@ -27,6 +28,6 @@ production:
   username: <%= Rails.application.credentials.db[:user_name] %>
   password: <%= Rails.application.credentials.db[:password] %>
   host: <%= Rails.application.credentials.db[:endpoint] %>
-  database: <%= Rails.application.credentials.db[:database] %>
+  #database: <%= Rails.application.credentials.db[:database] %>
   pool: 20
   timeout: 1000
