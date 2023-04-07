@@ -8,7 +8,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @comments = @user.comments
-    @comments = @user.comments
 
     unless current_user?(@user)
       user = current_user
@@ -52,22 +51,12 @@ class UsersController < ApplicationController
     # @pagy, @followings = pagy(@user.followings)
     # counts(@user)
     @title = "Following"
-    # @user = User.find(params[:id])
-    # @pagy, @followings = pagy(@user.followings)
-    # counts(@user)
-    @title = "Following"
     @user = User.find(params[:id])
-    @pagy, @users = pagy(@user.followings)
-    render 'show_follow'
     @pagy, @users = pagy(@user.followings)
     render 'show_follow'
   end
 
   def followers
-    # @user = User.find(params[:id])
-    # @pagy, @followers = pagy(@user.followers)
-    # counts(@user)
-    @title = "Followers"
     # @user = User.find(params[:id])
     # @pagy, @followers = pagy(@user.followers)
     # counts(@user)

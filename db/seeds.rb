@@ -72,12 +72,9 @@ Movie.create!(
   released_month:'8',
   released_day:'2',
   feeling: '涙なしでは観れない'
-  
-  released_day:'2'
     },
     {
       title:'きっと、うまくいく',
-      image:File.open('./app/assets/images/SL1500_1.webp'),
       image:File.open('./app/assets/images/SL1500_1.webp'),
       released_year:'2013',
       country:'インド',
@@ -86,7 +83,6 @@ Movie.create!(
       released_month:'5',
       released_day:'18',
       feeling: 'とにかく泣ける！'
-      released_day:'18'
     }
   ]
 )
@@ -101,12 +97,10 @@ Movie.create!(
   released_month:'7',
   released_day:'20',
   feeling: 'やっぱり家族っていいなあ'
-  released_day:'20'
 )
 
 Movie.create!(
   title:'The Godfather',
-  image:File.open('./app/assets/images/d7517-13-653199-0.jpeg'),
   image:File.open('./app/assets/images/d7517-13-653199-0.jpg'),
   released_year:'1972',
   country:'アメリカ合衆国',
@@ -115,7 +109,6 @@ Movie.create!(
   released_month:'7',
   released_day:'15',
   feeling: '今日も1日おつかれさまの一本'
-  released_day:'15'
 )
 
 30.times do |n|
@@ -263,6 +256,6 @@ Relationship.create!(
     {
       user_id: 1,
       follow_id: 27
-    },
+    }
   ]
 )
