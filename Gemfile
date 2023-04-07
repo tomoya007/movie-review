@@ -86,3 +86,6 @@ gem 'bootstrap5-kaminari-views'
 # いいねcounter
 gem 'counter_culture'
 
+gem 'net-imap'
+gem 'net-pop'
+gem 'net-smtp'
