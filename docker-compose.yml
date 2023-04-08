@@ -1,33 +1,50 @@
-version: "3.8"
+version: "3"
 services:
-  app:
+  db:
+    image: mysql:8.0.31
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    platform: linux/x86_64/v8
+  rails:
     build:
       context: .
-      dockerfile: ./docker/rails/Dockerfile
-    command: bundle exec puma -C config/puma.rb -e production
-    #command: bash -c "rm -f tmp/pids/server.pid && rails s -b 0.0.0.0"
-    tty: true
-    stdin_open: true
-    # depends_on:
-    #   - db
+      dockerfile: Dockerfile
     volumes:
-      - .:/movie-review
-      - public-data:/myapp/public  #追加
-      - tmp-data:/movie-review/tmp
-      - log-data:/myapp/log  #追加
-    # ports:
-    #   - "3001:3000"
-  # db:
-  #   image: mysql:5.7
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: admin
-  #   volumes:
-  #     - mysql-data:/var/lib/mysql
-  #   ports:
-  #     - "3306:3306"
+      - .:/myapp
+      - public-data:/myapp/public
+      - tmp-data:/myapp/tmp
+
+    environment:
+      TZ: Asia/Tokyo
+      RAILS_ENV: development
+      DB_HOST: db
+      DB_USER: root
+      MYSQL_PASSWORD: password
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty:
+      true
+    depends_on:
+      - db
+  web:
+    build:
+      context: nginx_docker
+    volumes:
+      - public-data:/myapp/public
+      - tmp-data:/myapp/tmp
+    ports:
+      - 80:80
+    depends_on:
+      - rails  
 
 volumes:
-  # mysql-data:
-  public-data:  #追加
+  public-data:
+  mysql-data:
   tmp-data:
-  log-data:  #追加
