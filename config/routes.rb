@@ -12,7 +12,7 @@ devise_scope :user do
   post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
 end
 
-get '/about', to: 'layouts#about'
+get '/about', to: 'toppages#about'
   
   resources :movies do
     collection do

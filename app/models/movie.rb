@@ -11,10 +11,7 @@ class Movie < ApplicationRecord
   has_many :genre_movies
   has_many :genres, through: :genre_movies
 
-  has_many :feeling_movies
-  has_many :feelings, through: :feeling_movies
-
-
+  
   def new
   end
 

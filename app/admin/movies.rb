@@ -1,5 +1,5 @@
 ActiveAdmin.register Movie do
-  permit_params :title, :image, :released_year, :released_month,:released_day,:country, :screening_time, :review, :synposis, :genre
+  permit_params :title, :image, :released_year, :released_month,:released_day,:country, :screening_time, :review, :synposis, :genre, :feeling
 
   form do |f|
     f.inputs do
@@ -11,6 +11,7 @@ ActiveAdmin.register Movie do
       f.input :country, :as => :string
       f.input :screening_time
       f.input :synposis
+      f.input :feeling
     end
     f.actions
   end
