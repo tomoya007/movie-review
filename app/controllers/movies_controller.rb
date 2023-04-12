@@ -24,18 +24,38 @@ class MoviesController < ApplicationController
     end
   end
 
-  def search  #→application_controller.rbに移動
+  # def search  
+  #   if params[:q][:title_eq].blank?&&params[:q].blank?
+  #     flash.now[:danger] = '検索結果は0件でした。'
+  #     @results=[]
+  #   elsif params[:q][:released_year_lteq].present?
+  #     @results = @q.result
+  #   elsif params[:q][:released_year].present?
+  #     @results = released_year_split.result
+  #   elsif params[:q][:released_year_gteq].present?
+  #     @results = @q.result
+  #   else
+  #     @results = @q.result
+  #   end
+  #   if @results.count==0
+  #     flash.now[:danger] = '検索結果は0件でした。'
+  #     @pagy, @movies = pagy(Movie.all)
+  #     render :index
+  #   end
+  # end
+
+  def search  
     if params[:q][:title_eq].blank?&&params[:q].blank?
       flash.now[:danger] = '検索結果は0件でした。'
       @results=[]
     elsif params[:q][:released_year_lteq].present?
-      @results = @q.result
+      @pagy, @results = pagy(@q.result)
     elsif params[:q][:released_year].present?
-      @results = released_year_split.result
+      @pagy, @results = pagy(released_year_split.result)
     elsif params[:q][:released_year_gteq].present?
-      @results = @q.result
+      @pagy, @results = pagy(@q.result)
     else
-      @results = @q.result
+      @pagy, @results = pagy(@q.result)
     end
     if @results.count==0
       flash.now[:danger] = '検索結果は0件でした。'

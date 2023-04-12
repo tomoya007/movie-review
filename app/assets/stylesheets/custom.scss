@@ -38,6 +38,11 @@ textarea {
   resize: vertical;
 }
 
+// 全体の背景
+// body {
+//   background-color: #000;
+// }
+
 .center {
   text-align: center;
   h1 {
@@ -134,7 +139,7 @@ footer {
   margin-top: 20px;
   padding-top: 70px;
   margin-bottom: 50px;
-  background: image-url("banner.jpeg") no-repeat;
+  background: image-url("banner2.jpeg") no-repeat;
   background-size: 100% auto;
   /* background-size: cover; */
   p, h1, h3 {
@@ -235,11 +240,11 @@ footer {
     margin-left: 0;
   }
 }
-.people-results {
-  .row {
-    margin-right: 200px;
-  }
-}
+// .people-results {
+//   .row {
+//     margin-right: 200px;
+//   }
+// }
 
 
 /* movie info */
@@ -265,7 +270,7 @@ footer {
   }
   // movies/show↓画像の大きさ
   .movie_image {
-    max-width: 100%;
+    max-width: 70%;
     height: auto;
   }
   /* original title */
@@ -583,3 +588,8 @@ footer {
   margin-left: 10px;
 }
 
+// linkの下線なくした
+.link {
+  text-decoration: none;
+  color: $moasis;
+}

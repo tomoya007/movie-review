@@ -135,6 +135,7 @@ ActiveRecord::Schema.define(version: 2023_03_13_024725) do
     t.integer "screening_time", null: false
     t.text "synposis", null: false
     t.string "feeling"
+    t.string "subimage"
     t.integer "watched_num", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

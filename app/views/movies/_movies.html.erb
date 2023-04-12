@@ -1,10 +1,15 @@
 <div class="container">
-  <div class="movies row">
+  <div class="row">
       <% @movies.each do |movie| %>
       <div class="col-md-4 col-sm-6">
-          <%= link_to "/movies/#{movie["id"]}", :target => "new" do %>        
-          <%= image_tag movie.image.thumb.url %>
+          <%= link_to "/movies/#{movie["id"]}", class: "link", :target => "new" do %>        
+
+        <div style="text-align: center">
+          <%= image_tag movie.image.url, :size => '212x300' %>
+        </div>
+
           <h3><%= movie["title"] %></h3>
+          
             <% end %>
       </div> 
       <% end %>

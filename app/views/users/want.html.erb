@@ -10,7 +10,7 @@
           <% movie = Movie.find(m.movie_id) %> 
 
           <div class="row movie-box">
-            <%= link_to "/movies/#{movie["id"]}", :target => "new" do %>
+            <%= link_to "/movies/#{movie["id"]}", class: "link", :target => "new" do %>
               <div class="row">
               <div class="col-lg-6">         
                 <%= image_tag movie.image.thumb.url %>

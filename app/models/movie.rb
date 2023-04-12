@@ -1,5 +1,6 @@
 class Movie < ApplicationRecord
   mount_uploader :image, ImageUploader
+  mount_uploader :subimage, ImageUploader
 
   has_many :list_movies
   has_many :movielists, through: :list_movies
