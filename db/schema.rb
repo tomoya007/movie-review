@@ -129,13 +129,10 @@ ActiveRecord::Schema.define(version: 2023_03_13_024725) do
     t.string "title", null: false
     t.string "image", null: false
     t.integer "released_year", null: false
-    t.integer "released_month", null: false
-    t.integer "released_day", null: false
-    t.string "country", null: false
     t.integer "screening_time", null: false
     t.text "synposis", null: false
+    t.string "word", null: false
     t.string "feeling"
-    t.string "subimage"
     t.integer "watched_num", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

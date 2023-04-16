@@ -1,72 +1,35 @@
-<div class="container-fluid area-width search-page">
-  <h1>色々な検索</h1>
-<br>
-  <%
-=begin%>
- <%= search_form_for @q, url: search_movies_path do |f| %>
-  <%= f.label :released_year, '公開年' %><br>
-    <%= f.radio_button :released_year, '1970~1979' %>~1979年
-    <%= f.radio_button :released_year, '1980~1989' %>1980年~1989年
-    <%= f.radio_button :released_year, '1990~1999' %>1990年~1999年
-    <%= f.radio_button :released_year, '2000~2009' %>2000年~2009年
-    <%= f.radio_button :released_year, '2010~2019' %>2010年~2019年
-    <%= f.radio_button :released_year, '2020~2030' %>2020年~
-    <%= f.submit '検索' %>
+<div class="container-fluid area-width search-page"> 
+  <h1>色々な検索</h1><br>
+  <%= search_form_for @q, url: search_movies_path do |f| %>
+    <h2><%= f.label :"ジャンル" %></h2>
+    <br>
+    <%= f.select :genres_name_eq, [["ドラマ", "ドラマ"], ["コメディ", "コメディ"], ["ロマンス", "ロマンス"], ["サスペンス", "サスペンス"], ["ファミリー", "ファミリー"], ["ファンタジー", "ファンタジー"], ["SF", "SF"]] ,{include_blank: '選択してください'}, :required => true, class:"form-control" %>
+    <div class="input-group-btn">
+      <%= button_tag(type: 'submit', class: "btn btn-sm btn-outline-secondary", style: "margin-top: 10px; border-radius: 5px;") do %>
+        <i class="bi bi-search"></i> 検索
+      <% end %>
+    </div>
   <% end %>
 
-<hr>
   <%= search_form_for @q, url: search_movies_path do |f| %>
-  <%= f.label :genre, 'ジャンル' %><br>
-    <%= f.radio_button :genres_name_eq, 'サスペンス' %>サスペンス
-    <%= f.radio_button :genres_name_eq, 'ロマンス' %>ロマンス
-    <%= f.radio_button :genres_name_eq, 'ドラマ' %>ドラマ
-    <%= f.radio_button :genres_name_eq, 'コメディ' %>コメディ
-    <%= f.radio_button :genres_name_eq, 'ファミリー' %>ファミリー
-    <%= f.radio_button :genres_name_eq, 'ミステリー' %>ミステリー
-    <%= f.radio_button :genres_name_eq, 'SF' %>SF
-    <%= f.radio_button :genres_name_eq, 'ファンタジー' %>ファンタジー
-    <%= f.submit '検索' %>
-  <% end %>   
-<%
-=end%>
+    <h2><%= f.label :"公開年" %></h2>
+    <br>
+    <%= f.select :released_year, [["~2009", "1990~2009"], ["2010~2019", "2010~2019"],["2020~", "2020~2030"]] ,{include_blank: '選択してください'}, :required => true, class:"form-control" %>
+    <div class="input-group-btn">
+      <%= button_tag(type: 'submit', class: "btn btn-sm btn-outline-secondary", style: "margin-top: 10px; border-radius: 5px;") do %>
+        <i class="bi bi-search"></i> 検索
+      <% end %>
+    </div>
+  <% end %>     
 
-
-
-<%= search_form_for @q, url: search_movies_path do |f| %>
-<%= f.label :"ジャンル" %><br>
-  <%= f.select :genres_name_eq, [["ドラマ", "ドラマ"], ["コメディ", "コメディ"], ["ロマンス", "ロマンス"], ["サスペンス", "サスペンス"], ["ファミリー", "ファミリー"], ["ファンタジー", "ファンタジー"], ["SF", "SF"]] ,{include_blank: '選択してください'} %>
-
-  
-  <%= f.submit '検索' %>
-<% end %>  
-
-
-<hr>
-<%= search_form_for @q, url: search_movies_path do |f| %>
-<%= f.label :"ジャンル" %><br>
-  <%= f.select :genres_name_eq, [["ドラマ", "ドラマ"], ["コメディ", "コメディ"], ["ロマンス", "ロマンス"], ["サスペンス", "サスペンス"], ["ファミリー", "ファミリー"], ["ファンタジー", "ファンタジー"], ["SF", "SF"]] ,{include_blank: '選択してください'}, :required => true, class:"form-control" %>
-  <%= f.submit '検索', class: 'btn btn-sm btn-outline-secondary' %>
-
-  
-  
-<% end %>
-
-<hr>
-<%= search_form_for @q, url: search_movies_path do |f| %>
-<%= f.label :"公開年" %><br>
-  <%= f.select :released_year, [["~1979", "1970~1979"], ["1980~1989", "1980~1989"], ["1990~1999", "1990~1999"], ["2000~2009", "2000~2009"], ["2010~2019", "2010~2019"], ["2020~", "2020~2030"]] ,{include_blank: '選択してください'}, :required => true, class:"form-control" %>
-<%= f.submit '検索', class: 'btn btn-sm btn-outline-secondary' %>
-<% end %>     
-
-<hr>
-<%= search_form_for @q, url: search_movies_path do |f| %>
-<%= f.label :"今の気持ち" %><br>
-  <%= f.select :feeling_eq, [["涙なしでは観れない", "涙なしでは観れない"], ["とにかく笑える！", "とにかく笑える！"], ["やっぱり家族っていいなあ", "やっぱり家族っていいなあ"], ["今日も1日おつかれさまの一本", "今日も1日おつかれさまの一本"], ["常識にとらわれない", "常識にとらわれない"]] ,{include_blank: '選択してください'}, :required => true, class:"form-control" %>
-<%= f.submit '検索', class: 'btn btn-sm btn-outline-secondary' %>
-<% end %> 
-
+  <%= search_form_for @q, url: search_movies_path do |f| %>
+    <h2><%= f.label :"今の気分" %></h2>
+    <br>
+    <%= f.select :feeling_eq, [["涙なしでは観れない", "涙なしでは観れない"], ["とにかく笑える！", "とにかく笑える！"], ["やっぱり家族っていいなあ", "やっぱり家族っていいなあ"], ["今日も1日おつかれさまの一本", "今日も1日おつかれさまの一本"], ["常識にとらわれない", "常識にとらわれない"]] ,{include_blank: '選択してください'}, :required => true, class:"form-control" %>
+    <div class="input-group-btn">
+      <%= button_tag(type: 'submit', class: "btn btn-sm btn-outline-secondary", style: "margin-top: 10px; border-radius: 5px;") do %>
+        <i class="bi bi-search"></i> 検索
+      <% end %>
+    </div>
+  <% end %>
 </div>
-
-
-
-

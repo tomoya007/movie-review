@@ -1,25 +1,21 @@
 class CommentsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
-  # before_action :require_user_signed_in, only: [:create, :destroy]
 
   def create
     @comment = current_user.comments.new(comment_params) 
+    @movie = Movie.find_by(params[:id])
     if @comment.save
-      flash[:success] = 'レビューを投稿しました。'
-      redirect_to movie_path(@comment.movie_id)
+      flash[:success] = 'コメントを投稿しました。'
+    else
+      flash[:danger] = 'コメントの投稿に失敗しました'
     end
+    redirect_back(fallback_location: root_path)
   end
-
-  # def destroy
-  #   @comment.destroy
-  #   flash[:success] = "コメント削除しました"
-  #   redirect_to request.referrer
-  # end
 
   def destroy
     @comment.destroy
-    flash[:success] = 'レビューを削除しました。'
+    flash[:success] = 'コメントを削除しました。'
     redirect_back(fallback_location: root_path)
   end
 

@@ -1,26 +1,21 @@
-<div class="container-fluid area-width user">
+<div class="container-fluid user" style="width: 80%">
   <div class="row">
-
     <div class="col-lg-9" style="padding-left:0;padding-right:40px;">
       <h2>観た作品のリスト（<%= @count %>本）</h2>
-
       <% unless @list.blank? %>
-
-
         <% @list.each do |m| %>
           <% movie = Movie.find(m.movie_id) %> 
-
           <div class="row movie-box">
-            <%= link_to "/movies/#{movie["id"]}", :target => "new" do %>
-            <div class="row">        
-            <div class="col-lg-6">  
-              <%= image_tag movie.image.thumb.url %>
-            </div>
-            
-            <div class="col-lg-6 details"> 
-              <h3><%= movie["title"] %></h3>
-            </div>
-            </div>
+            <%= link_to "/movies/#{movie["id"]}", class: "link", :target => "new" do %>
+              <div class="row">        
+                <div class="col-lg-6">  
+                  <%= image_tag movie.image.url, :size => '212x300' %>
+                </div>
+              
+                <div class="col-lg-6"> 
+                  <h3><%= movie["title"] %></h3>
+                </div>
+              </div>
               <h5><%= movie["synposis"] %></h5>
             <% end %>
 
@@ -49,7 +44,7 @@
     </div>
 
     <div class="col-lg-3" style="padding:0;">
-    <h1>
+      <h1>
         <% if @user.avatar? %>
           <%= image_tag @user.avatar.url, class: "rounded-circle", size: "100x100" %>
         <% else %>
@@ -69,8 +64,8 @@
         <%= link_to "プロフィール", { :action => "show" }, :class => "btn btn-outline-secondary btn-block" %>
         <%= link_to "観た映画のリスト", {}, :class => "btn btn-primary btn-block disabled" %>
         <%= link_to "観たい映画のリスト", { :action => "want" }, :class => "btn btn-outline-secondary btn-block" %>
+      </div> 
     </div>
-
   </div>
 </div>
 

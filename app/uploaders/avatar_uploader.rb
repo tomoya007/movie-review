@@ -47,7 +47,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   
     #デフォルト画像の設定
   def default_url
-    "default-avatar.png"  #←デフォルト画像に設定したい画像名を記入
+    "default-avatar.png"  
   end
     # def default_url(*args)
     #   # For Rails 3.1+ asset pipeline compatibility:

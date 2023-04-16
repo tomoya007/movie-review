@@ -4,13 +4,8 @@
   <% else %>
     <%= image_tag ("default-avatar.png"), class: "rounded-circle profile", size: "50x50" %>
   <% end %>
-  <span class="user"><%= link_to comment.user.name, comment.user %></span>
+  <%= link_to comment.user.name, comment.user %>
   <span class="date"><%= comment.created_at.strftime('%Y年%m月%d日') %></span>
-    <%
-=begin%>
- <p>評価 :<%= comment.raty %>点</p> 
-<%
-=end%>
     <div id="star-rate<%= comment.id %>"></div>    
     <script>
       $('#star-rate<%= comment.id%>').raty({
@@ -18,7 +13,7 @@
         starOff   : '<%= asset_path('star-off.png') %>',
         starOn    : '<%= asset_path('star-on.png') %>',
         starHalf: '<%= asset_path('star-half.png') %>',
-        readOnly: true, // 星を読み取り専用にしていじれないようにする 
+        readOnly: true, // 星を読み取り専用にする
         score: <%= comment.raty %>,
       });
     </script>

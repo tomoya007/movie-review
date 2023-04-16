@@ -1,35 +1,15 @@
-<h1>検索結果</h1>
-<%
-=begin%>
- <table>
-  <tbody>
-    <% @results.each do |movie| %>
-      <tr>
-        <td><%= movie.title %></td>
-        <%= image_tag movie.image.thumb.url %>
-        <td><%= link_to '映画の詳細はこちら', movie %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table> 
-<%
-=end%>
-
-<div class="container">
+<h1>検索結果（<%= @count %>本）</h1>
+<div class="container-fluid">
   <div class="row">
-      <% @results.each do |movie| %>
-      <div class="col-md-4 col-sm-6">
-          <%= link_to "/movies/#{movie["id"]}", class: "link", :target => "new" do %>        
-
-        <div style="text-align: center">
-          <%= image_tag movie.image.url, :size => '212x300' %>
-        </div>
-
-          <h3><%= movie["title"] %></h3>
-          
-            <% end %>
+    <% @results.each do |movie| %>
+      <div class="col-md-2 col-sm-4 poster" style="margin-bottom: 30px;">
+        <%= link_to "/movies/#{movie["id"]}", :target => "new" do %>        
+          <div style="text-align: center">
+            <%= image_tag movie.image.url, :size => '212x300', class: "img_wrap" %>
+          </div>
+        <% end %>
       </div> 
-      <% end %>
+    <% end %>
   </div> 
 </div>
 <%== pagy_bootstrap_nav(@pagy) %>

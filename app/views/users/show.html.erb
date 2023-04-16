@@ -1,164 +1,11 @@
-<%
-=begin%>
-#  <% if user_signed_in? && current_user.id.to_s == params[:id] %>
-#   <p><%= @user.name %></p>
-
-#   <% if @user.avatar? %>
-#     <%= image_tag @user.avatar.url, class: "rounded-circle", size: "150x150" %>
-#   <% else %>
-#     <%= image_tag ("default-avatar.png"), class: "rounded-circle", size: "150x150" %>
-#   <% end %>
-
-#   <%
-# =begin%>
-#  <div class="row">
-#     <div class="col-sm-12">
-#       <ul class="nav nav-tabs nav-justified mb-3">
-#         <li class="nav-item"><a href="<%= followings_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followings_user_path(@user)) %>">Followings  <span class="badge bg-secondary"><%= @count_followings %></span></a></li>
-#       <li class="nav-item"><a href="<%= followers_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followers_user_path(@user)) %>">Followers  <span class="badge bg-secondary"><%= @count_followers %></span></a></li>
-#       </ul>
-#     </div>
-#   </div> 
-# <%
-# =end%>
-
-#   <%= link_to '編集する', edit_user_registration_path %>
-
-#   <h1>投稿したレビュー</h1>
-#   <% @comments.each do |comment|%>
-#     <div class=card>
-#       <p>評価 :<%= comment.raty %>点</p>
-#       <div id="star-rate<%= comment.id %>"></div>    
-#       <script>
-#         $('#star-rate<%= comment.id%>').raty({
-#           size      : 36,
-#           starOff   : '<%= asset_path('star-off.png') %>',
-#           starOn    : '<%= asset_path('star-on.png') %>',
-#           starHalf: '<%= asset_path('star-half.png') %>',
-#           readOnly: true,  <!-- 星を読み取り専用にしていじれないようにする -->
-#           score: <%= comment.raty %>,
-#         });
-#       </script>
-#       <p>内容:<%= comment.content %></p>
-#     </div>
-#   <% end %>
-
-#   <div class="row text-center">
-#     <div class="stats col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
-#       <%= render 'devise/shared/stats' %>
-#     </div>
-#   </div>
-  
-
-#   <div class="col-lg-3" style="padding:0;">
-#     <div class="d-grid gap-2">
-#       <%= link_to "プロフィール", {}, :class => "btn btn-primary btn-block disabled" %>
-#       <%= link_to "観た映画のリスト", { :action => "watched" }, :class => "btn btn-outline-secondary btn-block" %>
-#       <%= link_to "観たい映画のリスト", { :action => "want" }, :class => "btn btn-outline-secondary btn-block" %>
-#     </div>
-#   </div>
-
-# <% else %>
-#   <p><%= @user.name %></p>
-
-#   <% if @user.avatar? %>
-#     <%= image_tag @user.avatar.url, class: "rounded-circle", size: "150x150" %>
-#   <% else %>
-#     <%= image_tag ("default-avatar.png"), class: "rounded-circle", size: "150x150" %>
-#   <% end %>
-
-#   <%
-# =begin%>
-#  <div class="row">
-#     <div class="col-sm-12">
-#       <ul class="nav nav-tabs nav-justified mb-3">
-#         <li class="nav-item"><a href="#" class="nav-link">Followings</a></li>
-#         <li class="nav-item"><a href="#" class="nav-link">Followers</a></li>
-#       </ul>
-#     </div>
-#   </div> 
-# <%
-# =end%>
-
-
-#   <h1>投稿したレビュー</h1>
-#   <% @comments.each do |comment|%>
-#     <div class=card>
-#       <p>評価 :<%= comment.raty %>点</p>
-#       <div id="star-rate<%= comment.id %>"></div>    
-#       <script>
-#         $('#star-rate<%= comment.id%>').raty({
-#           size      : 36,
-#           starOff   : '<%= asset_path('star-off.png') %>',
-#           starOn    : '<%= asset_path('star-on.png') %>',
-#           starHalf: '<%= asset_path('star-half.png') %>',
-#           readOnly: true,  <!-- 星を読み取り専用にしていじれないようにする -->
-#           score: <%= comment.raty %>,
-#         });
-#       </script>
-#       <p>内容:<%= comment.content %></p>
-#     </div>
-#   <% end %>
-
-#   <%= render 'relationships/follow_button', user: @user %>
-
-#   <div class="row text-center">
-#     <div class="stats col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
-#       <%= render 'devise/shared/stats' %>
-#     </div>
-#   </div>
-
-# <div class="col-lg-3" style="padding:0;">
-#   <div class="d-grid gap-2">
-#     <%= link_to "プロフィール", {}, :class => "btn btn-primary btn-block disabled" %>
-#     <%= link_to "観た映画のリスト", { :action => "watched" }, :class => "btn btn-outline-secondary btn-block" %>
-#     <%= link_to "観たい映画のリスト", { :action => "want" }, :class => "btn btn-outline-secondary btn-block" %>
-#   </div>
-# </div>
-# <% end %> 
-<%
-=end%>
-
-
-<div class="container-fluid area-width user">
+<div class="container-fluid user" style="width: 80%">
   <div class="row">
-
     <div class="col-lg-9" style="padding-left:0;padding-right:40px;">
-
-
-      <%
-=begin%>
- <h2>コメント</h2>
-      <% @comments.each do |comment|%>
-        <div class=card>
-          <p>評価 :<%= comment.raty %>点</p>
-          <div id="star-rate<%= comment.id %>"></div>    
-          <script>
-            $('#star-rate<%= comment.id%>').raty({
-              size      : 36,
-              starOff   : '<%= asset_path('star-off.png') %>',
-              starOn    : '<%= asset_path('star-on.png') %>',
-              starHalf: '<%= asset_path('star-half.png') %>',
-              readOnly: true,  <!-- 星を読み取り専用にしていじれないようにする -->
-              score: <%= comment.raty %>,
-            });
-          </script>
-          <p>内容:<%= comment.content %></p>
-        </div>
-      <% end %>
-    </div> 
-<%
-=end%>
-    
-
-    <h2>コメント</h2>
+      <h2>コメント</h2>
       <% @comments.each do |comment| %>
-    
-
         <div class="comment row">
-          <div class="col-lg-10 col-lg-9">
-            <span class="info"><%= link_to comment.movie.title, comment.movie, :target => "new" %></span>
-            
+          <div class="col-lg-8 col-md-9">
+            <span class="info"><%= link_to comment.movie.title, comment.movie, class: "comment-title", :target => "new" %></span>
             <span class="date"><%= comment.created_at.to_s[0..15] %></span>
             <span class="raty"> 
               <div id="star-rate<%= comment.id %>"></div>    
@@ -169,15 +16,15 @@
                   starOn    : '<%= asset_path('star-on.png') %>',
                   starHalf: '<%= asset_path('star-half.png') %>',
                   readOnly: true,  <!-- 星を読み取り専用にしていじれないようにする -->
-                  score: <%= comment.raty %>,
+                score: <%= comment.raty %>,
                 });
               </script>
             </span>
             <span class="content"><%= comment.content %></span>
           </div>
-          <div class="col-lg-2 col-lg-3">
+          <div class="col-lg-4 col-md-3">
             <%= link_to comment.movie, :target => "new" do %>
-              <%= image_tag comment.movie.image.thumb.url %>
+              <%= image_tag comment.movie.image.url, :size => '212x300' %>
             <% end %>
           </div>
         </div>
@@ -194,20 +41,17 @@
         <%= @user.name %>
         <%= render 'relationships/follow_button', user: @user if user_signed_in? %>
       </h1>
-
       <div class="row text-center">
         <div class="stats col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
           <%= render 'devise/shared/stats' %>
         </div>
       </div>
-
       <div class="lists d-grid gap-2">
         <%= link_to "プロフィール", {}, :class => "btn btn-primary btn-block disabled" %>
         <%= link_to "観た映画のリスト", { :action => "watched" }, :class => "btn btn-outline-secondary btn-block" %>
         <%= link_to "観たい映画のリスト", { :action => "want" }, :class => "btn btn-outline-secondary btn-block" %>
-      </div>
+      </div> 
     </div>
-
   </div>
 </div>
 

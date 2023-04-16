@@ -1,70 +1,44 @@
 <div class="container-fluid movie-info">
-<div class="row">
-  <div class="col-lg-6" style="padding-left:20px;padding-right:20px;">
-  
-
-  <%
-=begin%>
- <%= image_tag @movie.image.url %>  
-<%
-=end%>
-
-<div style="text-align: center">
-  <%= image_tag @movie.image.url, class: "movie_image" %>  
-</div>
-
-  
-
- <%
-=begin%>
- <img src="/assets/poster13.png" class="movie_image">  
-<%
-=end%>
-
-
-    <div class="btn-toolbar">
-          <%= render 'devise/shared/buttons', movie: @movie %>
-    </div>
-
-    <aside>
-      <% if watched_check(@movie["id"]) %>
-        <% if !@current_user_comment.nil? %>
-          <h5>あなたのコメント・感想：</h5>
-          <p><%= @current_user_comment.content %></p>
-          <%= link_to "削除", @current_user_comment, method: :delete, data: { confirm: "本当に削除しますか？" } %>
-        <% else %>
+  <div class="row">
+    <div class="col-lg-6" style="padding-left: 20px;padding-right: 20px;">
+      <div style="text-align: center">
+        <%= image_tag @movie.image.url, class: "movie_image" %>  
+      </div>
+      <div class="btn-toolbar">
+            <%= render 'devise/shared/buttons', movie: @movie %>
+      </div>
+      <aside>
+        <% if watched_check(@movie["id"]) %>
+          <% if !@current_user_comment.nil? %>
+            <h5>あなたのコメント・感想：</h5>
+            <p><%= @current_user_comment.content %></p>
+            <%= link_to "削除", @current_user_comment, method: :delete, data: { confirm: "本当に削除しますか？" } %>
+          <% else %>
             <%= render 'comment_form' %>
+          <% end %>
         <% end %>
-      <% end %>
-    </aside>
-  </div>
+      </aside>
+    </div>
 
-  <div class="col-lg-6" style="padding-left:20px;padding-right:20px;">
-    <h1><%= @movie.title %></h1>
-
-    <div class="released">
+    <div class="col-lg-6 detail" style="padding-left:20px;padding-right:20px;">
+      <h1><%= @movie.title %></h1>
+      <p class="word"># <%= @movie.word %></p>
       <p>公開年：<%= @movie.released_year %>年</p>
-      <p><%= @movie.released_month %>月</p>
-      <p><%= @movie.released_day %>日</p>
+      <p>ジャンル：
+        <% @movie.genres.each do |genre| %>
+          <%= genre.name %>
+        <% end %>
+      </p>
+      <p>上映時間：<%= @movie.screening_time %>分</p>
+      <p>あらすじ… <%= @movie.synposis %></p>
     </div>
-
-    <p>ジャンル：
-      <% @movie.genres.each do |genre| %>
-        <%= genre.name %>
-      <% end %>
-    </p>
-    <p>作成国：<%= @movie.country %></p>
-    <p>上映時間：<%= @movie.screening_time %>分</p>
-    <p>あらすじ…<%= @movie.synposis %></p>
-  
-</div>
-  <% if !@movie_db.nil? && @movie_db.comments.any? %>
-    <div class="container-fluid comments">
-      <h5>コメント・感想（<%= @movie_db.comments.count %>件）</h5>
-      <ol>
-        <%= render @comments %>
-      </ol>
-    </div>
-  <% end %>
-
+    <% if !@movie_db.nil? && @movie_db.comments.any? %>
+      <div class="container-fluid comments">
+        <h5>コメント・感想（<%= @movie_db.comments.count %>件）</h5>
+        <ol>
+          <%= render @comments %>
+        </ol>
+      </div>
+    <% end %>
+  </div>
 </div>

@@ -1,16 +1,10 @@
-<div class="container-fluid area-width user">
-
+<div class="container-fluid user" style="width: 80%">
   <div class="row">
     <div class="col-lg-9" style="padding-left:0;padding-right:40px;">
       <h2><%= @title %></h2>
       <% if @users.any? %>
         <div class="users follow">
-          <%
-=begin%>
- <%= render @users %> 
-<%
-=end%>
-        <%= render 'users', users: @users %>
+          <%= render 'users', users: @users %>
         </div>
       <% end %>
     </div>
@@ -18,18 +12,12 @@
     <div class="col-lg-3 col-lg-3" style="padding:0;">
       <h1>
         <% if @user.avatar? %>
-    <%= image_tag @user.avatar.url, class: "rounded-circle", size: "100x100" %>
-  <% else %>
-    <%= image_tag ("default-avatar.png"), class: "rounded-circle", size: "100x100" %>
-  <% end %>
+          <%= image_tag @user.avatar.url, class: "rounded-circle", size: "100x100" %>
+        <% else %>
+          <%= image_tag ("default-avatar.png"), class: "rounded-circle", size: "100x100" %>
+        <% end %>
         <%= @user.name %>
-        <%
-=begin%>
- <%= render 'follow_unfollow_button' if user_signed_in? %> 
-<%
-=end%>
         <%= render 'relationships/follow_button', user: @user if user_signed_in? %>
-        
       </h1>
       
       <div class="row text-center">

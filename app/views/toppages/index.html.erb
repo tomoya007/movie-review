@@ -1,10 +1,20 @@
+<%= search_form_for @q, url: search_movies_path, class: "guests" do |f| %>
+  <%= f.search_field :title_cont, placeholder: '映画タイトル',required: true %>
+  <%= f.submit '検索' %>
+<% end %>
+
+<% unless user_signed_in? %>
+  <div style="padding-top:5px;">
+    <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "guests" %>
+  </div>
+<% end %>
+
 <div class="container-fluid center hm-bg1">
   <div class="hm-bg1-mask">
     <p>友達に映画をおすすめしたいあなた、観たい映画を探しているあなた</p>
     <h3>～映画世界のオアシスへようこそ～</h3>
   </div>
 </div>
-
 
 <div class="container-fluid info center">
   <div class="row">
@@ -27,5 +37,4 @@
     </div>
   </div>
 </div>
-
 <%= render 'movies/movies', movies: @movies %>

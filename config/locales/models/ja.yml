@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    attributes:
+      comment: 
+        raty: 星評価
+        content: 文字数
+      user:
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        remember_me: 次回から自動的にログイン

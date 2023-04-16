@@ -2,7 +2,6 @@ class RelationshipsController < ApplicationController
   before_action :require_user_signed_in 
 
   def new
-    
   end
 
   def create

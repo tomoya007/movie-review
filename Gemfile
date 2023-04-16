@@ -64,7 +64,6 @@ gem 'pagy', '~> 5.10', '>= 5.10.1'
 
 gem 'psych', '~> 3.1'
 
-
 gem 'carrierwave'
 gem 'rmagick'
 
@@ -89,3 +88,5 @@ gem 'counter_culture'
 gem 'net-imap'
 gem 'net-pop'
 gem 'net-smtp'
+
+gem 'rails-i18n'

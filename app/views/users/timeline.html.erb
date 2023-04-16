@@ -1,15 +1,11 @@
-<% provide(:title, 'Timeline') %>
-
 <div class="container-fluid timeline row justify-content-center">
   <div class="col-lg-8 col-lg-offset-2">
     <h2>タイムライン</h2>
     <% if @feed_items.blank? %>
       <p>ユーザアクティビティがありません。</p>
     <% else %>
-
       <% @feed_items.each do |item| %>
         <hr>
-
         <% if item.is_a?(Comment) %>
           <div class="comment row">
             <div class="col-lg-7">
@@ -27,11 +23,10 @@
             </div>
             <div class="col-lg-5">
               <%= link_to item.movie, :target => "new" do %>
-                <%= image_tag item.movie.image.thumb.url %>
+                <%= image_tag item.movie.image.url, :size => '212x300' %>
               <% end %>
             </div>
           </div>
-
         <% else %>
           <% user = item.movielist.user %>
           <% if item.movielist.listname == "watched" %>
@@ -50,11 +45,10 @@
               </div>
               <div class="col-lg-5">
                 <%= link_to item.movie, :target => "new" do %>
-                  <%= image_tag item.movie.image.thumb.url %>
+                  <%= image_tag item.movie.image.url, :size => '212x300' %>
                 <% end %>
               </div>
             </div>
-
           <% else item.movielist.listname == "want" %>
             <div class="want row">
               <div class="col-lg-7">
@@ -71,19 +65,15 @@
               </div>
               <div class="col-lg-5">
                 <%= link_to item.movie, :target => "new" do %>
-                  <%= image_tag item.movie.image.thumb.url %>
+                  <%= image_tag item.movie.image.url, :size => '212x300' %>
                 <% end %>
               </div>
             </div>
           <% end %>
         <% end %>
       <% end %>
-
       <%= paginate @feed_items %>
     <% end %>
-
-
   </div>
-  
 </div>
 

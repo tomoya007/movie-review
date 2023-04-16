@@ -1,17 +1,17 @@
-/* variables */
 $light-gray: #777;
 $gray-medium-light: #eaeaea;
-$moasis: #3aabd2;
+$indiefilms: #3aabd2;
 
-/* mixins */
+//コメントとかtimelineの上のバナーに色付け
 @mixin title {
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 10px;
-  color: $moasis;
-  border-left: 8px solid $moasis;
+  color: $indiefilms;
+  border-left: 8px solid $indiefilms;
   background-color: #E8FAFB;
 }
+//wantとwatchedの囲い
 @mixin movie_box {
   border: 2px solid $gray-medium-light;
   border-radius: 5px;
@@ -21,27 +21,9 @@ $moasis: #3aabd2;
     color: black;
   }
   a:hover {
-    color: $moasis;
+    color: $indiefilms;
   }
 }
-@mixin box_sizing {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-section {
-  overflow: auto;
-}
-
-textarea {
-  resize: vertical;
-}
-
-// 全体の背景
-// body {
-//   background-color: #000;
-// }
 
 .center {
   text-align: center;
@@ -53,9 +35,10 @@ textarea {
 .area-width {
   width: 80%;
 }
-
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
+@media screen and (min-width: 960px) {
+	.area-width {
+    width: 65%;
+  }
 }
 
 h1 {
@@ -68,10 +51,7 @@ h1 {
 h3 {
   font-size: 1.2em;
   letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
   font-weight: normal;
-  /*color: $light-gray;*/
 }
 
 p {
@@ -79,32 +59,22 @@ p {
   line-height: 1.7em;
 }
 
-
-/* header */
 header {
-  .navbar {
-  margin-top: 0;
-  }
-  #logo {
-    float: left;
-    margin-right: 10px;
-    margin-left: 15px;
-    padding-top: 9px;
-  }
-  .navbar-form {
-    padding-top: 7px;
-  }
+//timeline
   a {
-    color: $moasis;
+    color: $indiefilms;
     font-size: 17px;
+    text-decoration: none;
   }
 }
 
 footer {
+//footerの境界線
   margin-top: 45px;
   padding-top: 10px;
   border-top: 1px solid $gray-medium-light;
   color: $light-gray;
+//footer内の文字や画像
   .copyright {
     margin-left: 20px;
     float: left;
@@ -113,6 +83,7 @@ footer {
       margin-right: 8px;
     }
   }
+//aboutの文字
   a {
     color: #555;
     &:hover {
@@ -120,76 +91,58 @@ footer {
     }
   }
   ul {
-    /* clear: both; */
+  //Aboutの位置調整
     float: right;
     margin-top: 10px;
     margin-right: 20px;
     list-style: none;
-    li {
-      float: left;
-      margin-left: 15px;
-    }
   }
 }
 
-
-
-/* homepage */
+//toppageのバナー
 .hm-bg1 {
   margin-top: 20px;
   padding-top: 70px;
   margin-bottom: 50px;
   background: image-url("banner2.jpeg") no-repeat;
   background-size: 100% auto;
-  /* background-size: cover; */
-  p, h1, h3 {
+//バナー内の文字
+  p, h3 {
     color: #fff;
   }
+//バナーないの大き目の文字
   h3 {
     font-size: 40px;
     padding-bottom: 20px;
   }
-  h2 {
-    color: $moasis;
-  }
-  /* img {
-    margin-top: 20px;
-    margin-bottom: 20px;
-  } */
-  .hm-buttons {
-    margin: 80px auto 60px auto;
-    /*margin-top: 60px;*/
-    /*margin-bottom: 60px;*/
-    a {
-      margin: auto 15px;
-    }
-  }
 }
 
+//toppageのinfo,mark,follow
 .info {
+//テキストの幅や位置
   margin-top: 50px;
   margin-bottom: 30px;
   width: 70%;
   p, h4 {
-    color: $moasis;
+    color: $indiefilms;
   }
+//info,mark,followを太文字
   h4 {
     font-weight: bold;
     font-size: 27px;
   }
+//テキストとinfo,mark,followの間隔
   p {
     padding-top: 10px;
   }
 }
 
 
-
-
-/* search */
+//conditional_search
 .search-page {
   padding: 0;
   h1 {
-    margin-bottom: 50px;
+    margin-bottom: 0px;
   }
   .row {
     margin-bottom: 50px;
@@ -198,56 +151,13 @@ footer {
   }
   h2 {
     font-size: 28px;
-    margin-bottom: 25px;
+    margin-top: 25px;
+    // margin-bottom: 25px;
     @include title;
   }
-  .keyword-search {
-    padding-right: 35px; 
-  }
-  .adv-search {
-    border-left: 2px solid $gray-medium-light;
-    padding-left: 33px;
-  }
 }
-.genre-year {
-  h2 {
-    font-size: 23px;
-    margin-bottom: 15px;
-    @include title;
-  }
-  hr {
-    margin-bottom: 30px;
-  }
-}
-.search-results {
-  p {
-    font-size: 20px;
-  }
-  .results {
-    @include movie_box
-  }
-  h4 {
-    font-size: 30px;
-  }
-  h5 {
-    color: $light-gray;
-    font-size: 23px;
-  }
-}
-.movie-results {
-  .btn-toolbar {
-    margin-top: 20px;
-    margin-left: 0;
-  }
-}
-// .people-results {
-//   .row {
-//     margin-right: 200px;
-//   }
-// }
 
-
-/* movie info */
+//movies/showの全体的な位置や画像の大きさ
 .movie-info {
   width: 85%;
   margin-top: 30px;
@@ -256,155 +166,83 @@ footer {
       padding-top: 30px;
     }
   }
+  //movies/showの観た、観たい!ボタンの上にスペース
   .btn-toolbar {
     margin: 30px 0;
   }
-  .recommend-data {
-    margin: 30px auto;
-    border-top: 2px solid $gray-medium-light;
-    border-bottom: 2px solid $gray-medium-light;
-    h5 {
-      font-size: 22px;
-      color: $moasis;
-    }
-  }
-  // movies/show↓画像の大きさ
+  // movies/show 画像の大きさ
   .movie_image {
     max-width: 70%;
     height: auto;
   }
-  /* original title */
-  h2 {
-      font-size: 21px;
-      color: $light-gray;
-  }
-  .collection {
-    text-align: center;
-    font-size: 20px;
-    a {
-      color: $moasis;
-    }
-  }
-  .details {
-    margin: 20px auto;
-  }
-  /* cast */
-  .col-md-2 {
-    padding-left: 0;
-    padding-right: 10px;
-  }
-  .trailers {
-    margin-top: 25px;
-    .col {
-      float: left;
-      margin-left: 15px;
-      margin-right: 10px;
-    }
-  }
-
-  /* comment form */
   aside {
+  //movies/showのあなたのコメント・感想
     h5 {
       font-size: 18px;
       font-weight: bold;
     }
+  //文字が1行で入らない時だけ折り返し
     p {
       word-wrap: break-word;
     }
-    label {
-      font-size: 20px;
-    }
-    textarea {
-      height: 150px;
-      width: 100%;
-      margin-bottom: 5px;
-    }
+  }
+}
+@media screen and (min-width: 960px) {
+  .detail {
+    padding-top: 20px;
   }
 }
 
-/* comments */
 .comments {
+  //movie/showのコメント・感想
   clear: both;
-  /*margin-top: 30px;*/
   padding-top: 30px;
   padding-left: 20px;
   padding-right: 40px;
+  //movies/showのコメントバナー
   h5 {
     font-size: 22px;
     @include title;
   }
+  //movies/showのコメントの中
   ol {
     list-style: none;
     padding-left: 0;
   }
+  //movies/showのコメントとコメントの境目
   li {
     padding: 20px 0;
     border-top: 1px solid #e8e8e8;
   }
+  //movies/showのコメントの中身の位置
   .profile {
     float: left;
     margin-right: 10px;
   }
-  .user {
-    margin-top: 15px;
-    padding-top: 0;   
-  }
+  //movies/show内_comment.htmlのコメント内の日付
   .date {
     display: block;
     color: $light-gray;
     padding-left: 60px;
   }
+  //コメントテキストの位置調整
   .content {
     clear: both;
     display: block;
     margin: 10px 15px 0px 15px; 
     word-wrap: break-word;
   }
-  form {
-    margin-left: 15px;
-  }
+}
+//星評価：の文字
+.evaluation {
+  font-weight: bold;
 }
 
-/* movie collections */
-.collections {
-  width: 80%;
-  .row {
-    @include movie_box
-  }
-  h1 {
-    color: $moasis;
-    border: 2px solid $moasis;
-    padding: 5px;
-    background-color: #E8FAFB;
-    /*margin-bottom: 20px;*/
-  }
-  .btn-toolbar {
-    margin-top: 20px;
-    margin-left: 0;
-  }
-}
-
-
-/* cast&staff info */
-.person {
-  margin-top: 30px;
-  img {
-    padding-top: 30px;
-  }
-  p {
-    font-size: 19px;
-  }
-}
-
-
-
-/* profile */
 .user {
+  //users/show 全体的な位置
   padding: 0;
   .stats {
-    /*margin-left: 10%;*/
-    /*margin-right: auto;*/
-    overflow: auto;
+  //users/show,following/followersの整地
     a {
       color: black;
       float: left;
@@ -414,20 +252,17 @@ footer {
         border: 0;
       }
     }
+  //users/show following/followersの集計を2段
     strong {
       display: block;
     }
   }
+  //users/showのプロフィールとfollowing/followersとの間
   .lists {
     margin-top: 30px;
   }
 
-  /* recommend list filter */
-  .btn-group {
-    margin-top: 20px;
-  }
-
-  /* list content */
+  //コメント、watch、watchedのバナー
   h2 {
     font-size: 30px;
     margin-bottom: 20px;
@@ -436,6 +271,7 @@ footer {
   }
   .movie-box {
     @include movie_box;
+  //want,watchedの映画タイトル
     h3 {
       font-size: 25px;
       font-weight: bold;
@@ -443,6 +279,7 @@ footer {
       margin-bottom: 20px;
       text-align: left;
     }
+  //ボタン（削除など）と追加日
     .btn-date {
       margin-left: 0;
       margin-top: 20px;
@@ -450,42 +287,26 @@ footer {
         color: $light-gray;
       }
     }
-    .datils {
-      h3 {
-          // margin-top: 30px;
-      text-align: center;
-      }
-    }
   }
 
-  
-
-  /* report */
-  h4 {
-    margin-top: 30px;
-  }
-  hr {
-    margin-top: 35px;
-  }
-
-  /* comments */
+  //users/showのコメント欄
   .comment {
     border: solid 1px $gray-medium-light;
     border-radius: 5px;
     padding: 10px;
     margin: 10px;
+  //users/showのコメント欄の映画タイトル
     .info {
       margin-top: 15px;
-      /*padding-top: 0;*/
-      /*padding-left: 10px;*/
       font-size: 18px;
     }
+  //users/showのコメント欄の日付
     .date {
       display: block;
       color: $light-gray;
-      /*padding-left: 10px;*/
       padding-top: 10px;
     }
+  //users/showのコメント欄のコメントテキスト
     .content {
       clear: both;
       display: block;
@@ -495,18 +316,19 @@ footer {
       padding-left: 10px;
       font-size: 15px;
     }
-    .col-md-2 {
+  //users/showのコメントテキストとポスターの間空ける
+    .col-lg-2 {
       padding-top: 10px;
     }
   }
 }
-
+//いいね
 .like-btn {
   font-size: 15px;
   color: #808080;
   margin-left: 20px;
   }
-  
+  //いいね取り消し
 .unlike-btn {
   font-size: 15px;
   color: #e54747;
@@ -514,36 +336,32 @@ footer {
   }
 
 
-
-/* Timeline */
 .timeline {
-  /*width: 75%;*/
+  //タイムラインのバナー
   h2 {
     font-size: 30px;
     margin-bottom: 20px;
     @include title;
   }
+  //薄い色がついた囲い
   .row {
     padding: 20px 0;
     margin: 0;
-    
-    /*border-top: 1px solid #e8e8e8;*/
   }
-  .profile {
-    float: left;
-    margin-right: 10px;
-  }
+  //観たいとマークしました
   .info {
     margin-top: 15px;
     padding-top: 0;
     font-size: 18px;
   }
+  //マークした日付
   .date {
     display: block;
     color: $light-gray;
     padding-left: 60px;
     padding-top: 10px;
   }
+  //コメント文
   .content {
     clear: both;
     display: block;
@@ -553,6 +371,7 @@ footer {
     padding-left: 10px; 
     font-size: 15px;
   }
+  //timelineの背景の色
   .comment {
     background-color: #EFFBF2;
   }
@@ -564,32 +383,76 @@ footer {
   }
 }
 
-
-
-
-/* form */
-.form-condition {
-  color: #F06060;
-}
-
-/* alert */
-.alert {
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-
-.avatar {//_users.html
+//_users.html
+.avatar {
   margin-top: 5px;
 }
-
-.name { //_users.html
+.name { 
   margin-left: 10px;
 }
 
-// linkの下線なくした
+// linkの下線消す
 .link {
   text-decoration: none;
-  color: $moasis;
+  font-family: monospace;
 }
+.img_wrap{
+  transition-duration: 0.5s;
+  cursor: pointer;
+}
+.poster:hover .img_wrap{
+  box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+  transform: translateY(-10px);
+  transition-duration: 0.5s;
+}
+.poster h3 {
+  color: $indiefilms;
+  transition-duration: 0.5s;
+  cursor: pointer;
+}
+.poster:hover h3 {
+  color: #035c7c;
+}
+
+.guests {
+  padding-left: 15px;
+  color: $indiefilms;
+  font-size: 17px;
+  font-weight: bold;
+}
+//navbarと下の要素が被らないように
+body{ 
+  padding-top: 80px; 
+}
+//movies/showのコメント入力欄
+textarea {
+  height: 150px;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.edit {
+  padding-left: 30px;
+}
+
+.field {
+  padding-bottom: 10px;
+}
+
+.comment-title {
+  font-size: 20px;
+  color: $indiefilms;
+  text-decoration: none;
+  font-weight: bold;
+  &:hover {
+    color: #035c7c;
+  }
+}
+
+//movies/showのword
+  .word {
+    font-size: 20px;
+    text-align: center;
+    font-family: sans-serif;
+    color: gray;
+  }

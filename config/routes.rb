@@ -2,17 +2,17 @@ Rails.application.routes.draw do
   get 'toppages/index'
   get 'relationships/create'
   get 'relationships/destroy'
-  # ログイン、アカウント編集後、任意のページに推移させるための記述
+  # ログイン、アカウント編集後、任意のページに推移
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     passwords: 'users/passwords'
-}
+  }
 
-devise_scope :user do
-  post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
-end
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
 
-get '/about', to: 'toppages#about'
+  get '/about', to: 'toppages#about'
   
   resources :movies do
     collection do
@@ -20,11 +20,11 @@ get '/about', to: 'toppages#about'
       get 'conditional_search' 
     end
   end
+
   root to: 'toppages#index'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  
-  resources :movies
+
   resources :movielists, only: [:create, :destroy]
   resources :list_movies
 
@@ -39,12 +39,6 @@ get '/about', to: 'toppages#about'
   end
 
   resources :relationships, only: [:create, :destroy]
-
-  # get '/search_movies_result', to: 'searchs#search_movies'
-  # get '/search_filter', to: 'searchs#search_filter' 
-  # get '/search', to: 'searchs#discover'
-  # get '/genres', to: 'searchs#show_genre'
-  # get '/years', to: 'searchs#show_single_year'
 
   get '/timeline', to: 'users#timeline'
 

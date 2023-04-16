@@ -1,19 +1,41 @@
 <%= form_for @comment do |f| %>
-<div class="field" id="star">
-  <%= f.label :raty, "星評価：" %>
-  <%= f.hidden_field :raty, id: :comment_star %>
-<script>
-    $('#star').raty({
-      starOff: "<%= asset_path('star-off.png') %>",
-      starOn: "<%= asset_path('star-on.png') %>",
-      starHalf: '<%= asset_path('star-half.png') %>',
-      scoreName: 'comment[raty]',  <!-- ratyカラムへの保存 -->
-      half: true,  <!-- 星半分の入力 -->
-    });
-</script>
-</div>
-  <%= f.hidden_field :movie_id, value: @movie.id %>
-  <%= f.text_field :content, class: "text-field" %>
-  
-  <%= f.submit '投稿', class: "submit-btn" %>
+  <div class="field" id="star">
+    <%= f.label :raty, "星評価（必須）：", {class: 'evaluation'} %>
+    <%= f.hidden_field :raty, id: :comment_star %>
+    <script>
+      $('#star').raty({
+        starOff: "<%= asset_path('star-off.png') %>",
+        starOn: "<%= asset_path('star-on.png') %>",
+        starHalf: '<%= asset_path('star-half.png') %>',
+        scoreName: 'comment[raty]',
+        half: true, 
+      });
+    </script>
+    <br>
+
+    <%= f.hidden_field :movie_id, value: @movie.id %>
+    <%= f.label "コメント・感想" %>
+    <%= f.text_area :content, placeholder: "250文字以内で入力してください..." , onKeyUp: "countLength(value, 'textlength');", maxlength: "250",
+                      class: "input-field", style: "margin-bottom:0;",required: true %>
+    <p id="textlength" style="text-align:right; margin-bottom:0;">0/250文字</p>
+  </div>
+  <%= f.submit '送信', class: "btn btn-outline-secondary" %>
 <% end %>
+
+<script type="text/javascript">
+  function countLength( text, field ) {
+    document.getElementById(field).innerHTML = text.length + "/250文字";
+    if (text.length>250) {
+      $('#textlength').css({
+          color:'#ff0000',
+          fontWeight:'bold'
+      });
+    }
+    else {
+      $('#textlength').css({
+          color:'#000000',
+          fontWeight:'normal'
+      });
+    }
+  }
+</script>

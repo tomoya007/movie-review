@@ -1,5 +1,7 @@
+<div class="container-fluid area-width search-page"> 
+<%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "guests" %>
 <h2>新規登録</h2>
-
+<div class="edit">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -32,3 +34,5 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>
+</div>

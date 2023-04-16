@@ -2,17 +2,17 @@
   <span class="like">
     <% if current_user.already_liked?(comment) %>
       <td>
-      <%= link_to destroy_like_path(comment), method: :DELETE, remote: true do %> 
-  <i class="fa fa-heart unlike-btn"></i> 
-<% end %> 
-<%= comment.likes.count %>
+        <%= link_to destroy_like_path(comment), method: :DELETE, remote: true do %> 
+          <i class="fa fa-heart unlike-btn"></i> 
+        <% end %> 
+        <%= comment.likes.count %>
       </td>
     <% else %>
       <td>
-      <%= link_to create_like_path(comment), method: :POST, remote: true do %> 
-      <i class="fa fa-heart like-btn"></i> 
-    <% end %> 
-    <%= comment.likes.count %>
+        <%= link_to create_like_path(comment), method: :POST, remote: true do %> 
+          <i class="fa fa-heart like-btn"></i> 
+        <% end %> 
+        <%= comment.likes.count %>
       </td>
     <% end %>
   </span>

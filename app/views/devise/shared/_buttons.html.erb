@@ -1,6 +1,6 @@
 <% if !user_signed_in? %>
   <%= button_to "観た", "/list_movies/create", :class => "btn btn-info", :style => "margin-right:10px;" %>
-  <%= button_to "観たい！！！", "/list_movies/create", :class => "btn btn-info", :style => "margin-right:10px;" %>
+  <%= button_to "観たい！", "/list_movies/create", :class => "btn btn-info", :style => "margin-right:10px;" %>
   
 <% else %>
   <% if watched_check(movie["id"]) %>
@@ -16,7 +16,7 @@
   <% end %>
 
   <% if watched_check(movie["id"]) %>
-    <%= button_to "観たい！！！", {}, :class => "btn btn-info disabled", :style => "margin-right:10px;" %>
+    <%= button_to "観たい！", {}, :class => "btn btn-info disabled", :style => "margin-right:10px;" %>
   <% elsif want_check(movie["id"]) %>
     <%= button_to "観たい記録削除", list_movies_destroy_path,
                   :method => "delete",
@@ -25,7 +25,7 @@
                   :data => { :confirm => "本当に削除しますか？" },
                   :params => {:movielist_id => @movielist_check.id, :movie_id => movie["id"]} %>
   <% else %>
-    <%= button_to "観たい！！！", { :controller => "list_movies", :action => "create_want", :movie_id => "#{movie["id"]}" }, 
+    <%= button_to "観たい！", { :controller => "list_movies", :action => "create_want", :movie_id => "#{movie["id"]}" }, 
                   :class => "btn btn-info btn-md", :style => "margin-right:10px;" %>
   <% end %>
 <% end %>
