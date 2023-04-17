@@ -73,7 +73,7 @@ Movie.create!(
     },
     {
       title:'わたしのトーチカ',
-  image:File.open('./app/assets/images/アニメーション1.jpeg'),
+  image:File.open('./app/assets/images/animation1.jpeg'),
   released_year:'2021',
   screening_time:'15',
   synposis:'潜水服は、水中の世界の中で唯一ボンベがないと生きられない。我侭な女の子や複雑な家庭環境の友人に囲まれながら、平穏な日々が壊れないよう、どんなに息苦しくても見て見ぬ振りをしていた。第32回東京学生映画祭 入選作品',
@@ -128,7 +128,7 @@ Movie.create!(
     },
     {
       title:'なごやの喫茶店',
-  image:File.open('./app/assets/images/ヒューマン2.jpeg'),
+  image:File.open('./app/assets/images/human2.jpeg'),
   released_year:'2014',
   screening_time:'23',
   synposis:'舞台は名古屋のとある喫茶店。主人公、絵里は家族のとある秘められた事実を確かめるように、ふらりとそこにやってくる。そこで彼女が感じたものは何なのか。絵里にとっての家族とは。ひとりの人間が成長してゆく物語。
@@ -168,7 +168,7 @@ Movie.create!(
     },
     {
       title:'キドラアローン　破壊の娘',
-  image:File.open('./app/assets/images/animation6.jpeg'),
+  image:File.open('./app/assets/images/action6.jpeg'),
   released_year:'2019',
   screening_time:'80',
   synposis:'荒廃した日本。とある山奥の田舎町、セーラー服姿で学校に向かうキドラを町民たちは笑顔で見送っていた。しかし、夕方になると町民たちは一変して鬼の形相でキドラに襲いかかる。そんな彼らをキドラは12歳とは思えない身のこなしで倒してしまう。そして偶然出会ったヒットマンを連れまた学校へと向かう……。やがて、キドラの正体と日中は平和を偽る町の全貌が明らかに!',
@@ -177,7 +177,7 @@ Movie.create!(
     },
     {
       title:'漫画誕生',
-  image:File.open('./app/assets/images/ドラマ8.jpeg'),
+  image:File.open('./app/assets/images/drama8.jpeg'),
   released_year:'2018',
   screening_time:'119',
   synposis:'昭和18年、太平洋戦争が激化する中、内務省に呼びだされた北沢楽天は、検閲官に促されるまま自らの華やかな過去を語り始めた。
@@ -205,7 +205,7 @@ Movie.create!(
     },
     {
       title:'ただいま、ジャクリーン',
-  image:File.open('./app/assets/images/ヒューマン3.jpeg'),
+  image:File.open('./app/assets/images/human.jpeg'),
   released_year:'2013',
   screening_time:'40',
   synposis:'幼い頃にバス事故で両親を亡くし孤児となった悟は、同じ事故で死亡した腹話術師の持っていたジャクリーンという人形と出会う。児童養護施設に入った悟は、腹話術をすることで少しずつ笑顔を取り戻す。13年後、施設を出てひとり暮らしをしている悟は、もうジャクリーンに見向きもしなくなっていた。そんなある日、バス事故の生存者で同じ施設で育った恵から「腹話術をしてほしい」と頼まれ、12年ぶりにジャクリーンと向き合う。',
