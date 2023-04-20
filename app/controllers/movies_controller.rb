@@ -2,8 +2,6 @@ class MoviesController < ApplicationController
   include MoviesHelper
   before_action :set_q, only: [:index, :search, :conditional_search]
 
-  
-
   def index
     @pagy, @movies = pagy(Movie.all)
   end
@@ -28,24 +26,25 @@ class MoviesController < ApplicationController
       flash.now[:danger] = '検索結果は0件でした。'
       @results=[]
     elsif params[:q][:released_year_lteq].present?
-      @pagy, @results = pagy(@q.result)
+      @results = @q.result
       @count = @results.count
     elsif params[:q][:released_year].present?
-      @pagy, @results = pagy(released_year_split.result)
+      @results = released_year_split.result
       @count = @results.count
     elsif params[:q][:released_year_gteq].present?
-      @pagy, @results = pagy(@q.result)
+      @results = @q.result
       @count = @results.count
     else
-      @pagy, @results = pagy(@q.result)
+      @results = @q.result
       @count = @results.count
     end
     if @results.count==0
       flash.now[:danger] = '検索結果は0件でした。'
-      @pagy, @movies = pagy(Movie.all)
+      @movies = Movie.all
       render 'toppages/index'
     end
   end
+
 
   def conditional_search   
     @genres = Genre.all

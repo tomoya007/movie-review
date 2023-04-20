@@ -86,17 +86,6 @@ ActiveRecord::Schema.define(version: 2023_03_13_024725) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "later_watcheds", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "movie_id", null: false
-    t.bigint "user_id", null: false
-    t.boolean "later", default: false, null: false
-    t.boolean "watched", default: false, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["movie_id"], name: "index_later_watcheds_on_movie_id"
-    t.index ["user_id"], name: "index_later_watcheds_on_user_id"
-  end
-
   create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "comment_id", null: false
@@ -167,8 +156,6 @@ ActiveRecord::Schema.define(version: 2023_03_13_024725) do
   add_foreign_key "comments", "users"
   add_foreign_key "genre_movies", "genres"
   add_foreign_key "genre_movies", "movies"
-  add_foreign_key "later_watcheds", "movies"
-  add_foreign_key "later_watcheds", "users"
   add_foreign_key "likes", "comments"
   add_foreign_key "likes", "users"
   add_foreign_key "list_movies", "movielists"

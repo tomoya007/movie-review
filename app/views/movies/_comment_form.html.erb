@@ -1,5 +1,6 @@
 <%= form_for @comment do |f| %>
   <div class="field" id="star">
+    <%= f.label "コメント・感想", {class: 'thoughts'} %><br>
     <%= f.label :raty, "星評価（必須）：", {class: 'evaluation'} %>
     <%= f.hidden_field :raty, id: :comment_star %>
     <script>
@@ -14,7 +15,7 @@
     <br>
 
     <%= f.hidden_field :movie_id, value: @movie.id %>
-    <%= f.label "コメント・感想" %>
+    
     <%= f.text_area :content, placeholder: "250文字以内で入力してください..." , onKeyUp: "countLength(value, 'textlength');", maxlength: "250",
                       class: "input-field", style: "margin-bottom:0;",required: true %>
     <p id="textlength" style="text-align:right; margin-bottom:0;">0/250文字</p>

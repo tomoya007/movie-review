@@ -4,7 +4,7 @@
       <div class="avatar">
         <%= link_to "/users/#{user["id"]}", :target => "new" do %>
           <% if user.avatar? %>
-            <%= image_tag avatar.url, class: "rounded-circle mx-auto d-block", size: "50x50" %>
+            <%= image_tag user.avatar.url, class: "rounded-circle mx-auto d-block", size: "50x50" %>
           <% else %>
             <%= image_tag ("default-avatar.png"), class: "rounded-circle mx-auto d-block", size: "50x50" %>
           <% end %>

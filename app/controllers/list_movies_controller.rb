@@ -1,7 +1,6 @@
 class ListMoviesController < ApplicationController
   protect_from_forgery #APIでエラーになった時
-
-  before_action :logged_in_user, only: [:create, :create_watched, :create_want, :create_recommend, :destroy]
+  before_action :logged_in_user, only: [:create, :create_watched, :create_want, :destroy]
   before_action :correct_user, only: :destroy
   
   def create
