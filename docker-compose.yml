@@ -30,8 +30,6 @@ services:
     stdin_open: true
     tty:
       true
-    depends_on:
-      - db
   web:
     build:
       context: nginx_docker
