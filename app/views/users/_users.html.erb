@@ -2,7 +2,7 @@
   <% @users.each do |user| %>
     <div class="card" style="margin-bottom: 15px;">
       <div class="avatar">
-        <%= link_to "/users/#{user["id"]}", :target => "new" do %>
+        <%= link_to "/users/#{user["id"]}", method: :get do %>
           <% if user.avatar? %>
             <%= image_tag user.avatar.url, class: "rounded-circle mx-auto d-block", size: "50x50" %>
           <% else %>
@@ -10,8 +10,13 @@
           <% end %>
           <p class="name"><%= user.name %></p>
         <% end %>
+
+<div class="dark-cover"></div> 
+
       </div>
     </div>
   <% end %>
   <%== pagy_bootstrap_nav(@pagy) %>
 </div>
+
+

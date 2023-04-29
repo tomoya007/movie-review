@@ -1,8 +1,3 @@
-<%= search_form_for @q, url: search_movies_path, class: "guests" do |f| %>
-  <%= f.search_field :title_cont, placeholder: '映画タイトル',required: true %>
-  <%= f.submit '検索' %>
-<% end %>
-
 <% unless user_signed_in? %>
   <div style="padding-top:5px;">
     <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "guests" %>
@@ -10,29 +5,27 @@
 <% end %>
 
 <div class="container-fluid center hm-bg1">
-  <div class="hm-bg1-mask">
-    <p>友達に映画をおすすめしたいあなた、観たい映画を探しているあなた</p>
-    <h3>～インディーズ映画の世界へようこそ～</h3>
-  </div>
-</div>
+  <p>友達に映画をおすすめしたい、観たい映画を探しているあなたへ</p>
+  <h3>～インディーズ映画の世界へようこそ～</h3>
+</div> 
 
 <div class="container-fluid info center">
   <div class="row">
     <div class="col-md-4">
       <h4 class="center"><i class="bi bi-info-circle-fill"></i> INFO</h4>
-      <p>キーワードで映画を検索、<span>ジャンルや</span><span>年などの</span>フィルターをかけて<span>検索が</span><span>できる！</span><br>
+      <p>キーワードで映画を検索、<span>ジャンルや</span><span>年などの</span><span>フィルターを</span><span>かけて</span>検索が<span>できる！</span><br>
       </p>
     </div>
     <div class="col-md-4">
       <h4 class="center"><i class="bi bi-bookmark-star-fill"></i> MARK</h4>
-      <p>観た映画、観たい映画、おすすめの映画をMARKする。<br>
-      自分のリスト、他のユーザの<span>リストを</span><span>見られる！</span><br>
+      <p>観た映画、観たい映画、<span>おすすめの映画を</span><span>MARKする。</span><br>
+      自分のリスト、<span>他のユーザの</span><span>リストを</span><span>見られる！</span><br>
       </p>
     </div>
     <div class="col-md-4">
       <h4 class="center"><i class="bi bi-person-plus-fill"></i> FOLLOW</h4>
-      <p>自分の趣味と合うユーザを探して<span>みて、</span>フォローしよう。<br>
-      フォローしているユーザの記録を<span>見て、</span>新たな発見ができるかも！
+      <p>自分の趣味と合うユーザを<span>探してみて、</span><span>フォローしよう。</span><br>
+      フォローしているユーザの<span>記録を見て、</span><span>新たな発見ができるかも！</span>
       </p>
     </div>
   </div>

@@ -6,7 +6,7 @@
         <% @list.each do |m| %>
           <% movie = Movie.find(m.movie_id) %> 
           <div class="row movie-box">
-            <%= link_to "/movies/#{movie["id"]}", class: "link", :target => "new" do %>
+            <%= link_to "/movies/#{movie["id"]}", class: "link", method: :get do %>
               <div class="row">
                 <div class="col-lg-6">         
                   <%= image_tag movie.image.url, :size => '212x300' %>

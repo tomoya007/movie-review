@@ -6,3 +6,4 @@ class ToppagesController < ApplicationController
   def about
   end
 end
+

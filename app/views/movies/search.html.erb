@@ -3,7 +3,7 @@
   <div class="row">
     <% @results.each do |movie| %>
       <div class="col-md-2 col-sm-4 poster" style="margin-bottom: 30px;">
-        <%= link_to "/movies/#{movie["id"]}", :target => "new" do %>        
+        <%= link_to "/movies/#{movie["id"]}", method: :get do %>        
           <div style="text-align: center">
             <%= image_tag movie.image.url, :size => '212x300', class: "img_wrap" %>
           </div>
@@ -12,3 +12,5 @@
     <% end %>
   </div> 
 </div>
+
+

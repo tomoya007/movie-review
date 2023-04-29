@@ -1,11 +1,10 @@
 class ApplicationController < ActionController::Base
-  include Pagy::Backend #追記
+  include Pagy::Backend 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :name_search
 
   def name_search
     @q = Movie.ransack(params[:q])
-    @results = @q.result
   end
 
   def add_movies_to_db movies

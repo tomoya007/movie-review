@@ -4,7 +4,6 @@ class CreateListMovies < ActiveRecord::Migration[6.0]
       t.references :movie, foreign_key: true
       t.references :movielist, foreign_key: true
       t.string  :history
-
       t.timestamps
     end
   end

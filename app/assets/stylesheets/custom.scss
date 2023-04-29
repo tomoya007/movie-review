@@ -59,15 +59,6 @@ p {
   line-height: 1.7em;
 }
 
-header {
-//timeline
-  a {
-    color: $indiefilms;
-    font-size: 17px;
-    text-decoration: none;
-  }
-}
-
 footer {
 //footerの境界線
   margin-top: 45px;
@@ -110,28 +101,46 @@ footer {
   p, h3 {
     color: #fff;
   }
-//バナーないの大き目の文字
+//バナー内の大き目の文字
   h3 {
     font-size: 40px;
     padding-bottom: 20px;
+  }
+  @media screen and (max-width: 715px) {
+    h3 {
+      font-size: 35px;
+    }
+  }
+  @media screen and (max-width: 627px) {
+    h3 {
+      font-size: 30px;
+    }
+  }
+  @media screen and (max-width: 538px) {
+    p {
+      font-size: 16px;
+    }
+    h3 {
+      font-size: 25px;
+    }
   }
 }
 
 //toppageのinfo,mark,follow
 .info {
-//テキストの幅や位置
+  //テキストの幅や位置
   margin-top: 50px;
   margin-bottom: 30px;
   width: 70%;
   p, h4 {
     color: $indiefilms;
   }
-//info,mark,followを太文字
+  //info,mark,followを太文字
   h4 {
     font-weight: bold;
     font-size: 27px;
   }
-//テキストとinfo,mark,followの間隔
+  //テキストとinfo,mark,followの間隔
   p {
     padding-top: 10px;
   }
@@ -140,11 +149,20 @@ footer {
   }
 }
 @media screen and (max-width: 600px) {
-	.info {
+  .info {
     width: 75%;
   }
 }
-
+@media screen and (min-width: 768px) {
+  .info {
+    width: 95%;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .info {
+    width: 80%;
+  }
+}
 
 //conditional_search
 .search-page {
@@ -176,7 +194,7 @@ footer {
   }
   //movies/showの観た、観たい!ボタンの上にスペース
   .btn-toolbar {
-    margin: 30px 0;
+    margin: 30px 0 30px 90px;
   }
   // movies/show 画像の大きさ
   .movie_image {
@@ -397,6 +415,9 @@ footer {
 //_users.html
 .avatar {
   margin-top: 5px;
+  &:hover {
+    background-color: #e2dee0;
+  }
 }
 .name { 
   margin-left: 10px;
@@ -405,7 +426,7 @@ footer {
 // linkの下線消す
 .link {
   text-decoration: none;
-  font-family: monospace;
+  // font-family: monospace;
 }
 .img_wrap{
   transition-duration: 0.5s;
@@ -433,7 +454,7 @@ footer {
 }
 //navbarと下の要素が被らないように
 body{ 
-  padding-top: 80px; 
+  padding-top: 70px; 
 }
 //movies/showのコメント入力欄
 textarea {
@@ -467,3 +488,28 @@ textarea {
     font-family: sans-serif;
     color: gray;
   }
+
+//ページネーション自体のデザイン
+.pagination>li>a {          
+  border: none;     //枠線をなくす
+  color: #696969;   //文字の色を変える
+  border-radius: 15px;
+}
+.page-item.active
+.page-link {
+  z-index: 3;
+  background-color: #3aabd2;
+}
+//ホバー時のデザイン
+.pagination>li>a:hover {
+  color: #035c7c;
+}
+.page-item:first-child .page-link {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+.page-item:last-child .page-link {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+

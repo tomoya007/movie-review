@@ -102,7 +102,6 @@ class UsersController < ApplicationController
         @list << movie
       end
       @list = Kaminari.paginate_array(@list).page(params[:page]).per(10)
-      @list = Kaminari.paginate_array(@list).page(params[:page]).per(10)
     end
   end
 end

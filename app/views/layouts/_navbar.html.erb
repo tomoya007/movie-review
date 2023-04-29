@@ -1,4 +1,4 @@
-<header class="mb-4 fixed-top">
+<header class="fixed-top">
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid ps-5 pe-5">
       <a class="navbar-brand" href="/">IndieFilms</a>
@@ -6,6 +6,10 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <%= search_form_for @q, url: search_movies_path, class: "guests" do |f| %>
+          <%= f.search_field :title_cont, placeholder: '映画タイトル',required: true %>
+          <%= f.submit '検索' %>
+        <% end %>
         <% if user_signed_in? %>
           <div class="btn-group">
             <ul class="navbar-nav">

@@ -40,11 +40,10 @@ class MoviesController < ApplicationController
     end
     if @results.count==0
       flash.now[:danger] = '検索結果は0件でした。'
-      @movies = Movie.all
+      @pagy, @movies = pagy(Movie.all)
       render 'toppages/index'
     end
   end
-
 
   def conditional_search   
     @genres = Genre.all

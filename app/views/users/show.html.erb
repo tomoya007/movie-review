@@ -5,7 +5,7 @@
       <% @comments.each do |comment| %>
         <div class="comment row">
           <div class="col-lg-8 col-md-9">
-            <span class="info"><%= link_to comment.movie.title, comment.movie, class: "comment-title", :target => "new" %></span>
+            <span class="info"><%= link_to comment.movie.title, comment.movie, class: "comment-title", method: :get %></span>
             <span class="date"><%= comment.created_at.to_s[0..15] %></span>
             <span class="raty"> 
               <div id="star-rate<%= comment.id %>"></div>    
@@ -23,7 +23,7 @@
             <span class="content"><%= comment.content %></span>
           </div>
           <div class="col-lg-4 col-md-3">
-            <%= link_to comment.movie, :target => "new" do %>
+            <%= link_to comment.movie, method: :get do %>
               <%= image_tag comment.movie.image.url, :size => '212x300' %>
             <% end %>
           </div>

@@ -16,6 +16,11 @@
       </td>
     <% end %>
   </span>
+<% else %>  
+  <td>
+    <i class="fa fa-heart unlike-btn"></i> 
+    <%= comment.likes.count %>
+  </td>
 <% end %>   
 
 
