@@ -90,3 +90,5 @@ gem 'net-pop'
 gem 'net-smtp'
 
 gem 'rails-i18n'
+
+gem 'rspec-rails'
