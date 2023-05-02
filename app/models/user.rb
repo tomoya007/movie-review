@@ -3,6 +3,7 @@ class User < ApplicationRecord
         :recoverable, :rememberable, :validatable
   before_save { self.email.downcase! }
   validates :name, presence: true, length: { maximum: 50 }
+  validates :email, presence: true
 
   mount_uploader :avatar, AvatarUploader
   has_one_attached :avatar
