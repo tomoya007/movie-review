@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2023_03_13_024725) do
   end
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.text "content"
+    t.text "content", null: false
     t.bigint "user_id", null: false
     t.bigint "movie_id", null: false
     t.integer "likes_count", default: 0
