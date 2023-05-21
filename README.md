@@ -1,3 +1,6 @@
+## Overview
+インディーズ映画専門のレビューサイトです。気になる映画をお気に入りしたり、レビューすることができます。
+
 # title
 movie-review
 
@@ -6,9 +9,6 @@ movie-review
 
 # ER図
 https://app.diagrams.net/#G1i4-tRQ_AgsSaEclBF8pKT4ufdrXQwWyC
-
-## Overview
-インディーズ映画専門のレビューサイトです。気になる映画をお気に入りしたり、レビューすることができます。
 
 ## Requirement
 - macOS
