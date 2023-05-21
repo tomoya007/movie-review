@@ -1,6 +1,6 @@
-# name
+# title
 movie-review
-# image
+
 ![画像名](https://github.com/tomoya007/movie-review/blob/main/4ecffaca37446077404a6bbca2a5014f.jpg)
 
 # ER図
