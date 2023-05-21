@@ -1,10 +1,6 @@
-## Overview
+# movie-review
 インディーズ映画専門のレビューサイトです。気になる映画をお気に入りしたり、レビューすることができます。
 
-# title
-movie-review
-
-# 
 ![画像名](https://github.com/tomoya007/movie-review/blob/main/4ecffaca37446077404a6bbca2a5014f.jpg)
 
 # ER図
