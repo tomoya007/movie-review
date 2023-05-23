@@ -11,7 +11,7 @@ RSpec.describe Comment, type: :model do
 
       it 'content必須' do
         comment = build(:comment, content: nil)
-        comment.valid?  # バリデーションエラーがないか
+        comment.valid?  
         expect(comment.errors[:content]).to include('が入力されていません。')
       end
       
