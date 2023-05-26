@@ -21,7 +21,6 @@ class ListMoviesController < ApplicationController
       flash[:danger] = "観た映画リストへの追加失敗しました"
     end
     redirect_back fallback_location: root_path
-    # 直前のページに戻れなかった際のパス
   end
 
   # add watched movie from want-to-watch list
