@@ -59,10 +59,11 @@ class UsersController < ApplicationController
   end
 
   def timeline
-    @feed_items = current_user.feed
-    @feed_items = Kaminari.paginate_array(@feed_items).page(params[:page]).per(20) unless @feed_items.blank?
+    @feed_items = current_user.feed.to_a
+    @pagy, @feed_items = pagy_array(@feed_items) if @feed_items.present?
     @user = User.find_by(params[:user_id])
   end
+  
 
   def watched
     list = listup("watched")
