@@ -74,9 +74,6 @@ GEM
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
-    bootstrap5-kaminari-views (0.0.1)
-      kaminari (>= 0.13)
-      rails (>= 3.1)
     builder (3.2.4)
     byebug (11.1.3)
     capybara (3.39.0)
@@ -379,7 +376,6 @@ DEPENDENCIES
   activeadmin
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
-  bootstrap5-kaminari-views
   byebug
   capybara (>= 2.15)
   carrierwave
@@ -393,7 +389,6 @@ DEPENDENCIES
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   jquery-rails
-  kaminari
   listen (~> 3.2)
   mini_magick
   mysql2 (>= 0.4.4)

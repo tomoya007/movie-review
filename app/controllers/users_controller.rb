@@ -75,12 +75,12 @@ class UsersController < ApplicationController
     paginate_list(list)
   end
 
-  def my_watched
-    @list = listup("recommend")
-    @count = @list.count
-    @my_watched = User.my_watched(@movielist.id, params[:my_id])
-    @my_watched = Kaminari.paginate_array(@my_watched).page(params[:page]).per(20) unless @my_watched.blank?
-  end
+  # def my_watched
+  #   @list = listup("recommend")
+  #   @count = @list.count
+  #   @my_watched = User.my_watched(@movielist.id, params[:my_id])
+  #   @my_watched = Kaminari.paginate_array(@my_watched).page(params[:page]).per(20) unless @my_watched.blank?
+  # end
 
   private
   def user_params
@@ -102,7 +102,7 @@ class UsersController < ApplicationController
       list.each do |movie|
         @list << movie
       end
-      @list = Kaminari.paginate_array(@list).page(params[:page]).per(10)
+      @pagy, @list = pagy_array(@list, items: 10)
     end
   end
 end

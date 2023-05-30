@@ -82,8 +82,8 @@ gem 'image_processing', '~> 1.2'
 gem 'hirb'
 gem 'hirb-unicode'
 
-gem 'kaminari'
-gem 'bootstrap5-kaminari-views'
+# gem 'kaminari'
+# gem 'bootstrap5-kaminari-views'
 
 # いいねcounter
 gem 'counter_culture'
