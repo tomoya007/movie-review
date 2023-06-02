@@ -22,28 +22,27 @@ class MoviesController < ApplicationController
   end
 
   def search
-    if params[:q][:title_eq].blank?&&params[:q].blank?
+    if params[:q][:title_eq].blank? && params[:q].blank?
       flash.now[:danger] = '検索結果は0件でした。'
-      @results=[]
-    elsif params[:q][:released_year_lteq].present?
-      @results = @q.result
-      @count = @results.count
-    elsif params[:q][:released_year].present?
-      @results = released_year_split.result
-      @count = @results.count
-    elsif params[:q][:released_year_gteq].present?
-      @results = @q.result
-      @count = @results.count
+      @results = []
     else
-      @results = @q.result
+      @results =  if params[:q][:released_year_lteq].present? ||
+                    params[:q][:released_year_gteq].present? ||
+                    params[:q][:released_year].present?
+                    released_year_split.result
+                  else
+                    @q.result
+                  end
       @count = @results.count
     end
-    if @results.count==0
+  
+    if @results.count == 0
       flash.now[:danger] = '検索結果は0件でした。'
       @pagy, @movies = pagy(Movie.all)
       render 'toppages/index'
     end
   end
+  
 
   def conditional_search   
     @genres = Genre.all
