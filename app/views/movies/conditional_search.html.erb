@@ -1,35 +1,43 @@
 <div class="container-fluid area-width search-page"> 
   <h1>色々な検索</h1><br>
-  <%= search_form_for @q, url: search_movies_path do |f| %>
-    <h2><%= f.label :"ジャンル" %></h2>
-    <br>
-    <%= f.select :genres_name_eq, [["ヒューマン", "ヒューマン"], ["恋愛", "恋愛"], ["ドラマ", "ドラマ"], ["ドキュメンタリー", "ドキュメンタリー"], ["アクション", "アクション"], ["サスペンス", "サスペンス"], ["コメディ", "コメディ"], ["アニメーション", "アニメーション"], ["SF", "SF"]] ,{include_blank: '選択してください'}, :required => true, class:"form-control" %>
-    <div class="input-group-btn">
-      <%= button_tag(type: 'submit', class: "btn btn-sm btn-outline-secondary", style: "margin-top: 10px; border-radius: 5px;") do %>
-        <i class="bi bi-search"></i> 検索
-      <% end %>
-    </div>
-  <% end %>
+  
+  <% search_criteria = {
+    "ジャンル" => {
+      param: :genres_name_eq, 
+      options: [
+        ["ヒューマン", "ヒューマン"], ["恋愛", "恋愛"], ["ドラマ", "ドラマ"], 
+        ["ドキュメンタリー", "ドキュメンタリー"], ["アクション", "アクション"], 
+        ["サスペンス", "サスペンス"], ["コメディ", "コメディ"], 
+        ["アニメーション", "アニメーション"], ["SF", "SF"]
+      ]
+    },
+    "今の気分" => {
+      param: :feeling_eq, 
+      options: [
+        ["常識が全く通用しません", "常識が全く通用しません"], ["映画で知る歴史や社会", "映画で知る歴史や社会"], 
+        ["休日の午後にゆっくりと", "休日の午後にゆっくりと"], ["ほのぼのをおすそわけ", "ほのぼのをおすそわけ"], 
+        ["やっぱ家族っていいなあ", "やっぱ家族っていいなあ"], ["元気になりたいあなたに", "元気になりたいあなたに"], 
+        ["殴る！蹴る！", "殴る！蹴る！"], ["タオル必須、号泣の一本", "タオル必須、号泣の一本"]
+      ]
+    },
+    "公開年" => {
+      param: :released_year, 
+      options: [
+        ["~2009", "1990~2009"], ["2010~2019", "2010~2019"], ["2020~", "2020~2030"]
+      ]
+    }
+  } %>
 
-  <%= search_form_for @q, url: search_movies_path do |f| %>
-    <h2><%= f.label :"今の気分" %></h2>
-    <br>
-    <%= f.select :feeling_eq, [["常識が全く通用しません", "常識が全く通用しません"],["映画で知る歴史や社会", "映画で知る歴史や社会"], ["休日の午後にゆっくりと", "休日の午後にゆっくりと"], ["ほのぼのをおすそわけ", "ほのぼのをおすそわけ"], ["やっぱ家族っていいなあ", "やっぱ家族っていいなあ"], ["元気になりたいあなたに", "元気になりたいあなたに"], ["殴る！蹴る！", "殴る！蹴る！"], ["タオル必須、号泣の一本", "タオル必須、号泣の一本"]] ,{include_blank: '選択してください'}, :required => true, class:"form-control" %>
-    <div class="input-group-btn">
-      <%= button_tag(type: 'submit', class: "btn btn-sm btn-outline-secondary", style: "margin-top: 10px; border-radius: 5px;") do %>
-        <i class="bi bi-search"></i> 検索
-      <% end %>
-    </div>
-  <% end %>
-
-  <%= search_form_for @q, url: search_movies_path do |f| %>
-    <h2><%= f.label :"公開年" %></h2>
-    <br>
-    <%= f.select :released_year, [["~2009", "1990~2009"], ["2010~2019", "2010~2019"],["2020~", "2020~2030"]] ,{include_blank: '選択してください'}, :required => true, class:"form-control" %>
-    <div class="input-group-btn">
-      <%= button_tag(type: 'submit', class: "btn btn-sm btn-outline-secondary", style: "margin-top: 10px; border-radius: 5px;") do %>
-        <i class="bi bi-search"></i> 検索
-      <% end %>
-    </div>
+  <% search_criteria.each do |label, criteria| %>
+    <%= search_form_for @q, url: search_movies_path do |f| %>
+      <h2><%= f.label label %></h2>
+      <br>
+      <%= f.select criteria[:param], criteria[:options], {include_blank: '選択してください'}, :required => true, class:"form-control" %>
+      <div class="input-group-btn">
+        <%= button_tag(type: 'submit', class: "btn btn-sm btn-outline-secondary", style: "margin-top: 10px; border-radius: 5px;") do %>
+          <i class="bi bi-search"></i> 検索
+        <% end %>
+      </div>
+    <% end %>
   <% end %>     
 </div>
