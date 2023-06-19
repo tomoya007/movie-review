@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :update, :followings, :followers]
+
   def index
     @pagy, @users = pagy(User.order(id: :desc), items: 25)
   end
 
   def show
-    @user = User.find(params[:id])
     @comments = @user.comments
 
     unless current_user?(@user)
@@ -46,14 +47,12 @@ class UsersController < ApplicationController
 
   def followings
     @title = "Following"
-    @user = User.find(params[:id])
     @pagy, @users = pagy(@user.followings)
     render 'show_follow'
   end
 
   def followers
     @title = "Followers"
-    @user = User.find(params[:id])
     @pagy, @users = pagy(@user.followers)
     render 'show_follow'
   end
@@ -64,7 +63,6 @@ class UsersController < ApplicationController
     @user = User.find_by(params[:user_id])
   end
   
-
   def watched
     list = listup("watched")
     paginate_list(list)
@@ -75,14 +73,11 @@ class UsersController < ApplicationController
     paginate_list(list)
   end
 
-  # def my_watched
-  #   @list = listup("recommend")
-  #   @count = @list.count
-  #   @my_watched = User.my_watched(@movielist.id, params[:my_id])
-  #   @my_watched = Kaminari.paginate_array(@my_watched).page(params[:page]).per(20) unless @my_watched.blank?
-  # end
-
   private
+  def set_user
+    @user = User.find(params[:id])
+  end
+
   def user_params
     params.require(:user).permit(:name, :email, :avatar)
   end
